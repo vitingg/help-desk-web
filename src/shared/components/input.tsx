@@ -20,7 +20,7 @@ export function Input({
       {legend && (
         <label
           htmlFor={legend}
-          className={`uppercase  placeholder:text-gray-900 text-2xs focus:text-inherit mb-2 font-medium ${
+          className={`uppercase placeholder:text-gray-900 text-2xs focus:text-inherit font-medium ${
             isError && "text-red-600"
           }`}
         >
@@ -32,12 +32,12 @@ export function Input({
         type="text"
         id={legend}
         {...rest}
-        className={`w-full pb-2 border-0 border-b-1 border-gray-300 font-normal text-gray-900  focus:border-blue-400 focus:outline-none focus:placeholder:text-transparent ${className}`}
+        className={`w-full pb-2 border-0 border-b-1 border-gray-500 font-normal text-gray-900  focus:border-blue-400 focus:outline-none focus:placeholder:text-transparent ${className}`}
       />
 
       {helperText && (
         <p
-          className={`text-xs mt-2 flex ${
+          className={`text-xs mb-4 flex ${
             isError ? "text-red-600" : "italic text-gray-400"
           }`}
         >

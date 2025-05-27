@@ -1,5 +1,5 @@
-import { SignIn } from "../modules/auth/sign-in";
+import { SignUp } from "../modules/auth/sign-up";
 
 export function App() {
-  return <SignIn />
+  return <SignUp />
 }
