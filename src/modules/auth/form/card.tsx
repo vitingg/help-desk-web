@@ -1,12 +1,15 @@
-type CardProps = {
+type FormProps = {
   children: React.ReactNode;
+  title: string;
+  description: string;
 };
 
-export function Card({ children }: CardProps) {
+export function Card({title, description, children}: FormProps) {
   return (
-<div className="bg-gray-600 p-8 h-full flex flex-col justify-center items-center rounded-tr-2xl md:rounded-tr-none rounded-tl-2xl w-full">
-  {children}
-</div>
-
+    <div className=" border border-gray-500 rounded-xl mb-4 p-6 md:p-10">
+      <h1 className="text-lg font-semibold">{title}</h1>
+      <h2 className="text-xs mb-8 text-gray-300">{description}</h2>
+      {children}
+    </div>
   );
 }

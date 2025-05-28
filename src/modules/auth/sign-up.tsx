@@ -1,5 +1,4 @@
 import background from "../../shared/assets/images/Login_Background.png";
-import { Form } from "./form/form";
 import { Card } from "./form/card";
 import { Footer } from "./form/footer";
 import { Input } from "../../shared/components/input";
@@ -15,12 +14,9 @@ export function SignUp() {
       />
 
       <div className=" md:col-start-2 col-span-2 mt-8 md:mt-3 z-10">
-        <Card>
+        <div className="bg-gray-600 p-8 h-full flex flex-col justify-center items-center rounded-tr-2xl md:rounded-tr-none rounded-tl-2xl w-full">
           <Icon />
-          <Form
-            title="Crie sua conta"
-            description="Informe seu nome, e-mail e senha"
-          >
+          <Card title="Acesse o portal" description="Acesse o portal">
             <Input
               legend="nome"
               placeholder="Digite o nome completo"
@@ -41,13 +37,15 @@ export function SignUp() {
             <Button size={"5xl"} className="font-medium mt-7">
               Cadastrar
             </Button>
-          </Form>
-          <Footer
-            title="Já tem uma conta?"
-            description="Entre agora mesmo"
-            buttonValue="Acessar conta"
-          />
-        </Card>
+          </Card>
+
+          <Card
+            title="Ainda não tem uma conta?"
+            description="Cadastre agora mesmo"
+          >
+            <Footer buttonValue="Criar conta" />
+          </Card>
+        </div>
       </div>
     </div>
   );
