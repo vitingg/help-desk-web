@@ -1,6 +1,5 @@
-import { SignUp } from "../modules/auth/sign-up";
-import { SignIn } from "../modules/auth/sign-in";
+import { AppRoutes } from "../shared/routes/routes"
 
 export function App() {
-  return <SignIn />
+  return <AppRoutes />
 }

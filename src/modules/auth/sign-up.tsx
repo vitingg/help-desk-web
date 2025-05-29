@@ -1,15 +1,12 @@
-import background from "../../shared/assets/images/Login_Background.png";
-import { Card } from "./form/card";
-import { Footer } from "./form/footer";
+import { Card } from "./components/card";
+import { Footer } from "./components/footer";
 import { Input } from "../../shared/components/input";
 import { Button } from "../../shared/components/button";
-import { Icon } from "./form/icon";
-import { Layout } from "./form/layout";
+
 
 export function SignUp() {
   return (
-    <Layout>
-      <Icon />
+    <>
       <Card title="Acesse o portal" description="Acesse o portal">
         <Input
           legend="nome"
@@ -36,6 +33,6 @@ export function SignUp() {
       <Card title="Ainda não tem uma conta?" description="Cadastre agora mesmo">
         <Footer buttonValue="Criar conta" />
       </Card>
-    </Layout>
+    </>
   );
 }

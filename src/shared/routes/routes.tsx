@@ -1,17 +1,24 @@
-import { Route, Routes, BrowserRouter } from "react-router";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
+import { Layout } from "../../modules/auth/components/layout";
 import { SignIn } from "../../modules/auth/sign-in";
 import { SignUp } from "../../modules/auth/sign-up";
-import { Layout } from "../../modules/auth/form/layout";
+import { Page } from "../../modules/admin/page";
 
-export function Routes() {
+export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/" element={<Navigate to="/auth/sign-up" replace />} />
+        <Route path="/auth" element={<Navigate to="/auth/sign-up" replace />} />
+
         <Route path="/auth" element={<Layout />}>
-          <Route path="/auth/sign-in" element={<SignIn />} />
-          <Route path="/auth/sign-up" element={<SignUp />} />
+          <Route path="sign-up" element={<SignUp />} />
+          <Route path="sign-in" element={<SignIn />} />
         </Route>
-        <Route path="" />
+
+        <Route path="/admin/dashboard" element={<Page />} />
+
+        
       </Routes>
     </BrowserRouter>
   );

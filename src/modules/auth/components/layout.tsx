@@ -1,4 +1,4 @@
-import background from "../../shared/assets/images/Login_Background.png";
+import background from "../../../shared/assets/images/Login_Background.png";
 import { Outlet } from "react-router";
 import { Icon } from "./icon";
 
