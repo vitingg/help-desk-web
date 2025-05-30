@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --default-font-family: "Lato", sans-serif;
   --color-blue-dark: #2E3DA3;  
   --color-blue-base: #5165E1; 
   --color-blue-light: #8996EB;
