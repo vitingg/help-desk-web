@@ -16,7 +16,7 @@ export function Sidebar({isPc}: SidebarProps) {
         </span>
       </div>
       <div className="pt-2 flex flex-col items-center justify-center">
-        <ul className="pt-4">
+        <ul className="pt-4 space-y-4">
           <li>
             <a className="flex gap-3 items-center" href="">
               <ClipboardList />

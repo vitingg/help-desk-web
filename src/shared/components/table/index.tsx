@@ -5,8 +5,7 @@ import { TableHead } from "./table-head";
 import { TableHeader } from "./table-header";
 import { TableRow } from "./table-row";
 
-
-export function TableWorking(){
+export function TableWorking() {
   return (
     <Table>
       <TableHeader>
@@ -21,14 +20,14 @@ export function TableWorking(){
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
-        <TableCell>Oi</TableCell>
+          <TableCell>13/04/25 20:56</TableCell>
+          <TableCell>00003</TableCell>
+          <TableCell>Rede lenta, Instalação de Rede</TableCell>
+          <TableCell>R$ 180,00</TableCell>
+          <TableCell hasAbbreviation="AC">André Costa</TableCell>
+          <TableCell hasAbbreviation="CS">Carlos Silva</TableCell>
+          <TableCell status="Aberto" />
       </TableBody>
     </Table>
-  )
+  );
 }
