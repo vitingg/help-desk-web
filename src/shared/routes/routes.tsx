@@ -16,7 +16,7 @@ export function AppRoutes() {
           <Route path="sign-in" element={<SignIn />} />
         </Route>
 
-        <Route path="/admin/dashboard" element={<Page />} />
+        <Route path="/dashboard/admin" element={<Page />} />
 
         
       </Routes>

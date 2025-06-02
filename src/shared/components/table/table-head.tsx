@@ -5,5 +5,5 @@ type TableHeadProps = {
 };
 
 export function TableHead({ children }: TableHeadProps) {
-  return <th className="px-4 py-3">{children}</th>;
+  return <th className="px-4 py-3 text-gray-400">{children}</th>;
 }

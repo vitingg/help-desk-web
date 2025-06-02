@@ -5,5 +5,5 @@ type TableHeaderProps = {
 };
 
 export function TableHeader({ children }: TableHeaderProps) {
-  return <thead className="">{children}</thead>;
+  return <thead className="border border-gray-500">{children}</thead>;
 }

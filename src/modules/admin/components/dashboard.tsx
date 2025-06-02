@@ -1,4 +1,5 @@
 import { TicketTable } from "./table";
+import { TableWorking } from "../../../shared/components/table";
 
 export function Dashboard() {
   return (
@@ -7,7 +8,7 @@ export function Dashboard() {
         <p className="text-blue-dark font-semibold text-xl">Chamados</p>
       </div>
       <div className="pt-6">
-        <TicketTable />
+        <TableWorking />
       </div>
     </div>
   );
