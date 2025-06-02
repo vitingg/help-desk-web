@@ -9,7 +9,7 @@ export function TableWorking() {
   return (
     <Table>
       <TableHeader>
-        <TableRow>
+        <TableRow isBody={false} >
           <TableHead>Atualizado em</TableHead>
           <TableHead>Id</TableHead>
           <TableHead>Título e Serviço</TableHead>
@@ -20,6 +20,7 @@ export function TableWorking() {
         </TableRow>
       </TableHeader>
       <TableBody>
+        <TableRow>
           <TableCell>13/04/25 20:56</TableCell>
           <TableCell>00003</TableCell>
           <TableCell>Rede lenta, Instalação de Rede</TableCell>
@@ -27,6 +28,7 @@ export function TableWorking() {
           <TableCell hasAbbreviation="AC">André Costa</TableCell>
           <TableCell hasAbbreviation="CS">Carlos Silva</TableCell>
           <TableCell status="Aberto" />
+        </TableRow>
       </TableBody>
     </Table>
   );
