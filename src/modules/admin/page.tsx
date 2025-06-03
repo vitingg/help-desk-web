@@ -5,7 +5,7 @@ import { Layout } from "./components/layout";
 export function Page() {
   return (
     <Layout>
-      <Sidebar isPc={true} />
+      <Sidebar  />
       <Dashboard />
     </Layout>
   );

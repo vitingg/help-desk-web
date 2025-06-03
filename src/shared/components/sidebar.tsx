@@ -1,13 +1,9 @@
 import lightVector from "../../shared/assets/vectors/Logo_IconLight.svg";
 import { ClipboardList, Users, BriefcaseBusiness, Wrench } from "lucide-react";
 
-type SidebarProps = {
-  isPc: boolean;
-};
-
-export function Sidebar({isPc}: SidebarProps) {
+export function Sidebar() {
   return (
-    <nav className="h-full w-52 justify-center pl-5 pr-5 ">
+    <nav className="h-full w-52 flex flex-col justify-between">
       <div className="pt-6 pb-6 flex gap-4 justify-center">
         <img src={lightVector} alt="" className="w-11 h-11" />
         <span>
@@ -15,34 +11,52 @@ export function Sidebar({isPc}: SidebarProps) {
           <p className="text-2xs text-blue-light">ADMIN</p>
         </span>
       </div>
-      <div className="pt-2 flex flex-col items-center justify-center">
-        <ul className="pt-4 space-y-4">
-          <li>
-            <a className="flex gap-3 items-center" href="">
+
+      <hr className="my-4 border-t-1 border-gray-400" />
+
+      <div className="flex flex-col flex-1 justify-start pt-5">
+        <ul className="space-y-1 flex flex-col pr-4 pl-4">
+          <li className=" text-white px-6 py-4 border-0 rounded-lg bg-blue-dark">
+            <a className="flex gap-2 items-center" href="">
               <ClipboardList />
               <p>Chamados</p>
             </a>
           </li>
-          <li>
+
+          <li className=" text-gray-400 hover:text-white px-6 py-4 border-0 rounded-md  hover:bg-blue-dark">
             <a className="flex gap-3 items-center" href="">
               <Users />
-              <p>Chamados</p>
+              <p>Técnicos</p>
             </a>
           </li>
-          <li>
+
+          <li className=" text-gray-400 hover:text-white px-6 py-4 border-0 rounded-md hover:bg-blue-dark">
             <a className="flex gap-3 items-center" href="">
               <BriefcaseBusiness />
               <p>Clientes</p>
             </a>
           </li>
-          <li>
+
+          <li className=" text-gray-400 hover:text-white px-6 py-4 border-0 rounded-md hover:bg-blue-dark">
             <a className="flex gap-3 items-center" href="">
               <Wrench />
               <p>Serviços</p>
             </a>
           </li>
-
         </ul>
+      </div>
+
+      <hr className="my-4 pt- border-t-1 border-gray-400" />
+      <div className="p-4 pt-0">
+        <div className="flex gap-2 items-center justify-center">
+          <p className="bg-blue-dark text-lg rounded-full w-12 h-12 text-white flex items-center justify-center">
+            UA
+          </p>
+          <div className="flex flex-col">
+            <p className="text-sm font-semibold text-white">Usuário Adm</p>
+            <p className="text-xs text-gray-400">user.adm@test.com</p>
+          </div>
+        </div>
       </div>
     </nav>
   );
