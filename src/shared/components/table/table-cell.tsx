@@ -70,9 +70,9 @@ function Status({ status }: StatusProps) {
 const tableCellVariants = cva("align-middle", {
   variants: {
     type: {
-      default: "px-4 py-3",
-      profile: "px-6 py-2 gap-2",
-      status: "px-4 py-3",
+      default: "px-4 py-3 text-center",
+      profile: "px-6 py-2 gap-2 text-center",
+      status: "px-4 py-3 ",
     },
   },
   defaultVariants: {

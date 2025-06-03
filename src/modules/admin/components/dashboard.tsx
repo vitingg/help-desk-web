@@ -1,4 +1,3 @@
-import { TicketTable } from "./table";
 import { TableWorking } from "../../../shared/components/table";
 
 export function Dashboard() {
