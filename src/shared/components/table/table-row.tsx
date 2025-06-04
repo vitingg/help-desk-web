@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Icon } from "./edit-icon";
+import { Icon } from "../edit-icon";
 
 type TableRowProps = {
   children: ReactNode;

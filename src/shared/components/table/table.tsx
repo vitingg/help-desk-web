@@ -6,8 +6,11 @@ type tableProps = {
 
 export function Table({ children }: tableProps) {
   return (
-    <div className="relative overflow-hidden rounded-xl">
-      <table className="w-full border border-gray-500">{children}</table>
-    </div>
+    <table
+      className="border-separate border-spacing-0 w-full 
+    border border-gray-500 rounded-lg overflow-hidden"
+    >
+      {children}
+    </table>
   );
 }

@@ -1,15 +1,14 @@
-import { TableWorking } from "../../../shared/components/table";
+import { Content } from "./content";
+import { Detail } from "./second-content";
 
 export function Dashboard() {
   return (
-    <div className="flex-1 rounded-tl-xl bg-gray-600 text-gray-200">
+    <div
+      className="md:flex-1 rounded-tl-3xl rounded-tr-3xl md:rounded-tl-xl md:rounded-tr-none 
+    h-full bg-gray-600 text-gray-200"
+    >
       <div className="h-full pl-12 pr-12">
-        <div className="flex pt-14">
-          <p className="text-blue-dark font-semibold text-xl">Chamados</p>
-        </div>
-        <div className="pt-6">
-          <TableWorking />
-        </div>
+        <Detail />
       </div>
     </div>
   );

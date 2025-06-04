@@ -1,5 +1,5 @@
 import { PenLine } from "lucide-react";
-import { Button } from "../button";
+import { Button } from "./button";
 
 export function Icon() {
   return (

@@ -16,7 +16,7 @@ const tableCellVariants = cva("", {
     type: {
       default: "px-4 py-3",
       profile: "px-6 py-2 gap-2",
-      status: " ",
+      status: "p-1",
     },
   },
   defaultVariants: {
@@ -82,7 +82,7 @@ type StatusProps = VariantProps<typeof statusVariants> & {
 };
 
 // utilizando o cva pra manusear mais fácil os status
-const statusVariants = cva("p-1 gap-1 flex items-center rounded-2xl", {
+const statusVariants = cva("gap-1 inline-flex p-1 flex items-center rounded-2xl", {
   variants: {
     status: {
       Aberto: "bg-feedback-openBackground text-feedback-open",
@@ -101,7 +101,7 @@ const statusIcons = {
   Fechado: CircleCheckBig,
 };
 
-// função status que manega o ícone
+// função status que maneja o ícone
 function Status({ status }: StatusProps) {
   const Icon = statusIcons[status];
 
