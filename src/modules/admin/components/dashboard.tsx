@@ -1,5 +1,6 @@
-import { Content } from "./content";
-import { Detail } from "./second-content";
+
+
+import { Technicians } from "../technicians/technicians";
 
 export function Dashboard() {
   return (
@@ -8,7 +9,7 @@ export function Dashboard() {
     h-full bg-gray-600 text-gray-200"
     >
       <div className="h-full pl-12 pr-12">
-        <Detail />
+        <Technicians />
       </div>
     </div>
   );

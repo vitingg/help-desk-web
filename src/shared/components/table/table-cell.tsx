@@ -66,7 +66,7 @@ type ProfileContentProps = {
 
 function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className=" items-center justify-center gap-2">
       <div className="flex items-center justify-center gap-2">
         <p className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
           {hasAbbreviation}
