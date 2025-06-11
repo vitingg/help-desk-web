@@ -1,6 +1,6 @@
 import { TableLayout } from "../../../shared/components/table";
 
-export function Content() {
+export function Ticket() {
   return (
     <>
       <div className="flex pt-14">

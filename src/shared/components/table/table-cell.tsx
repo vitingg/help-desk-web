@@ -14,9 +14,9 @@ type TableCellProps = {
 const tableCellVariants = cva("", {
   variants: {
     type: {
-      default: "px-4 py-3",
-      profile: "px-6 py-2 gap-2",
-      status: "p-1",
+      default: "",
+      profile: "",
+      status: "",
     },
   },
   defaultVariants: {
@@ -49,6 +49,7 @@ export function TableCell({
   return (
     <td
       className={cn(
+        "px-3 py-3",
         tableCellVariants({ type: cellType }),
         className,
         hideOnMobile && "hidden md:table-cell"
@@ -66,11 +67,9 @@ type ProfileContentProps = {
 
 function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
   return (
-    <div className=" items-center justify-center gap-2">
-      <div className="flex items-center justify-center gap-2">
-        <p className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
-          {hasAbbreviation}
-        </p>
+    <div className="flex items-center gap-2">
+      <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
+        {hasAbbreviation}
       </div>
       <p>{children}</p>
     </div>
@@ -82,7 +81,7 @@ type StatusProps = VariantProps<typeof statusVariants> & {
 };
 
 // utilizando o cva pra manusear mais fácil os status
-const statusVariants = cva("gap-1 inline-flex p-1 flex items-center rounded-2xl", {
+const statusVariants = cva("gap-1 p-1 flex items-center rounded-2xl", {
   variants: {
     status: {
       Aberto: "bg-feedback-openBackground text-feedback-open",
@@ -107,7 +106,7 @@ function Status({ status }: StatusProps) {
 
   return (
     <div className={cn(statusVariants({ status }))}>
-      {Icon && <Icon width={16} height={16} />}
+      <Icon width={16} height={16} />
       <p className="text-xs font-semibold">{status}</p>
     </div>
   );

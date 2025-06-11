@@ -14,30 +14,30 @@ export function Technicians() {
     <>
       <div className="flex pt-14 justify-between">
         <p className="text-blue-dark font-semibold text-xl">Chamados</p>
-        <Button size={"lg"} className="flex items-center justify-center gap-2">
-          {" "}
-          <Plus /> Novo{" "}
+        <Button size={"xs"} className="flex items-center justify-center gap-2">
+          <Plus /> 
+          <span className="hidden md:table-cell " >Novo</span>
         </Button>
       </div>
       <div className="pt-6">
-        <div>
-          <Table>
-            <TableHeader>
-              <TableRow isBody={false}>
-                <TableHead>Nome</TableHead>
-                <TableHead hideOnMobile>Email</TableHead>
-                <TableHead>Disponibilidade</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <TableRow>
-                <TableCell hasAbbreviation="CS">Carlos Silva</TableCell>
-                <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
-                <TableCell>##Sequencia de horários disponíveis</TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Nome</TableHead>
+              <TableHead hideOnMobile>Email</TableHead>
+              <TableHead>Disponibilidade</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell className="flex items-center" hasAbbreviation="CS">
+                Carlos Silva
+              </TableCell>
+              <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
+              <TableCell>Sequencia de horários disponíveis</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </>
   );

@@ -1,15 +1,12 @@
 import { ArrowLeft, Clock2, CircleCheckBig, CircleHelp } from "lucide-react";
+import { HeaderAction } from "../../../shared/components/header-action";
 
 export function Detail() {
   return (
     <div className="md:pr-30 pd:ml-30 pr-6 pl-6">
       <div className="flex flex-col md:flex-row md:justify-between md:items-center pt-14">
-        <div className="flex flex-col pb-3 md:pb-0">
-          <p className="text-gray-300 font-semibold gap-2 flex items-center">
-            <ArrowLeft /> Voltar
-          </p>
-          <p className="text-blue-dark font-semibold text-xl">Chamados</p>
-        </div>
+        <HeaderAction title="Chamado"/>
+
         <div className="font-semibold text-gray-200 flex gap-2 ">
           <div className="p-4 flex gap-2 flex-1 md:flex-none bg-gray-500  rounded-md">
             <Clock2 /> Em atendimento

@@ -4,6 +4,7 @@ import { TableCell } from "./table-cell";
 import { TableHead } from "./table-head";
 import { TableHeader } from "./table-header";
 import { TableRow } from "./table-row";
+import { Icon } from "../edit-icon";
 
 export function TableLayout() {
   return (
@@ -17,6 +18,7 @@ export function TableLayout() {
           <TableHead hideOnMobile>Cliente</TableHead>
           <TableHead hideOnMobile>Técnico</TableHead>
           <TableHead>Status</TableHead>
+          <TableHead />
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -41,75 +43,9 @@ export function TableLayout() {
             Carlos Silva
           </TableCell>
           <TableCell status="Aberto" />
-        </TableRow>
-
-        <TableRow>
-          <TableCell>13/04/25 20:56</TableCell>
-          <TableCell hideOnMobile className="font-semibold ">
-            00003
-          </TableCell>
           <TableCell>
-            <div className="text-sm font-semibold text-gray-200">
-              Backup não está funcionando
-            </div>
-            <div className="text-xs font-medium text-gray-200">
-              Recuperação de Dados{" "}
-            </div>
+            <Icon />
           </TableCell>
-          <TableCell hideOnMobile>R$ 180,00</TableCell>
-          <TableCell hideOnMobile hasAbbreviation="AC">
-            André Costa
-          </TableCell>
-          <TableCell hideOnMobile hasAbbreviation="CS">
-            Carlos Silva
-          </TableCell>
-          <TableCell status="Em Atendimento" />
-        </TableRow>
-
-        <TableRow>
-          <TableCell>13/04/25 20:56</TableCell>
-          <TableCell hideOnMobile className="font-semibold ">
-            00003
-          </TableCell>
-          <TableCell>
-            <div className="text-sm font-semibold text-gray-200">
-              Backup não está funcionando
-            </div>
-            <div className="text-xs font-medium text-gray-200">
-              Recuperação de Dados{" "}
-            </div>
-          </TableCell>
-          <TableCell hideOnMobile>R$ 180,00</TableCell>
-          <TableCell hideOnMobile hasAbbreviation="AC">
-            André Costa
-          </TableCell>
-          <TableCell hideOnMobile hasAbbreviation="CS">
-            Carlos Silva
-          </TableCell>
-          <TableCell status="Fechado" />
-        </TableRow>
-
-        <TableRow>
-          <TableCell>13/04/25 20:56</TableCell>
-          <TableCell hideOnMobile className="font-semibold ">
-            00003
-          </TableCell>
-          <TableCell>
-            <div className="text-sm font-semibold text-gray-200">
-              Backup não está funcionando
-            </div>
-            <div className="text-xs font-medium text-gray-200">
-              Recuperação de Dados{" "}
-            </div>
-          </TableCell>
-          <TableCell hideOnMobile>R$ 180,00</TableCell>
-          <TableCell hideOnMobile hasAbbreviation="AC">
-            André Costa
-          </TableCell>
-          <TableCell hideOnMobile hasAbbreviation="CS">
-            Carlos Silva
-          </TableCell>
-          <TableCell status="Aberto" />
         </TableRow>
       </TableBody>
     </Table>
