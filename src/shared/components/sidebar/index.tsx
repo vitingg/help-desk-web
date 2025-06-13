@@ -34,10 +34,10 @@ export function Sidebar() {
           </li>
 
           <li className=" text-gray-400 hover:text-white px-6 py-4 border-0 rounded-md hover:bg-blue-dark">
-            <a className="flex gap-3 items-center" href="">
+            <button className="flex gap-3 items-center">
               <Wrench />
               <p>Serviços</p>
-            </a>
+            </button>
           </li>
         </ul>
       </div>

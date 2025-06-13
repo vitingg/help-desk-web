@@ -1,4 +1,4 @@
-import { ArrowLeft, Clock2, CircleCheckBig, CircleHelp } from "lucide-react";
+import { Clock2, CircleCheckBig, CircleHelp } from "lucide-react";
 import { HeaderAction } from "../../../shared/components/header-action";
 
 export function Detail() {

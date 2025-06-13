@@ -1,7 +1,7 @@
 import { HeaderAction } from "../../../shared/components/header-action";
 import { Button } from "../../../shared/components/button";
 import { Input } from "../../../shared/components/input";
-import { FlaskRound } from "lucide-react";
+import { Outlet } from "react-router";
 
 export function TechniciansProfile() {
   return (
@@ -24,7 +24,7 @@ export function TechniciansProfile() {
           <p className="text-gray-300 text-xs">
             Defina as informações do perfil de técnico
           </p>
-          <Profile />
+          <Outlet />
         </div>
         <div className="border border-gray-500 p-4 rounded-lg max-w-md">
           <p className="font-bold">Horários de atendimento</p>
@@ -70,7 +70,7 @@ export function TechniciansProfile() {
   );
 }
 
-function Form() {
+export function Form() {
   return (
     <div className="pt-6">
       <Input legend="Nome" placeholder="Nome completo" />
@@ -84,7 +84,7 @@ function Form() {
   );
 }
 
-function Profile() {
+export function Profile() {
   return (
     <div className="pt-6">
       <div className="font-semibold rounded-full bg-blue-dark w-12 h-12 flex justify-center items-center text-gray-600 text-md">

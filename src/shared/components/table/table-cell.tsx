@@ -49,7 +49,7 @@ export function TableCell({
   return (
     <td
       className={cn(
-        "px-3 py-3",
+        "px-5 py-3 align-middle",
         tableCellVariants({ type: cellType }),
         className,
         hideOnMobile && "hidden md:table-cell"
@@ -67,11 +67,13 @@ type ProfileContentProps = {
 
 function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
   return (
-    <div className="flex items-center gap-2">
-      <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
-        {hasAbbreviation}
+    <div>
+      <div className="flex items-center gap-2">
+        <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
+          {hasAbbreviation}
+        </div>
+        <p>{children}</p>
       </div>
-      <p>{children}</p>
     </div>
   );
 }

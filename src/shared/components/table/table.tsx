@@ -2,13 +2,14 @@ import type { ReactNode } from "react";
 
 type tableProps = {
   children: ReactNode;
+  className?: string;
 };
 
-export function Table({ children }: tableProps) {
+export function Table({ children, className }: tableProps) {
   return (
     <table
-      className="border-separate border-spacing-0 w-full 
-    border border-gray-500 rounded-lg overflow-hidden"
+      className={`
+    border border-gray-500 rounded-lg ${className}`}
     >
       {children}
     </table>

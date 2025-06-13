@@ -2,7 +2,7 @@ import lightVector from "../../../shared/assets/vectors/Logo_IconLight.svg";
 import { Menu } from "lucide-react";
 
 type SidebarHeaderProps = {
-  userClass: string
+  userClass: "ADMIN" | "USER" | "TECHNICIAN";
 }
 
 export function SidebarHeader({userClass}: SidebarHeaderProps) {
