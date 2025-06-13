@@ -8,7 +8,15 @@ import { Ticket } from "../../modules/admin/tickets/ticket";
 import { Detail } from "../../modules/admin/tickets/ticket-detail";
 
 import { Technicians } from "../../modules/admin/technicians/technicians";
-import { TechniciansProfile, Profile, Form } from "../../modules/admin/technicians/technicians-profile";
+import {
+  TechniciansProfile,
+  Profile,
+  Form,
+} from "../../modules/admin/technicians/technicians-profile";
+
+import { Clients } from "../../modules/admin/clients/client";
+
+import { Service } from "../../modules/admin/services/service";
 
 export function AppRoutes() {
   return (
@@ -16,6 +24,14 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<Navigate to="/auth/sign-up" replace />} />
         <Route path="/auth" element={<Navigate to="/auth/sign-up" replace />} />
+        <Route
+          path="/dashboard/admin"
+          element={<Navigate to="/dashboard/admin/ticket" replace />}
+        />
+        <Route
+          path="/dashboard"
+          element={<Navigate to="/dashboard/admin/ticket" replace />}
+        />
 
         <Route path="/auth" element={<Layout />}>
           <Route path="sign-up" element={<SignUp />} />
@@ -33,6 +49,13 @@ export function AppRoutes() {
             <Route path="profile" element={<Profile />} />
             <Route path="form" element={<Form />} />
           </Route>
+        </Route>
+
+        <Route path="/dashboard/admin" element={<Page />}>
+          <Route path="client" element={<Clients />} />
+        </Route>
+        <Route path="/dashboard/admin" element={<Page />}>
+          <Route path="services" element={<Service />} />
         </Route>
       </Routes>
     </BrowserRouter>
