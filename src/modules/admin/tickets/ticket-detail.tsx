@@ -22,7 +22,7 @@ export function Detail() {
           <div className="flex justify-between items-center">
             <div className="font-bold">
               <p className="text-xs text-gray-300">00004</p>
-              <p className=" text-gray-200 text-md">
+              <p className="text-gray-200 text-md">
                 Backup não está funcionando{" "}
               </p>
             </div>

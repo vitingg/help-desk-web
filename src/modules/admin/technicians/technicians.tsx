@@ -1,6 +1,5 @@
 import { Button } from "../../../shared/components/button";
 import { Plus } from "lucide-react";
-
 import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
 import { TableRow } from "../../../shared/components/table/table-row";
@@ -14,7 +13,7 @@ export function Technicians() {
     <>
       <div className="flex pt-14 justify-between">
         <p className="text-blue-dark font-semibold text-xl">Técnicos</p>
-        <Button size={"xs"} className="flex items-center justify-center gap-2">
+        <Button size={"md"} className="flex items-center justify-center gap-2">
           <Plus />
           <span className="hidden md:table-cell">Novo</span>
         </Button>
@@ -37,7 +36,7 @@ export function Technicians() {
               <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
               <TableCell>Sequencia de horários disponíveis</TableCell>
               <TableCell>
-                <Icon />
+                <Icon variant="edit"/>
               </TableCell>
             </TableRow>
           </TableBody>

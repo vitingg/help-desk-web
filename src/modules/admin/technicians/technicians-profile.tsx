@@ -5,11 +5,11 @@ import { Outlet } from "react-router";
 
 export function TechniciansProfile() {
   return (
-    <div>
-      <div className="pt-14 flex items-center justify-between">
+    <div className="pl-6 pr-6 md:pl-44 md:pr-44">
+      <div className="pt-14 md:flex items-center justify-between">
         <HeaderAction title="Perfil do técnico" />
         <div className="gap-2 flex">
-          <Button variant={"secondary"} size={"lg"} className="font-bold">
+          <Button variant={"secondary"} className="font-bold">
             Cancelar
           </Button>
           <Button size={"md"} className="font-bold">
@@ -18,7 +18,7 @@ export function TechniciansProfile() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-6 pt-6 justify-center">
+      <div className="flex flex-col md:flex-row gap-6 pt-6">
         <div className="border border-gray-500 p-4 rounded-lg max-w-sm">
           <p className="font-bold">Dados pessoais</p>
           <p className="text-gray-300 text-xs">

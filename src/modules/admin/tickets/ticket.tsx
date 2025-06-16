@@ -1,5 +1,5 @@
+import { PenLine } from "lucide-react";
 import { Icon } from "../../../shared/components/edit-icon";
-import { TableLayout } from "../../../shared/components/table";
 import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { TableCell } from "../../../shared/components/table/table-cell";
@@ -18,7 +18,7 @@ export function Ticket() {
           <TableHeader>
             <TableRow isBody={false}>
               <TableHead>Atualizado em</TableHead>
-              <TableHead hideOnMobile >Id</TableHead>
+              <TableHead hideOnMobile>Id</TableHead>
               <TableHead>Título e Serviço</TableHead>
               <TableHead hideOnMobile>Valor total</TableHead>
               <TableHead hideOnMobile>Cliente</TableHead>
@@ -50,7 +50,7 @@ export function Ticket() {
               </TableCell>
               <TableCell status="Aberto" />
               <TableCell>
-                <Icon />
+                <Icon variant="edit"/>
               </TableCell>
             </TableRow>
           </TableBody>

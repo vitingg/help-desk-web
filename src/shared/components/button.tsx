@@ -1,11 +1,11 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "../lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 export function Button({
