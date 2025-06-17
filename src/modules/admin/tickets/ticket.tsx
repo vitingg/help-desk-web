@@ -1,4 +1,3 @@
-import { PenLine } from "lucide-react";
 import { Icon } from "../../../shared/components/edit-icon";
 import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
