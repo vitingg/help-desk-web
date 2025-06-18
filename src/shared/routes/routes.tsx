@@ -1,62 +1,17 @@
-import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
-import { Layout } from "../../modules/auth/components/layout";
-import { SignIn } from "../../modules/auth/sign-in";
-import { SignUp } from "../../modules/auth/sign-up";
-
-import { Page } from "../../modules/admin/page";
-import { Ticket } from "../../modules/admin/tickets/ticket";
-import { Detail } from "../../modules/admin/tickets/ticket-detail";
-
-import { Technicians } from "../../modules/admin/technicians/technicians";
-import {
-  TechniciansProfile,
-  Profile,
-  Form,
-} from "../../modules/admin/technicians/technicians-profile";
-
-import { Clients } from "../../modules/admin/clients/client";
-
-import { Service } from "../../modules/admin/services/service";
+import { Routes, BrowserRouter } from "react-router-dom";
+import { RedirectRoutes } from "./redirect-routes";
+import { AuthRoutes } from "./auth-routes";
+import { AdminRoutes } from "./admin-routes";
+import { TechRoutes } from "./tech-routes";
 
 export function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/auth/sign-up" replace />} />
-        <Route path="/auth" element={<Navigate to="/auth/sign-up" replace />} />
-        <Route
-          path="/dashboard/admin"
-          element={<Navigate to="/dashboard/admin/ticket" replace />}
-        />
-        <Route
-          path="/dashboard"
-          element={<Navigate to="/dashboard/admin/ticket" replace />}
-        />
-
-        <Route path="/auth" element={<Layout />}>
-          <Route path="sign-up" element={<SignUp />} />
-          <Route path="sign-in" element={<SignIn />} />
-        </Route>
-
-        <Route path="/dashboard/admin" element={<Page />}>
-          <Route path="ticket" element={<Ticket />} />
-          <Route path="ticket-detail" element={<Detail />} />
-        </Route>
-
-        <Route path="/dashboard/admin" element={<Page />}>
-          <Route path="tech" element={<Technicians />} />
-          <Route path="technicians" element={<TechniciansProfile />}>
-            <Route path="profile" element={<Profile />} />
-            <Route path="form" element={<Form />} />
-          </Route>
-        </Route>
-
-        <Route path="/dashboard/admin" element={<Page />}>
-          <Route path="client" element={<Clients />} />
-        </Route>
-        <Route path="/dashboard/admin" element={<Page />}>
-          <Route path="services" element={<Service />} />
-        </Route>
+        {RedirectRoutes()}
+        {AuthRoutes()}
+        {AdminRoutes()}
+        {TechRoutes()}
       </Routes>
     </BrowserRouter>
   );
