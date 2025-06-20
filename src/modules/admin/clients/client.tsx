@@ -1,4 +1,3 @@
-import { PenLine, Trash } from "lucide-react";
 import { Icon } from "../../../shared/components/edit-icon";
 import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
@@ -28,7 +27,7 @@ export function Clients() {
                 Carlos Silva
               </TableCell>
               <TableCell>carlos.silva@test.com</TableCell>
-              <TableCell className="flex gap-2 justify-end">
+              <TableCell className="flex gap-2 items-center justify-end">
               <Icon variant="delete"/>
               <Icon variant="edit"/>
               </TableCell>

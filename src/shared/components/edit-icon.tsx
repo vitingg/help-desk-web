@@ -1,6 +1,8 @@
 import { PenLine, Trash } from "lucide-react";
 import { Button } from "./button";
-import type { ReactNode } from "react";
+import type {
+  ReactNode,
+} from "react";
 
 const iconMap = {
   edit: <PenLine width={"14"} height={"14"} />,
@@ -11,7 +13,7 @@ type iconProps = {
   variant: keyof typeof iconMap;
 };
 
-export function Icon({ variant = "edit" }: iconProps) {
+export function Icon({ variant = "edit"}: iconProps) {
   const IconComponent: ReactNode = iconMap[variant];
   return (
     <Button

@@ -13,7 +13,7 @@ export function Ticket() {
         <p className="text-blue-dark font-semibold text-xl">Chamados</p>
       </div>
       <div className="pt-6">
-        <Table className="">
+        <Table className="table-auto w-full">
           <TableHeader>
             <TableRow isBody={false}>
               <TableHead>Atualizado em</TableHead>
@@ -48,7 +48,7 @@ export function Ticket() {
                 Carlos Silva
               </TableCell>
               <TableCell status="Aberto" />
-              <TableCell>
+              <TableCell className="flex justify-end">
                 <Icon variant="edit"/>
               </TableCell>
             </TableRow>

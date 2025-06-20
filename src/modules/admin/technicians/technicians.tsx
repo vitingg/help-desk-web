@@ -19,7 +19,7 @@ export function Technicians() {
         </Button>
       </div>
       <div className="pt-6">
-        <Table>
+        <Table className="table-auto w-full">
           <TableHeader>
             <TableRow>
               <TableHead>Nome</TableHead>
@@ -35,7 +35,7 @@ export function Technicians() {
               </TableCell>
               <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
               <TableCell>Sequencia de horários disponíveis</TableCell>
-              <TableCell>
+              <TableCell className="flex justify-end">
                 <Icon variant="edit"/>
               </TableCell>
             </TableRow>
