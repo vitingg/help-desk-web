@@ -1,6 +1,13 @@
-fazer as rotas do / pro /auth/sign-in
+=> preciso;
 
-criar as rotas, pq senao nao vai funcionar
-e do /auth/sign-in
+- substituir todos os status, já que agora criei o componente "status"
+- organizar e terminar de componentizar o ticket-detail da pasta components de shared
+- criar o componente de ticket-detail na pasta pages
+- provavelmente criar um componente pro nome e ícone da pessoa que criou o ticket
 
-tudo isso pra criar o outlet (pra passar o sign-in e sign-up) e nao mudar a page em si
+-finalizar o ADMIN
+
+alterações a serem feitas;
+
+- componente button precisa ser melhorado no cva, organizar os tamanhos disponíveis
+- criar um componente de modal pro ADMIN

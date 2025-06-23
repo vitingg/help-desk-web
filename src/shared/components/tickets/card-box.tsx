@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import { cn } from "../../lib/utils"
 
 type CardBoxProps = {
   children: ReactNode
@@ -7,6 +8,6 @@ type CardBoxProps = {
 
 export function CardBox ({children, className}: CardBoxProps){
   return (
-    <div className={`${className} pb-5`}>{children}</div>
+    <div className={cn("pb-5", className)}>{children}</div>
   )
 }

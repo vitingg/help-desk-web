@@ -6,7 +6,7 @@ type SidebarLayout = {
 
 export function SidebarLayout({ children }: SidebarLayout) {
   return (
-    <nav className="md:h-full md:w-52 flex md:flex-col md:justify-between items-center justify-between">
+    <nav className="flex items-center justify-between md:h-full md:flex-col">
       {children}
     </nav>
   );
