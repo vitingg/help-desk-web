@@ -19,7 +19,7 @@ export function TableLayout() {
         <TableRow>
           <TableCell>Victor</TableCell>
           <TableCell>
-            <Icon />
+            <Icon variant="edit"/>
           </TableCell>
         </TableRow>
       </TableBody>

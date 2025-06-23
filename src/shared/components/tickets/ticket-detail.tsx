@@ -3,7 +3,7 @@ import { CardBox } from "./card-box";
 import { TicketLayout } from "./ticket-layout";
 import { Status } from "../status";
 
-export function TcietDetail() {
+export function TicketDetail() {
   return (
     <TicketLayout>
       <div className="flex justify-between items-center pb-5">

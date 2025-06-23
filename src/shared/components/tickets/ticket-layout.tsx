@@ -7,7 +7,7 @@ type TicketLayoutProps = {
 export function TicketLayout({ children }: TicketLayoutProps) {
   return (
     <div className="flex flex-col md:flex-row md:items-start gap-6">
-      <div className="border border-gray-500 flex-1 md:flex-none md:min-w-96 rounded-md p-6">
+      <div className="border border-gray-500 flex-1 md:flex-none md:max-w[30rem] rounded-md p-6">
         {children}
       </div>
     </div>

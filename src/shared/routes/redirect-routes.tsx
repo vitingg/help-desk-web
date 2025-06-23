@@ -6,11 +6,11 @@ export function RedirectRoutes() {
       <Route path="/" element={<Navigate to="/auth/sign-up" replace />} />
       <Route path="/auth" element={<Navigate to="/auth/sign-up" replace />} />
       <Route
-        path="/dashboard/admin"
+        path="/dashboard"
         element={<Navigate to="/dashboard/admin/ticket" replace />}
       />
       <Route
-        path="/dashboard"
+        path="/dashboard/admin"
         element={<Navigate to="/dashboard/admin/ticket" replace />}
       />
     </>

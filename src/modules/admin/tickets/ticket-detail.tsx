@@ -1,10 +1,9 @@
-import { Clock2, CircleCheckBig, CircleHelp } from "lucide-react";
+import { Clock2, CircleCheckBig } from "lucide-react";
 import { HeaderAction } from "../../../shared/components/header-action";
-import { Paragraph } from "../../../shared/components/tickets/paragraph";
-import { CardBox } from "../../../shared/components/tickets/card-box";
-import { TcietDetail } from "../../../shared/components/tickets/ticket-detail";
 
-export function Detail() {
+import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
+
+export function AdminDetail() {
   return (
     <div className="flex items-center justify-center">
       <div className="md:pr-30 md:pl-30 pr-6 pl-6">
@@ -23,7 +22,7 @@ export function Detail() {
         </div>
 
         <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6">
-          <TcietDetail />
+          <TicketDetail />
 
           <div className="border border-gray-500 rounded-md flex-1 p-6 md:min-w-80">
             <div className="space-y-2 pb-6">

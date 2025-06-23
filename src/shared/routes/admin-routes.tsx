@@ -1,7 +1,7 @@
 import { Route } from "react-router";
 import { AdminPage } from "../../modules/admin/page";
 import { Ticket } from "../../modules/admin/tickets/ticket";
-import { Detail } from "../../modules/admin/tickets/ticket-detail";
+import { AdminDetail } from "../../modules/admin/tickets/ticket-detail";
 import { Technicians } from "../../modules/admin/technicians/technicians";
 import {
   Form,
@@ -16,7 +16,7 @@ export function AdminRoutes() {
     <>
       <Route path="/dashboard/admin" element={<AdminPage />}>
         <Route path="ticket" element={<Ticket />} />
-        <Route path="ticket-detail" element={<Detail />} />
+        <Route path="ticket-detail" element={<AdminDetail />} />
       </Route>
 
       <Route path="/dashboard/admin" element={<AdminPage />}>
