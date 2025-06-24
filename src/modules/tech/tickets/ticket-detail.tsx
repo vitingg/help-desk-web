@@ -3,6 +3,7 @@ import { HeaderAction } from "../../../shared/components/header-action";
 import { AdditionalService } from "../../../shared/components/tickets/additional-services";
 import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
 import { PriceHistory } from "../../../shared/components/tickets/price-history";
+import { CircleCheckBig, Clock2 } from "lucide-react";
 
 export function TechDetail() {
   return (
@@ -10,13 +11,19 @@ export function TechDetail() {
       <div className="flex flex-col md:flex-row md:items-center justify-between pb-6">
         <HeaderAction title="Chamado detalhado" />
         <div className="flex gap-2 items-center ">
-          <Button variant={"secondary"} className="font-bold">
+          <Button
+            size={"xl"}
+            variant={"secondary"}
+            className="font-bold w-1/2 flex gap-2 items-center justify-center"
+          >
+            <CircleCheckBig />
             Encerrar
           </Button>
           <Button
             size={"2xl"}
-            className="flex items-center justify-center font-bold"
+            className="flex items-center justify-center font-bold w-1/2 gap-2"
           >
+            <Clock2 />
             Iniciar atendimento
           </Button>
         </div>

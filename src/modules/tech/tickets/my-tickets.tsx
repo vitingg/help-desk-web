@@ -30,7 +30,7 @@ export function MyTickets() {
           <p><Clock2 /></p>
           <p className="">Em atendimento</p>
         </div>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="grid grid-cols-3 gap-4">
         <Container />
         <Container />
         <Container />

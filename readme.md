@@ -8,18 +8,20 @@
 
 ===========================================================================================
 
+=> estou fazendo
+
+- criando o componente modal que será ativado no admin/services
+
+===========================================================================================
+
 => observações
 
 - arrumar o tamanho do layout (
   shared>tickets>ticket-layout
   )
 
-- arrumar a quantidade maxima de chamados {
-  modules>tech>tickets>my-tickets
-  }
-
 - componente button precisa ser melhorado no cva, organizar os tamanhos disponíveis (
-  principalmente organizar a versão mobile que ocupa 50% da tela, exemplo: tech/ticket-detail
+  principalmente organizar a versão mobile que ocupa 50% da tela: organizado
   )
 
 - criar um componente de modal pro ADMIN/TECH
