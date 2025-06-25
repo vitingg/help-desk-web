@@ -1,11 +1,12 @@
 import { Plus } from "lucide-react";
 import { Button } from "../../../shared/components/button";
 import { useState } from "react";
-import { ModalLayout } from "../../../shared/components/modal/modal-layout";
-import { ModalContent } from "../../../shared/components/modal/modal-content";
-import { Paragraph } from "../../../shared/components/tickets/paragraph";
-import { CardBox } from "../../../shared/components/tickets/card-box";
 import { Input } from "../../../shared/components/input";
+
+import { ModalLayout } from "../../../shared/components/modal/modal-layout";
+import { ModalHeader } from "../../../shared/components/modal/modal-header";
+import { ModalContent } from "../../../shared/components/modal/modal-content";
+import { ModalFooter } from "../../../shared/components/modal/modal-footer";
 
 export function Service() {
   const [open, setOpen] = useState(false);
@@ -23,13 +24,17 @@ export function Service() {
           <span className="hidden md:table-cell">Novo</span>
         </Button>
 
-        <ModalLayout
-          modalTitle="Excluir cliente"
-          open={open}
-          onClose={() => setOpen(false)}
-        >
-          <Input legend="TÍTULO" placeholder="Nome do serviço" />
-          <Input legend="VALOR" placeholder="Nome do serviço" />
+        <ModalLayout open={open}>
+          <ModalHeader> Cadastro de serviço</ModalHeader>
+          <ModalContent>
+            <Input legend="TÍTULO" placeholder="Nome do serviço" />
+
+            <div className="relative">
+              <p className="absolute top-4 font-bold">R$</p>
+              <Input legend="VALOR" placeholder="0,00" className="pl-6" />
+            </div>
+          </ModalContent>
+          <ModalFooter>Salvar</ModalFooter>
         </ModalLayout>
       </div>
     </>
