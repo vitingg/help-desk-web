@@ -28,7 +28,7 @@ export function Button({
 const buttonVariants = cva("font-medium", {
   variants: {
     variant: {
-      primary: "bg-black opacity-85 hover:opacity-100 text-white rounded",
+      primary: "bg-black opacity-80 hover:opacity-100 text-white rounded",
       secondary: "bg-gray-500 hover:bg-gray-300 text-black rounded",
       link: "hover:bg-gray-200 text-gray-600 hover:text-black rounded",
     },

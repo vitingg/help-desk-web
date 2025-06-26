@@ -49,7 +49,7 @@ export function Ticket() {
               </TableCell>
               <TableCell status="Aberto" />
               <TableCell className="flex justify-end items-center">
-                <Icon variant="edit"/>
+                <Icon variant="edit" to="admin/ticket-detail" />
               </TableCell>
             </TableRow>
           </TableBody>

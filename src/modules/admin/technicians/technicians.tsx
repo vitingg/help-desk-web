@@ -7,14 +7,20 @@ import { TableHeader } from "../../../shared/components/table/table-header";
 import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { Icon } from "../../../shared/components/edit-icon";
+import { useNavigate } from "react-router";
 
 export function Technicians() {
+  const navigate = useNavigate()
   return (
     <>
       <div className="flex pt-14 justify-between">
         <p className="text-blue-dark font-semibold text-xl">Técnicos</p>
-        <Button size={"md"} className="flex items-center justify-center gap-2">
-          <Plus />
+        <Button
+          onClick={() =>  navigate("/dashboard/admin/technicians/form")}
+          size={"md"}
+          className="flex items-center justify-center gap-2"
+        >
+          <Plus width={18} height={18}/>
           <span className="hidden md:table-cell">Novo</span>
         </Button>
       </div>
@@ -36,7 +42,7 @@ export function Technicians() {
               <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
               <TableCell>Sequencia de horários disponíveis</TableCell>
               <TableCell className="flex justify-end">
-                <Icon variant="edit"/>
+                <Icon variant="edit" to="admin/technicians/profile" />
               </TableCell>
             </TableRow>
           </TableBody>

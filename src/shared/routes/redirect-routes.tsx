@@ -13,6 +13,14 @@ export function RedirectRoutes() {
         path="/dashboard/admin"
         element={<Navigate to="/dashboard/admin/ticket" replace />}
       />
+      <Route
+        path="/dashboard/tech"
+        element={<Navigate to="/dashboard/tech/tickets" replace />}
+      />
+      <Route
+        path="/dashboard/client"
+        element={<Navigate to="/dashboard/client/tickets" replace />}
+      />
     </>
   );
 }

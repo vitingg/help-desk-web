@@ -42,10 +42,10 @@ export function ClientTickets() {
                 Carlos Silva
               </TableCell>
               <TableCell>
-                <Status status="Aberto"/>
+                <Status status="Aberto" />
               </TableCell>
               <TableCell className="flex justify-end items-center">
-                <Icon variant="look" />
+                <Icon variant="look" to="client/ticket-detail" />
               </TableCell>
             </TableRow>
           </TableBody>
