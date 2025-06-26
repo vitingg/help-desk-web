@@ -24,7 +24,7 @@ export function Service() {
           <span className="hidden md:table-cell">Novo</span>
         </Button>
 
-        <ModalLayout open={open}>
+        <ModalLayout open={open} onClose={() => setOpen(false)}>
           <ModalHeader> Cadastro de serviço</ModalHeader>
           <ModalContent>
             <Input legend="TÍTULO" placeholder="Nome do serviço" />

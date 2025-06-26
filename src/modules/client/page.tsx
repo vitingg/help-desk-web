@@ -1,4 +1,4 @@
-import { TechSidebar } from "./components/sidebar";
+import { ClientSidebar } from "./components/sidebar";
 import { Dashboard } from "../../shared/components/layouts/dashboard";
 import { Outlet } from "react-router";
 import { Layout } from "../../shared/components/layouts/layout";
@@ -7,13 +7,13 @@ import { SidebarSeparator } from "../../shared/components/sidebar/sidebar-separa
 import { SidebarFooter } from "../../shared/components/sidebar/sidebar-footer";
 import { SidebarLayout } from "../../shared/components/sidebar/sidebar-layout";
 
-export function TechPage() {
+export function ClientPage() {
   return (
     <Layout>
       <SidebarLayout>
-        <SidebarHeader userClass="CLIENTE" />
+        <SidebarHeader userClass="TÉCNICO" />
         <SidebarSeparator />
-        <TechSidebar />
+        <ClientSidebar />
         <SidebarSeparator />
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>

@@ -7,7 +7,7 @@ import { ModalSeparator } from "./modal-separator";
 
 export function Modal() {
   return (
-    <ModalLayout>
+    <ModalLayout open={true} onClose={() => {}}>
       <ModalHeader> Cadastro de serviço</ModalHeader>
       <ModalSeparator />
       <ModalContent>

@@ -13,7 +13,7 @@ export function ClientSidebar() {
     {
       name: "Criar chamado",
       icon: <Plus />,
-      path: "/dashboard/client/my-tickets",
+      path: "/dashboard/client/ticket-detail",
     },
   ];
   const baseLinkClasses = "text-gray-400 px-6 py-4 border-0 rounded-md";

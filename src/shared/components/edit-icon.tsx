@@ -1,4 +1,4 @@
-import { PenLine, Trash } from "lucide-react";
+import { Eye, PenLine, Trash } from "lucide-react";
 import { Button } from "./button";
 import type {
   ReactNode,
@@ -6,6 +6,7 @@ import type {
 
 const iconMap = {
   edit: <PenLine width={"14"} height={"14"} />,
+  look: <Eye width={"14"} height={"14"} />,
   delete: <Trash width={"14"} height={"14"} className="text-red-500" />,
 };
 

@@ -10,7 +10,7 @@
 
 => estou fazendo
 
-- criando o componente modal que será ativado no admin/services
+- montando as pages do client
 
 ===========================================================================================
 
@@ -46,5 +46,9 @@
 - dashboard do técnico;
   dashboard/tech/tickets
   dashboard/tech/ticket-detail
+
+- dashboard do cliente;
+  dashboard/client/tickets
+  dashboard/client/ticket-detail
 
 ===========================================================================================

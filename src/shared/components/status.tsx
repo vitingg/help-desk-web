@@ -38,7 +38,9 @@ export function Status({ status, showText = true, size = "md" }: StatusProps) {
   return (
     <div className={cn(statusVariants({ status, size }))}>
       <Icon width={16} height={16} />
-      {showText && <p className="text-xs font-semibold">{status}</p>}
+      {showText && (
+        <p className="hidden md:table-cell text-xs font-semibold">{status}</p>
+      )}
     </div>
   );
 }
