@@ -18,13 +18,13 @@ export function AdminSidebar() {
     },
     { name: "Serviços", icon: <Wrench />, path: "/dashboard/admin/services" },
   ];
-  const baseLinkClasses = "text-gray-400 px-6 py-4 border-0 rounded-md";
+  const baseLinkClasses =
+    "text-gray-400 px-6 py-4 border-0 rounded-md hover:bg-gray-200 hover:text-gray-400";
   const activeLinkClasses =
-    "text-white px-6 py-4 border-0 rounded-lg bg-blue-dark";
-
+    "text-white px-6 py-4 border-0 rounded-lg bg-blue-dark hover:text-white hover:bg-blue-dark";
   return (
     <div className="hidden md:flex flex-col flex-1 justify-start pt-5">
-      <ul className="space-y-1 flex flex-col pr-4 pl-4">
+      <ul className="space-y-1 flex flex-col items-start">
         {navItem.map((item) => (
           <li className="flex" key={item.name}>
             <NavLink

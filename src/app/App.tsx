@@ -1,6 +1,5 @@
-import { AppRoutes } from "../shared/routes/routes"
-
+import { AppRoutes } from "../shared/routes/routes";
 
 export function App() {
-  return <AppRoutes />
+  return <AppRoutes />;
 }

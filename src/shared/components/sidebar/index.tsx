@@ -12,9 +12,7 @@ export function Sidebar({ children }: SidebarProps) {
   return (
     <SidebarLayout>
       <SidebarHeader userClass="ADMIN" />
-      <SidebarSeparator />
       {children}
-      <SidebarSeparator />
       <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
     </SidebarLayout>
   );

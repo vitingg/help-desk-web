@@ -27,11 +27,19 @@ export function Service() {
         <ModalLayout open={open} onClose={() => setOpen(false)}>
           <ModalHeader> Cadastro de serviço</ModalHeader>
           <ModalContent>
-            <Input legend="TÍTULO" placeholder="Nome do serviço" />
+            <Input
+              legend="TÍTULO"
+              placeholder="Nome do serviço"
+              className="font-bold"
+            />
 
             <div className="relative">
               <p className="absolute top-4 font-bold">R$</p>
-              <Input legend="VALOR" placeholder="0,00" className="pl-6" />
+              <Input
+                legend="VALOR"
+                placeholder="0,00"
+                className="pl-6 font-bold"
+              />
             </div>
           </ModalContent>
           <ModalFooter>Salvar</ModalFooter>

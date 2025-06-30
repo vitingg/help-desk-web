@@ -12,9 +12,7 @@ export function AdminPage() {
     <Layout>
       <SidebarLayout>
         <SidebarHeader userClass="ADMIN" />
-        <SidebarSeparator />
-        <AdminSidebar />
-        <SidebarSeparator />
+        <AdminSidebar /> 
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>
       <Dashboard>
