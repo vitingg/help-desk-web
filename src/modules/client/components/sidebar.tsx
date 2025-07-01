@@ -22,7 +22,7 @@ export function ClientSidebar() {
     "text-white px-6 py-4 border-0 rounded-lg bg-blue-dark hover:text-white hover:bg-blue-dark";
 
   return (
-    <div className="hidden md:flex flex-col flex-1 justify-start pt-5">
+    <div className=" bg-gray-100 rounded-xl p-2 absolute top-32 left-10 md:p-0 md:rounded-none md:bg-inherit md:static md:flex flex-col flex-1 justify-start pt-5">
       <ul className="space-y-1 flex flex-col pr-4 pl-4">
         {navItem.map((item) => (
           <li className="flex" key={item.name}>

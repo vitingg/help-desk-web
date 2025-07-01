@@ -6,14 +6,14 @@
 
 - finalizar o ADMIN
 
-- criar o modal de Perfil e Sair quando clica no profile
+- criar o modal de Perfil e Sair quando clica no profile ( somente funcionalizade )
 - criar a sidebar versão mobile
 
 ===========================================================================================
 
 => estou fazendo
 
-- criando a page create-ticket { componente select }
+- criando a page create-ticket { componente select finalizado }
 
 ===========================================================================================
 
