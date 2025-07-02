@@ -10,7 +10,7 @@ export function ClientPage() {
   return (
     <Layout>
       <SidebarLayout>
-        <SidebarHeader userClass="TÉCNICO" />
+        <SidebarHeader userClass="CLIENTE" />
         <ClientSidebar />
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>

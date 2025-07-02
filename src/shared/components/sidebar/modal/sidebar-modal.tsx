@@ -21,7 +21,9 @@ export function SidebarModal({
 }: SidebarModal) {
   profile;
   return (
-    <div className={`bg-gray-100 text-gray600 rounded-xl ${widthClasses[width]}`}>
+    <div
+      className={`bg-gray-100 text-gray600 rounded-xl ${widthClasses[width]}`}
+    >
       <p className="text-2xs text-gray-400 font-bold pt-4 pl-5 pb-4">
         {modalTitle}
       </p>

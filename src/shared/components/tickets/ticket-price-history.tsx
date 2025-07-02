@@ -1,11 +1,13 @@
-import { Paragraph } from "./paragraph";
+import { Paragraph } from "./components/paragraph";
 import { TicketLayout } from "./ticket-layout";
 
 export function PriceHistory() {
   return (
     <TicketLayout>
       <div>
-        <Paragraph size="xs" className="pb-2">Técnico responsável</Paragraph>
+        <Paragraph size="xs" className="pb-2">
+          Técnico responsável
+        </Paragraph>
         <div className="flex gap-2 items-center pb-8">
           <div className="w-8 h-8 bg-blue-dark rounded-full text-sm text-gray-600 flex justify-center items-center">
             AC

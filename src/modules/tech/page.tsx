@@ -10,7 +10,7 @@ export function TechPage() {
   return (
     <Layout>
       <SidebarLayout>
-        <SidebarHeader userClass="CLIENTE" />
+        <SidebarHeader userClass="TÉCNICO" />
         <TechSidebar />
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>

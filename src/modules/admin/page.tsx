@@ -4,7 +4,6 @@ import { Outlet } from "react-router";
 import { Layout } from "../../shared/components/layouts-pages/layout";
 import { SidebarLayout } from "../../shared/components/sidebar/sidebar-layout";
 import { SidebarHeader } from "../../shared/components/sidebar/sidebar-header";
-import { SidebarSeparator } from "../../shared/components/sidebar/sidebar-separator";
 import { SidebarFooter } from "../../shared/components/sidebar/sidebar-footer";
 
 export function AdminPage() {

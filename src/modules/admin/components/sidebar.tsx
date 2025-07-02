@@ -2,6 +2,10 @@ import clsx from "clsx";
 import { BriefcaseBusiness, ClipboardList, Users, Wrench } from "lucide-react";
 import { NavLink } from "react-router";
 import { twMerge } from "tailwind-merge";
+import {
+  baseLinkClasses,
+  activeLinkClasses,
+} from "../../../shared/components/sidebar/export-sidebar-variance";
 
 export function AdminSidebar() {
   const navItem = [
@@ -18,10 +22,6 @@ export function AdminSidebar() {
     },
     { name: "Serviços", icon: <Wrench />, path: "/dashboard/admin/services" },
   ];
-  const baseLinkClasses =
-    "text-gray-400 px-6 py-4 border-0 rounded-md hover:bg-gray-200 hover:text-gray-400";
-  const activeLinkClasses =
-    "text-white px-6 py-4 border-0 rounded-lg bg-blue-dark hover:text-white hover:bg-blue-dark";
   return (
     <div className="hidden md:flex flex-col flex-1 justify-start pt-5">
       <ul className="space-y-1 flex flex-col items-start">
@@ -30,10 +30,13 @@ export function AdminSidebar() {
             <NavLink
               to={item.path}
               className={({ isActive }) =>
-                twMerge(clsx(baseLinkClasses, isActive && activeLinkClasses))
+                twMerge(
+                  clsx(baseLinkClasses, isActive && activeLinkClasses),
+                  "flex items-center justify-center pl-6"
+                )
               }
             >
-              <span className="flex gap-2">
+              <span className="flex gap-2 w-full">
                 {item.icon} {item.name}
               </span>
             </NavLink>

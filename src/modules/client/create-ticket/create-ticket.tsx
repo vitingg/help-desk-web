@@ -1,6 +1,6 @@
 import { Input } from "../../../shared/components/input";
-import { CardBox } from "../../../shared/components/tickets/card-box";
-import { Paragraph } from "../../../shared/components/tickets/paragraph";
+import { CardBox } from "../../../shared/components/tickets/components/card-box";
+import { Paragraph } from "../../../shared/components/tickets/components/paragraph";
 import { Select } from "../../../shared/components/select";
 import { useState } from "react";
 

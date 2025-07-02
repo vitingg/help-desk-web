@@ -1,6 +1,6 @@
 import { HeaderAction } from "../../../shared/components/header-action";
-import { TicketComplete } from "../../../shared/components/tickets";
-import { PriceHistory } from "../../../shared/components/tickets/price-history";
+import { TicketComplete } from "../../../shared/components/tickets/ticket-complete";
+import { PriceHistory } from "../../../shared/components/tickets/ticket-price-history";
 
 export function ClientDetail() {
   return (

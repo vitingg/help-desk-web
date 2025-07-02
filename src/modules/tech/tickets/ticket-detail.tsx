@@ -1,8 +1,8 @@
 import { Button } from "../../../shared/components/button";
 import { HeaderAction } from "../../../shared/components/header-action";
-import { AdditionalService } from "../../../shared/components/tickets/additional-services";
+import { AdditionalService } from "../../../shared/components/tickets/ticket-additional-services";
 import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
-import { PriceHistory } from "../../../shared/components/tickets/price-history";
+import { PriceHistory } from "../../../shared/components/tickets/ticket-price-history";
 import { CircleCheckBig, Clock2 } from "lucide-react";
 
 export function TechDetail() {

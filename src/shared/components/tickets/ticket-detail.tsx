@@ -1,5 +1,5 @@
-import { Paragraph } from "./paragraph";
-import { CardBox } from "./card-box";
+import { Paragraph } from "./components/paragraph";
+import { CardBox } from "./components/card-box";
 import { TicketLayout } from "./ticket-layout";
 import { Status } from "../status";
 
@@ -11,7 +11,7 @@ export function TicketDetail() {
           <Paragraph size="xs">00004</Paragraph>
           <Paragraph size="md">Backup não está funcionando</Paragraph>
         </CardBox>
-        <Status status="Aberto"/>
+        <Status status="Aberto" />
       </div>
       <CardBox>
         <Paragraph size="xs">Descrição</Paragraph>
