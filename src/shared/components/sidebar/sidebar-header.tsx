@@ -3,6 +3,7 @@ import lightVector from "../../../shared/assets/vectors/Logo_IconLight.svg";
 import { Menu } from "lucide-react";
 import { SidebarModal } from "./modal/sidebar-modal";
 import { AdminSidebar } from "../../../modules/admin/components/sidebar";
+import { SidebarContent } from "./sidebar-content";
 
 type SidebarHeaderProps = {
   userClass: "ADMIN" | "CLIENTE" | "TÉCNICO";
@@ -20,7 +21,9 @@ export function SidebarHeader({ userClass }: SidebarHeaderProps) {
         {sidebarOpen && (
           <div className="absolute z-50 top-32 left-20  md:top-auto md:right-auto md:bottom-1 md:left-50">
             <SidebarModal modalTitle="MENU" width="sidebar">
-              <AdminSidebar />
+              <SidebarContent>
+                <AdminSidebar />
+              </SidebarContent>
             </SidebarModal>
           </div>
         )}

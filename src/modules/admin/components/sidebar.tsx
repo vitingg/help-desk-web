@@ -6,6 +6,7 @@ import {
   baseLinkClasses,
   activeLinkClasses,
 } from "../../../shared/components/sidebar/export-sidebar-variance";
+import { SidebarContent } from "../../../shared/components/sidebar/sidebar-content";
 
 export function AdminSidebar() {
   const navItem = [
@@ -23,26 +24,24 @@ export function AdminSidebar() {
     { name: "Serviços", icon: <Wrench />, path: "/dashboard/admin/services" },
   ];
   return (
-    <div className="hidden md:flex flex-col flex-1 justify-start pt-5">
-      <ul className="space-y-1 flex flex-col items-start">
-        {navItem.map((item) => (
-          <li className="flex" key={item.name}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) =>
-                twMerge(
-                  clsx(baseLinkClasses, isActive && activeLinkClasses),
-                  "flex items-center justify-center pl-6"
-                )
-              }
-            >
-              <span className="flex gap-2 w-full">
-                {item.icon} {item.name}
-              </span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <SidebarContent>
+      {navItem.map((item) => (
+        <li className="flex" key={item.name}>
+          <NavLink
+            to={item.path}
+            className={({ isActive }) =>
+              twMerge(
+                clsx(baseLinkClasses, isActive && activeLinkClasses),
+                "flex items-center justify-center pl-6"
+              )
+            }
+          >
+            <span className="flex gap-2 w-full">
+              {item.icon} {item.name}
+            </span>
+          </NavLink>
+        </li>
+      ))}
+    </SidebarContent>
   );
 }

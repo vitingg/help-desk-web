@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { clsx } from "clsx";
+import { cn } from "../../../lib/utils";
 
 type paragraphProps = {
   children: ReactNode;
@@ -18,5 +18,5 @@ export function Paragraph({
     xs: "text-xs font-bold text-gray-400",
   };
 
-  return <p className={clsx(sizeClasses[size], className)}>{children}</p>;
+  return <p className={cn(sizeClasses[size], className)}>{children}</p>;
 }

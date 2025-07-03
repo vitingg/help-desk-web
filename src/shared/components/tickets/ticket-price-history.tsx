@@ -5,7 +5,7 @@ export function PriceHistory() {
   return (
     <TicketLayout>
       <div>
-        <Paragraph size="xs" className="pb-2">
+        <Paragraph size="xs" className="pb-2 pr-26">
           Técnico responsável
         </Paragraph>
         <div className="flex gap-2 items-center pb-8">

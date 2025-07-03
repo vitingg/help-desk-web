@@ -16,7 +16,7 @@ export function Service() {
       <div className="flex pt-14 justify-between">
         <p className="text-blue-dark font-semibold text-xl">Serviços</p>
         <Button
-          size={"md"}
+          size={"lg"}
           className="flex items-center justify-center gap-2"
           onClick={() => setOpen(true)}
         >

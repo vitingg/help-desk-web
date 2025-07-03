@@ -1,7 +1,12 @@
-import { CircleCheckBig, Clock2, PenLine } from "lucide-react";
+import { CircleCheckBig, Clock2 } from "lucide-react";
 import { Button } from "../../../shared/components/button";
+import { Icon } from "../../../shared/components/edit-icon";
 
-export function Container() {
+type ContainerProps = {
+  navigateTo?: string;
+};
+
+export function Container({ navigateTo }: ContainerProps) {
   return (
     <div className="w-full md:w-80 border border-gray-500 rounded-2xl p-5">
       <div className="flex justify-between gap-6">
@@ -18,7 +23,7 @@ export function Container() {
             className="flex items-center justify-center"
             variant={"secondary"}
           >
-            <PenLine height={14} width={14} />
+            <Icon variant="edit" to={navigateTo} />
           </Button>
           <Button
             size={"sm"}

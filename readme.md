@@ -4,8 +4,6 @@
 - criar o componente de ticket-detail na pasta pages
 - provavelmente criar um componente pro nome e ícone da pessoa que criou o ticket
 
-- finalizar o ADMIN
-
 - criar o modal de Perfil e Sair quando clica no profile ( somente funcionalizade )
 - criar a sidebar versão mobile
 
@@ -13,21 +11,14 @@
 
 => estou fazendo
 
-- criando a page create-ticket { componente select finalizado }
+- preciso usar os array de horários que eu criei no admin/technicians
+- sidebar content no mobile
 
 ===========================================================================================
 
 => observações
 
 - arrumar o text area do input (inputs maiores não quebram linha)
-
-- arrumar o tamanho do layout (
-  shared>tickets>ticket-layout
-  )
-
-- componente button precisa ser melhorado no cva, organizar os tamanhos disponíveis (
-  principalmente organizar a versão mobile que ocupa 50% da tela: organizado
-  )
 
 ===========================================================================================
 

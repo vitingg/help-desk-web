@@ -48,7 +48,7 @@ export function Ticket() {
                 Carlos Silva
               </TableCell>
               <TableCell status="Aberto" />
-              <TableCell className="flex justify-end items-center">
+              <TableCell>
                 <Icon variant="edit" to="admin/ticket-detail" />
               </TableCell>
             </TableRow>

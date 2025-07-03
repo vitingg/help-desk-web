@@ -11,13 +11,13 @@ export function AdminDetail() {
         <div className="flex flex-col md:flex-row md:justify-between md:items-center pt-14">
           <HeaderAction title="Chamado detalhado" />
           <div className="font-semibold text-gray-300 flex gap-2 ">
-            <div className="p-4 flex gap-2 flex-1 md:flex-none bg-gray-500  rounded-md">
+            <div className="text-sm md:text-md p-4 flex items-center justify-center gap-2 flex-1 md:flex-none bg-gray-500 rounded-md">
               <Clock2 />
-              <p className="text-gray-200">Em atendimento</p>
+              <p className="text-gray-200 ">Em atendimento</p>
             </div>
-            <div className="p-4 flex gap-2 flex-1 md:flex-none bg-gray-500 rounded-md">
+            <div className="text-sm md:text-md p-4 flex items-center justify-center gap-2 flex-1 md:flex-none bg-gray-500 rounded-md">
               <CircleCheckBig />
-              <p className="text-gray-200">Encerrado</p>
+              <p className="text-gray-200 ">Encerrado</p>
             </div>
           </div>
         </div>
