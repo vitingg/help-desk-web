@@ -1,4 +1,4 @@
-import { AdminSidebar } from "./components/sidebar";
+import { AdminSidebar } from "./components/sidebar-admin";
 import { Dashboard } from "../../shared/components/layouts-pages/dashboard";
 import { Outlet } from "react-router";
 import { Layout } from "../../shared/components/layouts-pages/layout";
@@ -11,7 +11,7 @@ export function AdminPage() {
     <Layout>
       <SidebarLayout>
         <SidebarHeader userClass="ADMIN" />
-        <AdminSidebar /> 
+        <AdminSidebar />
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>
       <Dashboard>

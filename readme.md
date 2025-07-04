@@ -1,24 +1,15 @@
 => necessidades à serem feitas
 
 - organizar e terminar de componentizar o ticket-detail da pasta components de shared
-- criar o componente de ticket-detail na pasta pages
 - provavelmente criar um componente pro nome e ícone da pessoa que criou o ticket
 
 - criar o modal de Perfil e Sair quando clica no profile ( somente funcionalizade )
-- criar a sidebar versão mobile
 
 ===========================================================================================
 
 => estou fazendo
 
 - preciso usar os array de horários que eu criei no admin/technicians
-- sidebar content no mobile
-
-===========================================================================================
-
-=> observações
-
-- arrumar o text area do input (inputs maiores não quebram linha)
 
 ===========================================================================================
 

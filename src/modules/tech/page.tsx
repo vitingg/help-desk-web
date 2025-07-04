@@ -1,10 +1,11 @@
-import { TechSidebar } from "./components/sidebar";
-import { Dashboard } from "../../shared/components/layouts-pages/dashboard";
-import { Outlet } from "react-router";
-import { Layout } from "../../shared/components/layouts-pages/layout";
 import { SidebarHeader } from "../../shared/components/sidebar/sidebar-header";
 import { SidebarFooter } from "../../shared/components/sidebar/sidebar-footer";
 import { SidebarLayout } from "../../shared/components/sidebar/sidebar-layout";
+import { TechSidebar } from "./components/sidebar-tech";
+
+import { Dashboard } from "../../shared/components/layouts-pages/dashboard";
+import { Layout } from "../../shared/components/layouts-pages/layout";
+import { Outlet } from "react-router";
 
 export function TechPage() {
   return (

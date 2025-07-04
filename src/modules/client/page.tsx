@@ -1,4 +1,4 @@
-import { ClientSidebar } from "./components/sidebar";
+import { ClientSidebar } from "./components/sidebar-client";
 import { Dashboard } from "../../shared/components/layouts-pages/dashboard";
 import { Outlet } from "react-router";
 import { Layout } from "../../shared/components/layouts-pages/layout";

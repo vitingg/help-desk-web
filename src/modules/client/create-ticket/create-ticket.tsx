@@ -4,6 +4,7 @@ import { Paragraph } from "../../../shared/components/tickets/components/paragra
 import { Select } from "../../../shared/components/select";
 import { useState } from "react";
 import { Button } from "../../../shared/components/button";
+import { TextArea } from "../../../shared/components/text-area";
 
 const problemsOptions = [
   { value: "recuperação", label: "Recuperação de Dados" },
@@ -34,10 +35,9 @@ export function CreateTicket() {
                   legend="TÍTULO"
                   placeholder="Digite um título para o chamado"
                 />
-                <Input
-                  className="pb-24 flex items-start justify-start"
-                  legend="DESCRIÇÃO"
-                  placeholder={`Descreva o que está acontecendo`}
+                <TextArea
+                  legend="Descrição"
+                  placeholder="Escreva sua descrição..."
                 />
                 <CardBox className="space-y-1">
                   <p className="uppercase text-2xs text-gray-300">
