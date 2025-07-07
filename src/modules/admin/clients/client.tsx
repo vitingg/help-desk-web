@@ -28,8 +28,8 @@ export function Clients() {
               </TableCell>
               <TableCell>carlos.silva@test.com</TableCell>
               <TableCell className="flex gap-2 items-center justify-end">
-              <Icon variant="delete"/>
-              <Icon variant="edit"/>
+                <Icon variant="delete" />
+                <Icon variant="edit" />
               </TableCell>
             </TableRow>
           </TableBody>

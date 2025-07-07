@@ -11,7 +11,9 @@ export function AdminPage() {
     <Layout>
       <SidebarLayout>
         <SidebarHeader userClass="ADMIN" />
-        <AdminSidebar />
+        <div className="hidden md:flex  md:flex-col md:justify-start md:flex-1 ">
+          <AdminSidebar />
+        </div>
         <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
       </SidebarLayout>
       <Dashboard>

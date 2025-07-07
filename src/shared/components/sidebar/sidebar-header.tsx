@@ -11,9 +11,9 @@ type SidebarHeaderProps = {
 export function SidebarHeader({ userClass }: SidebarHeaderProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
-    <div className="pt-6 pb-6 flex gap-4 justify-center md:border-b-1 md:border-b-gray-300 md:w-full">
+    <nav className="pt-6 pb-6 flex gap-4 justify-center md:border-b-1 md:border-b-gray-300 md:w-full">
       <div
-        className="bg-gray-200 ml-6 mr-4 text-gray-600 p-3 rounded-lg md:hidden"
+        className="bg-gray-200 ml-6 mr-4 text-gray-600 p-3 rounded-lg md:hidden cursor-pointer"
         onClick={() => setSidebarOpen((e) => !e)}
       >
         <Menu />{" "}
@@ -30,6 +30,6 @@ export function SidebarHeader({ userClass }: SidebarHeaderProps) {
         <p className="text-lg">HelpDesk</p>
         <p className="text-2xs text-blue-light">{userClass}</p>
       </span>
-    </div>
+    </nav>
   );
 }

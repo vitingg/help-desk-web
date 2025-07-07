@@ -26,7 +26,7 @@ export function AdminSidebar() {
   return (
     <SidebarContent>
       {navItem.map((item) => (
-        <li className="flex" key={item.name}>
+        <li className="flex w-full" key={item.name}>
           <NavLink
             to={item.path}
             className={({ isActive }) =>

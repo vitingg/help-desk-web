@@ -2,14 +2,17 @@ import { HeaderAction } from "../../../shared/components/header-action";
 import { Button } from "../../../shared/components/button";
 import { Input } from "../../../shared/components/input";
 import { Outlet } from "react-router";
+import { useState } from "react";
 
 const controlTime = {
-  morning: ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00"],
-  afternoon: ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
-  night: ["19:00", "20:00", "21:00", "22:00", "23:00"],
+  manhã: ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00"],
+  tarde: ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+  noite: ["19:00", "20:00", "21:00", "22:00", "23:00"],
 };
 
 export function TechniciansProfile() {
+  const [selectedHour, setSelectedHour] = useState<string[]>([]);
+
   return (
     <div className="flex justify-center">
       <div className="pl-6 pr-6">
@@ -41,42 +44,23 @@ export function TechniciansProfile() {
             </p>
 
             <div>
-              <p className="text-gray-300 text-2xs font-bold pt-5 pb-2">
-                MANHÃ
-              </p>
-              <div className="flex font-bold gap-2 text-sm">
-                <p className="border p-2 rounded-2xl">07:00</p>
-                <p className="border p-2 rounded-2xl">08:00</p>
-                <p className="border p-2 rounded-2xl">09:00</p>
-                <p className="border p-2 rounded-2xl">10:00</p>
-                <p className="border p-2 rounded-2xl">11:00</p>
-                <p className="border p-2 rounded-2xl">12:00</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-gray-300 text-2xs font-bold pt-5 pb-2">
-                TARDE
-              </p>
-              <div className="flex font-bold gap-2 text-sm">
-                <p className="border p-2 rounded-2xl">13:00</p>
-                <p className="border p-2 rounded-2xl">14:00</p>
-                <p className="border p-2 rounded-2xl">15:00</p>
-                <p className="border p-2 rounded-2xl">16:00</p>
-                <p className="border p-2 rounded-2xl">17:00</p>
-                <p className="border p-2 rounded-2xl">18:00</p>
-              </div>
-            </div>
-            <div>
-              <p className="text-gray-300 text-2xs font-bold pt-5 pb-2">
-                NOITE
-              </p>
-              <div className="flex font-bold gap-2 text-sm">
-                <p className="border p-2 rounded-2xl">19:00</p>
-                <p className="border p-2 rounded-2xl">20:00</p>
-                <p className="border p-2 rounded-2xl">21:00</p>
-                <p className="border p-2 rounded-2xl">22:00</p>
-                <p className="border p-2 rounded-2xl">23:00</p>
-              </div>
+              {Object.entries(controlTime).map(([period, hour]) => (
+                <div key={period}>
+                  <p className="text-gray-300 text-xs font-bold pt-5 pb-2 uppercase">
+                    {period}
+                  </p>
+                  <div className={`flex font-bold gap-2 text-sm`}>
+                    {hour.map((hour) => (
+                      <p
+                        className={`border border-gray-300 py-1.5 px-3 rounded-2xl cursor-pointer`}
+                        key={hour}
+                      >
+                        {hour}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

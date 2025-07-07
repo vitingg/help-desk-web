@@ -6,7 +6,7 @@ type SidebarContentProps = {
 
 export function SidebarContent({ children }: SidebarContentProps) {
   return (
-    <div className="hidden md:flex flex-col flex-1 justify-start pt-5">
+    <div className="flex flex-col flex-1 justify-start pt-5">
       <ul className="space-y-1 flex flex-col items-start">{children}</ul>
     </div>
   );

@@ -1,7 +1,7 @@
 import { Route } from "react-router";
 import { ClientPage } from "../../modules/client/page";
 import { ClientTickets } from "../../modules/client/tickets/tickets";
-import { ClientDetail } from "../../modules/client/tickets/client-detail";
+import { ClientDetail } from "../../modules/client/tickets/ticket-detail";
 import { CreateTicket } from "../../modules/client/create-ticket/create-ticket";
 
 export function ClientRoutes() {

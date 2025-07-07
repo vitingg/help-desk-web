@@ -1,15 +1,14 @@
 => necessidades à serem feitas
 
 - organizar e terminar de componentizar o ticket-detail da pasta components de shared
-- provavelmente criar um componente pro nome e ícone da pessoa que criou o ticket
-
-- criar o modal de Perfil e Sair quando clica no profile ( somente funcionalizade )
+- criar o modal de Perfil e Sair quando clica no profile ( somente funcionalidade )
 
 ===========================================================================================
 
 => estou fazendo
 
-- preciso usar os array de horários que eu criei no admin/technicians
+- preciso usar os array de horários que eu criei no admin/technicians, além de estilizar
+  eles quando já estão selecionados
 
 ===========================================================================================
 
