@@ -1,38 +1,30 @@
 import { type ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { ModalContext } from "./context/modal-context";
+import { ModalProvider } from "./context/modal-context";
+import { useModal } from "./hooks/useModalContext";
 
 type ModalLayoutProps = {
   open?: boolean;
-  onClose?: () => void;
   children?: ReactNode;
   className?: string;
 };
-export function ModalLayout({
-  children,
-  open,
-  onClose,
-  className,
-}: ModalLayoutProps) {
+export function ModalLayout({ children, onClose }: ModalLayoutProps) {
+  const {} = useModal();
+
+  if (!open) {
+    return null;
+  }
   return (
-    <ModalContext.Provider value={{ open, onClose }}>
+    <div
+      className="fixed top-0 left-0 right-0 bottom-0 bg-black/20 flex justify-center items-center z-50"
+      onClick={onClose}
+    >
       <div
-        className={cn(
-          `fixed inset-0 flex justify-center items-center transition-colors`,
-          open ? "visible bg-black/20" : "invisible",
-          className
-        )}
-        onClick={onClose}
+        onClick={(e) => e.stopPropagation()}
+        className="bg-gray-600 shadow text-gray-200 rounded-2xl transition-all"
       >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          className={`bg-gray-600 shadow text-gray-200 rounded-2xl transition-all ${
-            open ? "scale-100 opacity-100" : "scale-125 opacity-0"
-          }`}
-        >
-          {children}
-        </div>
+        {children}
       </div>
-    </ModalContext.Provider>
+    </div>
   );
 }

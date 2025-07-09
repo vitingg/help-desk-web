@@ -3,6 +3,7 @@ import { Button } from "../../../shared/components/button";
 import { Input } from "../../../shared/components/input";
 import { Outlet } from "react-router";
 import { useState } from "react";
+import { X } from "lucide-react";
 
 const controlTime = {
   manhã: ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00"],
@@ -11,7 +12,15 @@ const controlTime = {
 };
 
 export function TechniciansProfile() {
-  const [selectedHour, setSelectedHour] = useState<string[]>([]);
+  const [selectedHours, setSelectedHours] = useState<string[]>([]);
+
+  const toggleHour = (hour: string) => {
+    if (selectedHours.includes(hour)) {
+      setSelectedHours(selectedHours.filter((h) => h !== hour));
+    } else {
+      setSelectedHours([...selectedHours, hour]);
+    }
+  };
 
   return (
     <div className="flex justify-center">
@@ -52,10 +61,20 @@ export function TechniciansProfile() {
                   <div className={`flex font-bold gap-2 text-sm`}>
                     {hour.map((hour) => (
                       <p
-                        className={`border border-gray-300 py-1.5 px-3 rounded-2xl cursor-pointer`}
+                        className={`flex gap-1 items-center justify-center border border-gray-300 py-1.5 px-3 rounded-2xl cursor-pointer ${
+                          selectedHours.includes(hour)
+                            ? "bg-blue-base text-gray-600"
+                            : ""
+                        }`}
                         key={hour}
+                        onClick={() => toggleHour(hour)}
                       >
                         {hour}
+                        {selectedHours.includes(hour) && (
+                          <span className="flex">
+                            <X width={14} />
+                          </span>
+                        )}
                       </p>
                     ))}
                   </div>

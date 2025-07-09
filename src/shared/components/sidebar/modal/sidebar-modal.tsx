@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
 import { CircleUser, LogOut } from "lucide-react";
 
 type SidebarModal = {
@@ -22,7 +22,7 @@ export function SidebarModal({
   profile;
   return (
     <div
-      className={`bg-gray-100 text-gray600 rounded-xl ${widthClasses[width]}`}
+      className={`bg-gray-100 text-gray-600 rounded-xl ${widthClasses[width]}`}
     >
       <p className="text-2xs text-gray-400 font-bold pt-4 pl-5 pb-4">
         {modalTitle}
@@ -37,6 +37,7 @@ export function SidebarModal({
           </div>
         </div>
       )}
+
       <div className="p-5 pt-0">{children}</div>
     </div>
   );

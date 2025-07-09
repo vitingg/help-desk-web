@@ -9,7 +9,7 @@ import { ModalContent } from "../../../shared/components/modal/modal-content";
 import { ModalFooter } from "../../../shared/components/modal/modal-footer";
 
 export function Service() {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
@@ -18,13 +18,13 @@ export function Service() {
         <Button
           size={"lg"}
           className="flex items-center justify-center gap-2"
-          onClick={() => setOpen(true)}
+          onClick={() => setIsOpen(true)}
         >
           <Plus />
           <span className="hidden md:table-cell">Novo</span>
         </Button>
 
-        <ModalLayout open={open} onClose={() => setOpen(false)}>
+        <ModalLayout open={isOpen} onClose={() => setIsOpen(false)}>
           <ModalHeader> Cadastro de serviço</ModalHeader>
           <ModalContent>
             <Input
