@@ -1,15 +1,39 @@
 import { Plus } from "lucide-react";
 import { Button } from "../../../shared/components/button";
-import { useState } from "react";
 import { Input } from "../../../shared/components/input";
 
 import { ModalLayout } from "../../../shared/components/modal/modal-layout";
 import { ModalHeader } from "../../../shared/components/modal/modal-header";
 import { ModalContent } from "../../../shared/components/modal/modal-content";
 import { ModalFooter } from "../../../shared/components/modal/modal-footer";
+import { useModal } from "../../../shared/components/modal/hooks/useModalContext";
 
 export function Service() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { openModal } = useModal();
+
+  const handleOpenModal = () => {
+    openModal(
+      <ModalLayout>
+        <ModalHeader>Cadastro de serviço</ModalHeader>
+        <ModalContent>
+          <Input
+            legend="TÍTULO"
+            placeholder="Nome do serviço"
+            className="font-bold"
+          />
+          <div className="relative">
+            <p className="absolute top-4 font-bold">R$</p>
+            <Input
+              legend="VALOR"
+              placeholder="0,00"
+              className="pl-6 font-bold"
+            />
+          </div>
+        </ModalContent>
+        <ModalFooter>Salvar</ModalFooter>
+      </ModalLayout>
+    );
+  };
 
   return (
     <>
@@ -18,32 +42,11 @@ export function Service() {
         <Button
           size={"lg"}
           className="flex items-center justify-center gap-2"
-          onClick={() => setIsOpen(true)}
+          onClick={handleOpenModal}
         >
           <Plus />
           <span className="hidden md:table-cell">Novo</span>
         </Button>
-
-        <ModalLayout open={isOpen} onClose={() => setIsOpen(false)}>
-          <ModalHeader> Cadastro de serviço</ModalHeader>
-          <ModalContent>
-            <Input
-              legend="TÍTULO"
-              placeholder="Nome do serviço"
-              className="font-bold"
-            />
-
-            <div className="relative">
-              <p className="absolute top-4 font-bold">R$</p>
-              <Input
-                legend="VALOR"
-                placeholder="0,00"
-                className="pl-6 font-bold"
-              />
-            </div>
-          </ModalContent>
-          <ModalFooter>Salvar</ModalFooter>
-        </ModalLayout>
       </div>
     </>
   );

@@ -1,11 +1,6 @@
 import ReactDOM from "react-dom";
 import { ModalLayout } from "../modal-layout";
-import React, {
-  createContext,
-  useState,
-  useContext,
-  type ReactNode,
-} from "react";
+import React, { createContext, useState, type ReactNode } from "react";
 
 interface ModalContextType {
   openModal: (content: ReactNode, options?: ModalOptions) => void;
@@ -17,7 +12,9 @@ interface ModalOptions {
   size?: "sm" | "md" | "lg";
 }
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+export const ModalContext = createContext<ModalContextType | undefined>(
+  undefined
+);
 
 export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   children,
@@ -42,20 +39,11 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
     <ModalContext.Provider value={{ openModal, closeModal, isOpen }}>
       {children}
       {isOpen &&
+        modalRoot &&
         ReactDOM.createPortal(
-          // Aqui você usa seu componente de layout de modal genérico
-          // Ele pode ter o fundo escuro (overlay) e o container central
           <ModalLayout onClose={closeModal}>{modalContent}</ModalLayout>,
-          modalRoot
+          modalRoot as HTMLElement
         )}
     </ModalContext.Provider>
   );
-};
-
-export const useModal = () => {
-  const context = useContext(ModalContext);
-  if (!context) {
-    throw new Error("useModal deve ser usado dentro de um ModalProvider");
-  }
-  return context;
 };
