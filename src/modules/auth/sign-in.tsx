@@ -7,18 +7,30 @@ import { useForm } from "react-hook-form";
 import { signInSchema } from "../../shared/schemas/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { singInSchemaData } from "../../shared/schemas/zod-schema";
+import { signIn } from "./services/api-sign-in";
 
 export function SignIn() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<singInSchemaData>({
     resolver: zodResolver(signInSchema),
   });
 
-  function createUser(data: any) {
+  async function signInUser(data: any) {
+    event?.preventDefault();
+    try {
+      const response = await signIn(data);
+      console.log(response);
+    } catch (error) {}
     console.log(data);
+
+    reset({
+      email: "",
+      password: "",
+    });
   }
 
   const emailError = errors.email?.message;
@@ -26,8 +38,11 @@ export function SignIn() {
 
   return (
     <>
-      <Card title="Acesse o portal" description="Acesse o portal">
-        <Form onSubmit={handleSubmit(createUser)}>
+      <Card
+        title="Acesse o portal"
+        description="Entre usando seu e-mail e senha cadastrados"
+      >
+        <Form onSubmit={handleSubmit(signInUser)}>
           <Input
             legend="email"
             placeholder="exemplo@email.com"

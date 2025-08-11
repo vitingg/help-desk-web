@@ -5,5 +5,5 @@ export function signUp(data: {
   email: string;
   password: string;
 }) {
-  return api.post("/auth/sign-up", data);
+  return api.post("/clients", data);
 }

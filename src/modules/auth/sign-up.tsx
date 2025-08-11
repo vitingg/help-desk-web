@@ -7,11 +7,13 @@ import { useForm } from "react-hook-form";
 import { signUpSchema } from "../../shared/schemas/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { singUpSchemaData } from "../../shared/schemas/zod-schema";
+import { signUp } from "./services/api-sign-up";
 
 export function SignUp() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<singUpSchemaData>({
     resolver: zodResolver(signUpSchema),
@@ -22,12 +24,24 @@ export function SignUp() {
   const passwordError = errors.password?.message;
 
   function createUser(data: any) {
+    event?.preventDefault();
+
+    signUp(data);
     console.log(data);
+
+    reset({
+      username: "",
+      email: "",
+      password: "",
+    });
   }
 
   return (
     <>
-      <Card title="Acesse o portal" description="Acesse o portal">
+      <Card
+        title="Acesse o portal"
+        description="Informe seu nome, e-mail e senha"
+      >
         <Form onSubmit={handleSubmit(createUser)}>
           <Input
             legend="nome"
