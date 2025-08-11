@@ -4,10 +4,10 @@ type FooterProps = {
   buttonValue?: string;
 };
 
-export function Footer({buttonValue}: FooterProps) {
+export function Footer({ buttonValue }: FooterProps) {
   return (
-      <Button size={"5xl"} variant={"secondary"}>
-        {buttonValue}
-      </Button>
+    <Button size={"5xl"} variant={"secondary"} className="font-semibold">
+      {buttonValue}
+    </Button>
   );
 }
