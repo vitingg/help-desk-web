@@ -1,5 +1,7 @@
-import type { singInSchemaData } from "../../shared/schemas/zod-schema";
-import { signInSchema } from "../../shared/schemas/zod-schema";
+import {
+  signInSchema,
+  type signInSchemaData,
+} from "../../shared/schemas/zod-schema";
 import { Button } from "../../shared/components/button";
 import { Input } from "../../shared/components/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,27 +22,27 @@ export function SignIn() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<singInSchemaData>({
+  } = useForm<signInSchemaData>({
     resolver: zodResolver(signInSchema),
   });
 
   async function handleSignIn(data: any) {
-    event?.preventDefault();
-    try {
+      try {
       const response = await signIn(data);
-      
-      // setUser(response);
-      console.log(response);
+      const user = response.data;
+
+      setUser(user);
+      console.log(user);
 
       switch (user.role) {
-        case "admin":
-          navigate("/dashboard/admin");
+        case "ADMIN":
+          navigate("/dashboard/admin/tickets");
           break;
-        case "tech":
+        case "TECH":
           navigate("/dashboard/tech");
           break;
-        case "client":
-          navigate("/dashboard/client");
+        case "CLIENT":
+          navigate("/dashboard/client/tickets");
           break;
         default:
           navigate("/");

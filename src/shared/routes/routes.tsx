@@ -38,7 +38,7 @@ export function AppRoutes() {
             element={<ProtectedRoute allowedRoles={[`ADMIN`]} />}
           >
             <Route path="admin" element={<AdminPage />}>
-              <Route path="ticket" element={<Ticket />} />
+              <Route path="tickets" element={<Ticket />} />
               <Route path="ticket-detail" element={<AdminDetail />} />
               <Route path="tech" element={<Technicians />} />
               <Route path="technicians" element={<TechniciansProfile />}>

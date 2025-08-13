@@ -6,7 +6,7 @@ import { Form } from "../../shared/components/form";
 import { useForm } from "react-hook-form";
 import { signUpSchema } from "../../shared/schemas/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { singUpSchemaData } from "../../shared/schemas/zod-schema";
+import type { signUpSchemaData } from "../../shared/schemas/zod-schema";
 import { signUp } from "./services/api-sign-up";
 
 export function SignUp() {
@@ -15,7 +15,7 @@ export function SignUp() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<singUpSchemaData>({
+  } = useForm<signUpSchemaData>({
     resolver: zodResolver(signUpSchema),
   });
 
@@ -23,11 +23,9 @@ export function SignUp() {
   const emailError = errors.email?.message;
   const passwordError = errors.password?.message;
 
-  function createUser(data: any) {
-    event?.preventDefault();
-
-    signUp(data);
-    console.log(data);
+  async function createUser(data: any) {
+    const creatingAccount = await signUp(data);
+    console.log(creatingAccount.data);
 
     reset({
       username: "",

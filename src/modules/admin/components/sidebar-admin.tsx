@@ -13,7 +13,7 @@ export function AdminSidebar() {
     {
       name: "Chamados",
       icon: <ClipboardList />,
-      path: "/dashboard/admin/ticket",
+      path: "/dashboard/admin/tickets",
     },
     { name: "Técnicos", icon: <Users />, path: "/dashboard/admin/tech" },
     {
