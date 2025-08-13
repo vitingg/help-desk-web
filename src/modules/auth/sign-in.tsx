@@ -1,15 +1,20 @@
-import { Card } from "./components/card";
-import { Footer } from "./components/footer";
-import { Input } from "../../shared/components/input";
-import { Button } from "../../shared/components/button";
-import { Form } from "../../shared/components/form";
-import { useForm } from "react-hook-form";
-import { signInSchema } from "../../shared/schemas/zod-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
 import type { singInSchemaData } from "../../shared/schemas/zod-schema";
+import { signInSchema } from "../../shared/schemas/zod-schema";
+import { Button } from "../../shared/components/button";
+import { Input } from "../../shared/components/input";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form } from "../../shared/components/form";
 import { signIn } from "./services/api-sign-in";
+import { Footer } from "./components/footer";
+import { useForm } from "react-hook-form";
+import { Card } from "./components/card";
+import { useAuth } from "../../shared/context/auth-context";
+import { useNavigate } from "react-router";
 
 export function SignIn() {
+  const navigate = useNavigate();
+  const { setUser } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -19,18 +24,34 @@ export function SignIn() {
     resolver: zodResolver(signInSchema),
   });
 
-  async function signInUser(data: any) {
+  async function handleSignIn(data: any) {
     event?.preventDefault();
     try {
       const response = await signIn(data);
+      
+      // setUser(response);
       console.log(response);
+
+      switch (user.role) {
+        case "admin":
+          navigate("/dashboard/admin");
+          break;
+        case "tech":
+          navigate("/dashboard/tech");
+          break;
+        case "client":
+          navigate("/dashboard/client");
+          break;
+        default:
+          navigate("/");
+      }
+
+      reset({
+        email: "",
+        password: "",
+      });
     } catch (error) {}
     console.log(data);
-
-    reset({
-      email: "",
-      password: "",
-    });
   }
 
   const emailError = errors.email?.message;
@@ -42,7 +63,7 @@ export function SignIn() {
         title="Acesse o portal"
         description="Entre usando seu e-mail e senha cadastrados"
       >
-        <Form onSubmit={handleSubmit(signInUser)}>
+        <Form onSubmit={handleSubmit(handleSignIn)}>
           <Input
             legend="email"
             placeholder="exemplo@email.com"
