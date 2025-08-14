@@ -27,7 +27,7 @@ export function SignIn() {
   });
 
   async function handleSignIn(data: any) {
-      try {
+    try {
       const response = await signIn(data);
       const user = response.data;
 
@@ -52,7 +52,9 @@ export function SignIn() {
         email: "",
         password: "",
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     console.log(data);
   }
 

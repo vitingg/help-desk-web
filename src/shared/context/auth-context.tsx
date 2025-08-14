@@ -35,8 +35,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const response = await api.get<{ user: User }>("/me");
-        setUser(response.data.user);
+        const response = await api.get("/me");
+        setUser(response.data);
       } catch (error) {
         console.log(error);
         setUser(null);

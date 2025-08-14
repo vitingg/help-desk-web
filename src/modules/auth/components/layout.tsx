@@ -1,8 +1,28 @@
 import background from "../../../shared/assets/images/Login_Background.png";
-import { Outlet } from "react-router";
+import { Navigate, Outlet } from "react-router";
 import { Icon } from "./icon";
+import { useAuth } from "../../../shared/context/auth-context";
 
-export function Layout() {
+export function AuthLayout() {
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div>Carregando...</div>;
+  }
+
+  if (user?.role) {
+    switch (user.role) {
+      case "ADMIN":
+        return <Navigate to="/dashboard/admin/tickets" replace />;
+      case "TECH":
+        return <Navigate to="/dashboard/tech" replace />;
+      case "CLIENT":
+        return <Navigate to="/dashboard/client/tickets" replace />;
+      default:
+        return <Navigate to="/" replace />;
+    }
+  }
+  console.log(user);
   return (
     <div className="relative md:min-h-screen grid grid-cols-2 md:grid-cols-2 ">
       <img

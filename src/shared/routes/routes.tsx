@@ -1,7 +1,7 @@
-import { Routes, BrowserRouter, Route } from "react-router";
+import { Routes, BrowserRouter, Route, Navigate } from "react-router";
 import { AuthProvider } from "../context/auth-context";
 import { ProtectedRoute } from "./protected-routes";
-import { Layout } from "../../modules/auth/components/layout";
+import { AuthLayout } from "../../modules/auth/components/layout";
 import { SignUp } from "../../modules/auth/sign-up";
 import { SignIn } from "../../modules/auth/sign-in";
 import { AdminPage } from "../../modules/admin/page";
@@ -28,7 +28,8 @@ export function AppRoutes() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/auth/*" element={<Layout />}>
+          <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
+          <Route path="/auth/*" element={<AuthLayout />}>
             <Route path="sign-up" element={<SignUp />} />
             <Route path="sign-in" element={<SignIn />} />
           </Route>
@@ -40,13 +41,13 @@ export function AppRoutes() {
             <Route path="admin" element={<AdminPage />}>
               <Route path="tickets" element={<Ticket />} />
               <Route path="ticket-detail" element={<AdminDetail />} />
-              <Route path="tech" element={<Technicians />} />
+              <Route path="techs" element={<Technicians />} />
               <Route path="technicians" element={<TechniciansProfile />}>
                 <Route path="profile" element={<Profile />} />
                 <Route path="form" element={<Form />} />
-                <Route path="client" element={<Clients />} />
-                <Route path="services" element={<Service />} />
               </Route>
+              <Route path="clients" element={<Clients />} />
+              <Route path="services" element={<Service />} />
             </Route>
           </Route>
 

@@ -15,11 +15,11 @@ export function AdminSidebar() {
       icon: <ClipboardList />,
       path: "/dashboard/admin/tickets",
     },
-    { name: "Técnicos", icon: <Users />, path: "/dashboard/admin/tech" },
+    { name: "Técnicos", icon: <Users />, path: "/dashboard/admin/techs" },
     {
       name: "Clientes",
       icon: <BriefcaseBusiness />,
-      path: "/dashboard/admin/client",
+      path: "/dashboard/admin/clients",
     },
     { name: "Serviços", icon: <Wrench />, path: "/dashboard/admin/services" },
   ];

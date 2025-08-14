@@ -8,6 +8,9 @@ import { Input } from "../../input";
 import { ModalFooter } from "../../modal/modal-footer";
 import { Button } from "../../button";
 import { CircleAlert, Upload, Trash } from "lucide-react";
+import { api } from "../../../lib/api";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../../context/auth-context";
 
 type SidebarModal = {
   modalTitle: "OPÇÕES" | "MENU";
@@ -23,6 +26,8 @@ const widthClasses = {
 
 export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
   const { openModal, closeModal } = useModal();
+  const { setUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleOpenModal = () => {
     openModal(
@@ -77,7 +82,18 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
       </ModalLayout>
     );
   };
+
   const handleLeaveAccount = () => {
+    const handleLogout = async () => {
+      try {
+        await api.post("/sign-out");
+        setUser(null);
+        closeModal();
+        navigate("/auth/sign-in", { replace: true });
+      } catch (error) {
+        console.log(error);
+      }
+    };
     openModal(
       <ModalLayout>
         <ModalContent>
@@ -89,7 +105,12 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
             <Button variant={"primary"} size={"2xl"} onClick={closeModal}>
               Cancelar
             </Button>
-            <Button variant={"primary"} size={"2xl"} className="bg-red-600">
+            <Button
+              variant={"primary"}
+              size={"2xl"}
+              className="bg-red-600"
+              onClick={handleLogout}
+            >
               Sair
             </Button>
           </div>
@@ -97,6 +118,7 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
       </ModalLayout>
     );
   };
+
   return (
     <div
       className={`bg-gray-100 text-gray-600 rounded-xl ${widthClasses[width]}`}
