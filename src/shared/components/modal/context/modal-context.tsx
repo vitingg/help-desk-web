@@ -22,7 +22,7 @@ export const ModalProvider: React.FC<{ children: ReactNode }> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
 
-  const openModal = (content: ReactNode, options?: ModalOptions) => {
+  const openModal = (content: ReactNode, _?: ModalOptions) => {
     setModalContent(content);
     setIsOpen(true);
   };

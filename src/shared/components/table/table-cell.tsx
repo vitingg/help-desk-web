@@ -1,7 +1,6 @@
-import { CircleHelp, Clock2, CircleCheckBig } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "../../lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { Status } from "../status";
 
 type TableCellProps = {
