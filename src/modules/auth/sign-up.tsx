@@ -80,8 +80,8 @@ export function SignUp() {
         </Form>
       </Card>
 
-      <Card title="Ainda não tem uma conta?" description="Cadastre agora mesmo">
-        <Footer onClick={handleGoToSignIpPage} buttonValue="Criar conta" />
+      <Card title="Já tem uma conta?" description="Entre agora mesmo">
+        <Footer onClick={handleGoToSignIpPage} buttonValue="Acessar conta" />
       </Card>
     </>
   );
