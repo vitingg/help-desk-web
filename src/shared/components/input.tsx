@@ -20,7 +20,7 @@ export function Input({
       {legend && (
         <label
           htmlFor={legend}
-          className={`uppercase placeholder:text-gray-900 text-2xs focus:text-inherit font-medium ${
+          className={`uppercase font-bold placeholder:text-gray-900 text-2xs focus:text-inherit  ${
             isError && "text-red-600"
           }`}
         >

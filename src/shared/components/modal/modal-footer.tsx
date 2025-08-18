@@ -7,8 +7,11 @@ type ModalFooterProps = {
 
 export function ModalFooter({ children }: ModalFooterProps) {
   return (
-    <div className="flex items-center justify-between gap-2 pt-6 p-7 pb-8">
-      <Button size={"5xl"}>{children}</Button>
-    </div>
+    <>
+      <div className="w-full border-b-gray-500 border-b-1 b-0" />
+      <div className="flex items-center justify-between gap-2 pt-6 p-7 pb-8">
+        <Button size={"5xl"}>{children}</Button>
+      </div>
+    </>
   );
 }
