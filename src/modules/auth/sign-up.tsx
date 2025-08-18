@@ -8,6 +8,7 @@ import { signUpSchema } from "../../shared/schemas/zod-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { signUpSchemaData } from "../../shared/schemas/zod-schema";
 import { signUp } from "./services/api-sign-up";
+import { useNavigate } from "react-router";
 
 export function SignUp() {
   const {
@@ -18,6 +19,11 @@ export function SignUp() {
   } = useForm<signUpSchemaData>({
     resolver: zodResolver(signUpSchema),
   });
+  const navigate = useNavigate();
+
+  function handleGoToSignIpPage() {
+    navigate("/auth/sign-in");
+  }
 
   const usernameError = errors.username?.message;
   const emailError = errors.email?.message;
@@ -75,7 +81,7 @@ export function SignUp() {
       </Card>
 
       <Card title="Ainda não tem uma conta?" description="Cadastre agora mesmo">
-        <Footer buttonValue="Criar conta" />
+        <Footer onClick={handleGoToSignIpPage} buttonValue="Criar conta" />
       </Card>
     </>
   );

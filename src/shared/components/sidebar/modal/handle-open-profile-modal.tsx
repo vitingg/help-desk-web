@@ -10,6 +10,8 @@ import { useModal } from "../../modal/hooks/useModalContext";
 export function useHandleOpenProfileModal() {
   const { openModal } = useModal();
 
+
+
   const openHandleOpenProfileModal = () => {
     openModal(
       <ModalLayout>

@@ -17,6 +17,10 @@ export function SignIn() {
   const navigate = useNavigate();
   const { setUser } = useAuth();
 
+  function handleGoToSignUpPage() {
+    navigate("/auth/sign-up");
+  }
+
   const {
     register,
     handleSubmit,
@@ -93,7 +97,7 @@ export function SignIn() {
       </Card>
 
       <Card title="Ainda não tem uma conta?" description="Cadastre agora mesmo">
-        <Footer buttonValue="Criar conta" />
+        <Footer onClick={handleGoToSignUpPage} buttonValue="Criar conta" />
       </Card>
     </>
   );
