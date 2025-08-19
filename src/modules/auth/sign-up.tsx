@@ -15,6 +15,7 @@ export function SignUp() {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
   } = useForm<signUpSchemaData>({
     resolver: zodResolver(signUpSchema),
@@ -30,8 +31,21 @@ export function SignUp() {
   const passwordError = errors.password?.message;
 
   async function createUser(data: any) {
-    const creatingAccount = await signUp(data);
-    console.log(creatingAccount.data);
+    try {
+      const creatingAccount = await signUp(data);
+      console.log(creatingAccount.data);
+    } catch (error: any) {
+      const status = error.response?.status;
+      const message = error.response?.data?.error;
+
+      if (status === 400 && message.includes("email")) {
+        setError("email", { message: "Email já existe na aplicação." });
+      } else if (status === 400 && message.includes("Username")) {
+        setError("username", { message });
+      } else {
+        alert(message || "Erro inesperado, tente novamente.");
+      }
+    }
 
     reset({
       username: "",

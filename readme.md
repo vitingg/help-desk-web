@@ -1,37 +1,30 @@
-=> necessidades à serem feitas
+<h1><strong>Rotas da aplicação</strong></h1>
 
-- criar o modal de Perfil e Sair quando clica no profile ( somente funcionalidade )
+# - autentificação
 
-===========================================================================================
+<h3><p>auth/sign-in</p></h3>
+<h3><p>auth/sign-up</p></h3>
+</br>
 
-=> estou fazendo
+# - dashboard do adm
 
-- criar o modal de Perfil e Sair quando clica no profile ( somente funcionalidade )
+<h3><p>dashboard/admin/ticket</p> </h3>
+<h3><p>dashboard/admin/ticket-detail</p> </h3>
+<h3><p>dashboard/admin/tech</p> </h3>
+<h3><p>dashboard/admin/technicians/profile</p> </h3>
+<h3><p>dashboard/admin/technicians/form</p> </h3>
+<h3><p>dashboard/admin/technicians/client</p> </h3>
+<h3><p>dashboard/admin/technicians/services</p></h3>
+</br>
 
-===========================================================================================
+# - dashboard do técnico
 
-=> rotas da aplicação
+<h3><p>dashboard/tech/tickets</p></h3>
+<h3><p>dashboard/tech/ticket-detail</p></h3>
+</br>
 
-- autentificação;
-  auth/sign-in
-  auth/sign-up
+# - dashboard do cliente;
 
-- dashboard do adm;
-  dashboard/admin/ticket
-  dashboard/admin/ticket-detail
-  dashboard/admin/tech
-  dashboard/admin/technicians/profile
-  dashboard/admin/technicians/form
-  dashboard/admin/technicians/client
-  dashboard/admin/technicians/services
-
-- dashboard do técnico;
-  dashboard/tech/tickets
-  dashboard/tech/ticket-detail
-
-- dashboard do cliente;
-  dashboard/client/tickets
-  dashboard/client/ticket-detail
-  dashboard/client/create-ticket
-
-===========================================================================================
+<h3><p>dashboard/client/tickets </p></h3>
+<h3><p>dashboard/client/ticket-detail </p></h3>
+<h3><p>dashboard/client/create-ticket </p></h3>

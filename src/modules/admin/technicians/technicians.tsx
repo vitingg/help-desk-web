@@ -8,19 +8,46 @@ import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { Icon } from "../../../shared/components/edit-icon";
 import { useNavigate } from "react-router";
+import { getInitials } from "../../../shared/lib/get-initial-name";
+import { useEffect, useState } from "react";
+import { api } from "../../../shared/lib/api";
 
 export function Technicians() {
-  const navigate = useNavigate()
+  const [data, setData] = useState([]);
+
+  // Precisa editar isso ai, so copiei e colei
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchServices() {
+      try {
+        const response = await api.get("/techs", {
+          signal: controller.signal,
+        });
+        setData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    console.log(data);
+    fetchServices();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex pt-14 justify-between">
         <p className="text-blue-dark font-semibold text-xl">Técnicos</p>
         <Button
-          onClick={() =>  navigate("/dashboard/admin/technicians/form")}
+          onClick={() => navigate("/dashboard/admin/technicians/form")}
           size={"md"}
           className="flex items-center justify-center gap-2"
         >
-          <Plus width={18} height={18}/>
+          <Plus width={18} height={18} />
           <span className="hidden md:table-cell">Novo</span>
         </Button>
       </div>

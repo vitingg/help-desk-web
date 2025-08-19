@@ -27,15 +27,15 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
         {modalTitle}
       </p>
       {modalTitle === "OPÇÕES" && (
-        <div className="p-5 pt-0 flex flex-col gap-3">
+        <div className="p-5 pt-0 flex flex-col gap-3 ">
           <div
-            className="flex gap-2 items-center"
+            className="flex gap-2 items-center hover:opacity-80"
             onClick={openHandleOpenProfileModal}
           >
             <CircleUser width={20} /> Perfil
           </div>
           <div
-            className="flex gap-2 items-center text-feedback-danger"
+            className="flex gap-2 items-center text-feedback-danger hover:opacity-80 "
             onClick={openHandleLeaveAccount}
           >
             <LogOut width={20} /> Sair

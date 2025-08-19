@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Icon } from "../../../shared/components/edit-icon";
 import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
@@ -5,8 +6,64 @@ import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
+import { api } from "../../../shared/lib/api";
+import { formatDate } from "../../../shared/lib/format-date";
+import { Status } from "../../../shared/components/status";
+import { StatusTable } from "../../../shared/components/status-table";
+
+interface Client {
+  id: number;
+  username: string;
+}
+interface Tech {
+  id: number;
+  username: string;
+}
+interface Category {
+  id: number;
+  name: string;
+  basePrice: number;
+}
+interface Ticket {
+  id: number;
+  title: string;
+  description: string;
+  status: "PENDING" | "IN_PROGRESS" | "COMPLETE";
+  clientId: number;
+  techId: number;
+  categoryId: number;
+  createdAt: string;
+  updatedAt: string;
+  client: Client;
+  tech: Tech;
+  category: Category;
+}
 
 export function Ticket() {
+  const [data, setData] = useState<Ticket[]>([]);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    async function fetchServices() {
+      try {
+        const response = await api.get("/service", {
+          signal: controller.signal,
+        });
+        setData(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    console.log(data);
+    fetchServices();
+
+    return () => {
+      controller.abort();
+    };
+  }, []);
+
   return (
     <>
       <div className="flex pt-14">
@@ -27,31 +84,25 @@ export function Ticket() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell>13/04/25 20:56</TableCell>
-              <TableCell hideOnMobile className="font-semibold ">
-                00003
-              </TableCell>
-              <TableCell>
-                <div className="text-sm font-semibold text-gray-200">
-                  Backup não está funcionando
-                </div>
-                <div className="text-xs font-medium text-gray-200">
-                  Recuperação de Dados{" "}
-                </div>
-              </TableCell>
-              <TableCell hideOnMobile>R$ 180,00</TableCell>
-              <TableCell hideOnMobile hasAbbreviation="AC">
-                André Costa
-              </TableCell>
-              <TableCell hideOnMobile hasAbbreviation="CS">
-                Carlos Silva
-              </TableCell>
-              <TableCell status="Aberto" />
-              <TableCell>
-                <Icon variant="edit" to="admin/ticket-detail" />
-              </TableCell>
-            </TableRow>
+            {data?.map((data) => {
+              return (
+                <TableRow key={data.id}>
+                  <TableCell>{formatDate(data.updatedAt)}</TableCell>
+                  <TableCell>{data.id}</TableCell>
+                  <TableCell className="flex flex-col">
+                    <div>{data.title}</div>
+                    <div>{data.description}</div>
+                  </TableCell>
+                  <TableCell>{data.category.basePrice}</TableCell>
+                  <TableCell>{data.client.username}</TableCell>
+                  <TableCell>{data.tech.username}</TableCell>
+                  <TableCell>{StatusTable(data.status)}</TableCell>
+                  <TableCell>
+                    <Icon variant="edit" />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>

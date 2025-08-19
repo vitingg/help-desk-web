@@ -1,8 +1,7 @@
-atualmente estou consumindo a API para fazer o sign-in, juntamente trabalhando com o fluxo de sign-out também por usar
-método httpOnly.
+detalhes:
 
-verificar se realmente todas as rotas de usuários não retornam nenhuma senha.
-
-verificar onde parei no fluxo de sign-in e sign-up (sign-up já esta retornando a controller da criação de conta.)
-
-need to fix: routes
+- Ticket (no front), Service (no back) precisa de uma rota pra mudar o status
+- Ao editar ou criar um técnico, há uma lista de horários de serviço que o técnico executará, então, é necessário
+  modifica-lo para ficar mais esteticamente agradável e parar de aumentar o tamanho dele ao mudar de estado.
+- Atualizar o status da tabela (pending, in progress, complete), atualmente só funciona recebendo status e passando
+  na tabela no formato PC

@@ -18,7 +18,10 @@ export function Button({
   return (
     <button
       {...props}
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        "hover:cursor-pointer"
+      )}
     >
       {children}
     </button>
