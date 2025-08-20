@@ -1,6 +1,6 @@
 import { Clock, Clock2 } from "lucide-react";
 
-export function StatusTable(status: string) {
+export function StatusTicket(status: string) {
   switch (status) {
     case "IN_PROGRESS":
       return (

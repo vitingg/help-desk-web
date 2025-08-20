@@ -9,7 +9,7 @@ import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
 import { formatDate } from "../../../shared/lib/format-date";
 import { Status } from "../../../shared/components/status";
-import { StatusTable } from "../../../shared/components/status-table";
+import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
 
 interface Client {
   id: number;
@@ -45,7 +45,7 @@ export function Ticket() {
   useEffect(() => {
     const controller = new AbortController();
 
-    async function fetchServices() {
+    async function fetchTickets() {
       try {
         const response = await api.get("/service", {
           signal: controller.signal,
@@ -57,7 +57,7 @@ export function Ticket() {
       }
     }
     console.log(data);
-    fetchServices();
+    fetchTickets();
 
     return () => {
       controller.abort();
@@ -96,7 +96,7 @@ export function Ticket() {
                   <TableCell>{data.category.basePrice}</TableCell>
                   <TableCell>{data.client.username}</TableCell>
                   <TableCell>{data.tech.username}</TableCell>
-                  <TableCell>{StatusTable(data.status)}</TableCell>
+                  <TableCell>{StatusTicket(data.status)}</TableCell>
                   <TableCell>
                     <Icon variant="edit" />
                   </TableCell>

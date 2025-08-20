@@ -12,31 +12,40 @@ import { getInitials } from "../../../shared/lib/get-initial-name";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 
+type GetTechsType = {
+  id: number;
+  email: string;
+  username: string;
+  initial: string;
+};
+
 export function Technicians() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<GetTechsType[]>([]);
 
   // Precisa editar isso ai, so copiei e colei
   useEffect(() => {
     const controller = new AbortController();
 
-    async function fetchServices() {
+    async function fetchTechs() {
       try {
         const response = await api.get("/techs", {
           signal: controller.signal,
         });
         setData(response.data);
+
         console.log(response.data);
       } catch (error) {
         console.log(error);
       }
     }
     console.log(data);
-    fetchServices();
+    fetchTechs();
 
     return () => {
       controller.abort();
     };
   }, []);
+
   const navigate = useNavigate();
   return (
     <>
@@ -62,16 +71,23 @@ export function Technicians() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className="flex items-center" hasAbbreviation="CS">
-                Carlos Silva
-              </TableCell>
-              <TableCell hideOnMobile>carlos.silva@test.com</TableCell>
-              <TableCell>Sequencia de horários disponíveis</TableCell>
-              <TableCell className="flex justify-end">
-                <Icon variant="edit" to="admin/technicians/profile" />
-              </TableCell>
-            </TableRow>
+            {data?.map((data) => {
+              return (
+                <TableRow key={data.id}>
+                  <TableCell
+                    className="flex items-center"
+                    hasAbbreviation={getInitials(data.username)}
+                  >
+                    {data.username}
+                  </TableCell>
+                  <TableCell hideOnMobile>{data.email}</TableCell>
+                  <TableCell>Sequencia de horários disponíveis</TableCell>
+                  <TableCell className="flex justify-end">
+                    <Icon variant="edit" to="admin/technicians/profile" />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </div>

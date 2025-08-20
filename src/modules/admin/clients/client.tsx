@@ -7,11 +7,13 @@ import { TableHead } from "../../../shared/components/table/table-head";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
+import { getInitials } from "../../../shared/lib/get-initial-name";
 
 type GetClientsType = {
   id: number;
   username: string;
   email: string;
+  profilePicture: string;
 };
 
 export function Clients() {
@@ -57,7 +59,15 @@ export function Clients() {
             {data?.map((data: GetClientsType) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{data.username}</TableCell>
+                  <TableCell
+                    hasAbbreviation={
+                      data?.profilePicture
+                        ? data.profilePicture
+                        : getInitials(data.username)
+                    }
+                  >
+                    {data.username}
+                  </TableCell>
                   <TableCell>{data.email}</TableCell>
                   <TableCell className="flex gap-2 items-center justify-end">
                     <Icon variant="delete" />
