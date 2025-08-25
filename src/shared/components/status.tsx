@@ -8,7 +8,8 @@ const statusVariants = cva(" p-1 flex items-center justify-center", {
       Aberto: "bg-feedback-openBackground text-feedback-open w-fit md:w-fit",
       "Em Atendimento":
         "bg-feedback-progressBackground text-feedback-progress w-fit md:w-fit",
-      Fechado: "bg-feedback-doneBackground text-feedback-done w-fit md:w-fit ",
+      Encerrado:
+        "bg-feedback-doneBackground text-feedback-done w-fit md:w-fit ",
     },
     size: {
       sm: "rounded-full",
@@ -24,11 +25,11 @@ const statusVariants = cva(" p-1 flex items-center justify-center", {
 const statusIcons = {
   Aberto: CircleHelp,
   "Em Atendimento": Clock2,
-  Fechado: CircleCheckBig,
+  Encerrado: CircleCheckBig,
 };
 
 type StatusProps = {
-  status: "Aberto" | "Em Atendimento" | "Fechado";
+  status: "Aberto" | "Em Atendimento" | "Encerrado";
   size?: "sm" | "md";
   showText?: boolean;
   className?: string;
@@ -44,8 +45,8 @@ export function Status({
 
   return (
     <div className={cn(statusVariants({ status, size }), className)}>
-      <Icon width={16} height={16} />
-      {showText && <p className="text-xs font-semibold">{status}</p>}
+      <Icon className="w-5 h-5" />
+      {showText && <p className="text-sm font-bold">{status}</p>}
     </div>
   );
 }

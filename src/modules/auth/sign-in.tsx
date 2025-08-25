@@ -43,7 +43,7 @@ export function SignIn() {
           navigate("/dashboard/admin/tickets");
           break;
         case "TECH":
-          navigate("/dashboard/tech");
+          navigate("/dashboard/tech/tickets");
           break;
         case "CLIENT":
           navigate("/dashboard/client/tickets");

@@ -8,7 +8,6 @@ import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
 import { formatDate } from "../../../shared/lib/format-date";
-import { Status } from "../../../shared/components/status";
 import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
 
 interface Client {

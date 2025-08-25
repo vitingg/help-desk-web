@@ -15,7 +15,7 @@ export function AuthLayout() {
       case "ADMIN":
         return <Navigate to="/dashboard/admin/tickets" replace />;
       case "TECH":
-        return <Navigate to="/dashboard/tech" replace />;
+        return <Navigate to="/dashboard/tech/tickets" replace />;
       case "CLIENT":
         return <Navigate to="/dashboard/client/tickets" replace />;
       default:
