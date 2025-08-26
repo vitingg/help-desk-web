@@ -1,5 +1,5 @@
 import { Button } from "../../../shared/components/button";
-import { Plus } from "lucide-react";
+import { Key, Plus } from "lucide-react";
 import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
 import { TableRow } from "../../../shared/components/table/table-row";
@@ -11,12 +11,20 @@ import { useNavigate } from "react-router";
 import { getInitials } from "../../../shared/lib/get-initial-name";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
+import { workTimeArray } from "../../../shared/components/table/components/work-time-array";
 
 type GetTechsType = {
   id: number;
   email: string;
   username: string;
   initial: string;
+  workHours: workHours;
+};
+
+type workHours = {
+  id: number;
+  techId: number;
+  workTime: string[];
 };
 
 export function Technicians() {
@@ -32,7 +40,7 @@ export function Technicians() {
           signal: controller.signal,
         });
         setData(response.data.techs);
-        // console.log(response.data.techs);
+        console.log(response.data.techs);
       } catch (error) {
         console.log(error);
       }
@@ -80,7 +88,17 @@ export function Technicians() {
                     {data.username}
                   </TableCell>
                   <TableCell hideOnMobile>{data.email}</TableCell>
-                  <TableCell>Sequencia de horários disponíveis</TableCell>
+                  <TableCell>
+                    <div className="flex">
+                      {data.workHours?.workTime.map((h, i) => {
+                        return (
+                          <div className="flex" key={i}>
+                            {workTimeArray(h)}
+                          </div>
+                        );
+                      })}{" "}
+                    </div>
+                  </TableCell>
                   <TableCell className="flex justify-end">
                     <Icon variant="edit" to="admin/technicians/profile" />
                   </TableCell>

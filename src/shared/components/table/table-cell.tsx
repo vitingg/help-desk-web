@@ -6,7 +6,7 @@ import { Status } from "../status";
 type TableCellProps = {
   children?: ReactNode;
   hasAbbreviation?: string;
-  status?: "Aberto" | "Em Atendimento" | "Fechado";
+  status?: "Aberto" | "Em Atendimento" | "Encerrado";
   className?: string;
   hideOnMobile?: boolean;
 };
@@ -69,10 +69,11 @@ function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
   const isImage =
     hasAbbreviation.startsWith("http") ||
     hasAbbreviation.startsWith("data:image/");
+
   return (
     <div>
       <div className="flex items-center gap-2">
-        <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center">
+        <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center ">
           {isImage ? <img src={hasAbbreviation} /> : hasAbbreviation}
         </div>
         <p>{children}</p>

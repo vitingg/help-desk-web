@@ -7,8 +7,11 @@ import { TableHead } from "../../../shared/components/table/table-head";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
-import { formatDate } from "../../../shared/lib/format-date";
+import { formattedDate } from "../../../shared/lib/format-date";
 import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
+import { getInitials } from "../../../shared/lib/get-initial-name";
+import { formattedId } from "../../../shared/lib/format-id";
+import { formattedPrice } from "../../../shared/lib/format-price";
 
 interface Client {
   id: number;
@@ -86,15 +89,25 @@ export function Ticket() {
             {data?.map((data) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{formatDate(data.updatedAt)}</TableCell>
-                  <TableCell>{data.id}</TableCell>
-                  <TableCell className="flex flex-col">
-                    <div>{data.title}</div>
-                    <div>{data.description}</div>
+                  <TableCell>{formattedDate(data.updatedAt)}</TableCell>
+                  <TableCell className="font-bold text-sm">
+                    {formattedId(data.id)}
                   </TableCell>
-                  <TableCell>{data.category.basePrice}</TableCell>
-                  <TableCell>{data.client.username}</TableCell>
-                  <TableCell>{data.tech.username}</TableCell>
+                  <TableCell className="flex flex-col">
+                    <div className="font-bold">{data.category.name}</div>
+                    <div>{data.title}</div>
+                  </TableCell>
+                  <TableCell>
+                    {formattedPrice(data.category.basePrice)}
+                  </TableCell>
+                  <TableCell
+                    hasAbbreviation={getInitials(data.client.username)}
+                  >
+                    {data.client.username}
+                  </TableCell>
+                  <TableCell hasAbbreviation={getInitials(data.tech.username)}>
+                    {data.tech.username}
+                  </TableCell>
                   <TableCell>{StatusTicket(data.status)}</TableCell>
                   <TableCell>
                     <Icon variant="edit" />

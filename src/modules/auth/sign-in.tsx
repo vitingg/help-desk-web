@@ -36,7 +36,7 @@ export function SignIn() {
       const user = response.data;
 
       setUser(user);
-      console.log(user);
+      // console.log(user);
 
       switch (user.role) {
         case "ADMIN":
@@ -59,7 +59,7 @@ export function SignIn() {
     } catch (error) {
       console.log(error);
     }
-    console.log(data);
+    // console.log(data);
   }
 
   const emailError = errors.email?.message;

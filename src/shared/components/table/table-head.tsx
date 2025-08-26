@@ -13,7 +13,7 @@ export function TableHead({
 }: TableHeadProps) {
   return (
     <th
-      className={`px-5 py-3 text-gray-400 text-left align-middle ${
+      className={`px-5 py-3 text-gray-400 text-left align-middle  ${
         hideOnMobile && "hidden md:table-cell"
       }  ${className}`}
     >

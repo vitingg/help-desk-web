@@ -1,4 +1,4 @@
-export function formatDate(dateInput: string | Date): string {
+export function formattedDate(dateInput: string | Date): string {
   const date = new Date(dateInput);
 
   return new Intl.DateTimeFormat("pt-BR", {

@@ -7,11 +7,13 @@ type tableProps = {
 
 export function Table({ children, className }: tableProps) {
   return (
-    <table
-      className={`
-    border border-gray-500 rounded-lg ${className}`}
-    >
-      {children}
-    </table>
+    <div className=" overflow-hidden rounded-xl border border-gray-500  ">
+      <table
+        className={`
+    border border-gray-500 min-w-full border-collapse  ${className}`}
+      >
+        {children}
+      </table>
+    </div>
   );
 }

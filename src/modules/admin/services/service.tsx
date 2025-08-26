@@ -17,6 +17,7 @@ import { StatusService } from "../../../shared/components/table/components/statu
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { ChangeStatus } from "./components/change-status";
+import { formattedPrice } from "../../../shared/lib/format-price";
 
 type GetAllCategories = {
   id: number;
@@ -87,12 +88,13 @@ export function Service() {
           <span className="hidden md:table-cell">Novo</span>
         </Button>
       </div>
-      <div>
+      <div className="pt-6">
         <Table className="table-auto w-full">
           <TableHeader>
             <TableRow isBody={false}>
               <TableHead>Título</TableHead>
               <TableHead hideOnMobile>Valor</TableHead>
+              <TableHead></TableHead>
               <TableHead>Status</TableHead>
               <TableHead></TableHead>
             </TableRow>
@@ -101,10 +103,13 @@ export function Service() {
             {data?.map((data) => {
               return (
                 <TableRow key={data.id}>
-                  <TableCell>{data.name}</TableCell>
-                  <TableCell>{data.basePrice}</TableCell>
+                  <TableCell className="font-bold">{data.name}</TableCell>
+                  <TableCell>{formattedPrice(data.basePrice)}</TableCell>
+                  <TableCell />
                   <TableCell>{StatusService(data.isActive)}</TableCell>
-                  <TableCell>{ChangeStatus(data.isActive)}</TableCell>
+                  <TableCell className="">
+                    {ChangeStatus(data.isActive)}
+                  </TableCell>
                   <TableCell>
                     <Icon variant="edit" />
                   </TableCell>
