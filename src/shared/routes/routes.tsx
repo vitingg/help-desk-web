@@ -8,11 +8,7 @@ import { AdminPage } from "../../modules/admin/page";
 import { Ticket } from "../../modules/admin/tickets/ticket";
 import { AdminDetail } from "../../modules/admin/tickets/ticket-detail";
 import { Technicians } from "../../modules/admin/technicians/technicians";
-import {
-  Form,
-  Profile,
-  TechniciansProfile,
-} from "../../modules/admin/technicians/technicians-profile";
+import { TechniciansProfile } from "../../modules/admin/technicians/technicians-profile";
 import { Clients } from "../../modules/admin/clients/client";
 import { Service } from "../../modules/admin/services/service";
 import { TechPage } from "../../modules/tech/page";
@@ -22,6 +18,8 @@ import { ClientPage } from "../../modules/client/page";
 import { ClientTickets } from "../../modules/client/tickets/tickets";
 import { ClientDetail } from "../../modules/client/tickets/ticket-detail";
 import { CreateTicket } from "../../modules/client/create-ticket/create-ticket";
+import { CreateTechForm } from "../../modules/admin/technicians/components-pages/create-tech-form";
+import { PutTechForm } from "../../modules/admin/technicians/components-pages/put-tech-form";
 
 export function AppRoutes() {
   return (
@@ -43,8 +41,8 @@ export function AppRoutes() {
               <Route path="ticket-detail" element={<AdminDetail />} />
               <Route path="techs" element={<Technicians />} />
               <Route path="technicians" element={<TechniciansProfile />}>
-                <Route path="profile" element={<Profile />} />
-                <Route path="form" element={<Form />} />
+                <Route path="profile" element={<PutTechForm />} />
+                <Route path="form" element={<CreateTechForm />} />
               </Route>
               <Route path="clients" element={<Clients />} />
               <Route path="services" element={<Service />} />

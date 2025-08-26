@@ -1,15 +1,19 @@
-import { Button } from "../../../../shared/components/button";
 import { Ban, CircleCheck } from "lucide-react";
 
 export function ChangeStatus(status: boolean) {
   if (status == true) {
     return (
-      <button className="flex">
-        <Ban className="w-3 h-3" />
-        Clique para desativar
+      <button className="flex items-center justify-center">
+        <Ban className="w-5 h-5" />
+        <p>Clique para desativar</p>
       </button>
     );
   } else {
-    return <Button>Clique para ativar</Button>;
+    return (
+      <button className="flex items-center justify-center">
+        <CircleCheck className="w-5 h-5" />
+        <p>Clique para reativar</p>
+      </button>
+    );
   }
 }

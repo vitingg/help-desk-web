@@ -34,11 +34,11 @@ export function Service() {
 
     async function fetchServices() {
       try {
-        const response = await api.get("/all-categories", {
+        const response = await api.get("/categories/all-categories", {
           signal: controller.signal,
         });
-        setData(response.data);
-        console.log(response.data);
+        setData(response.data.category);
+        // console.log(response.data.category);
       } catch (error) {
         console.log(error);
       }

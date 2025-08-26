@@ -46,16 +46,16 @@ export function Ticket() {
 
     async function fetchTickets() {
       try {
-        const response = await api.get("/service", {
+        const response = await api.get("/services", {
           signal: controller.signal,
         });
-        setData(response.data);
-        console.log(response.data);
+        setData(response.data.tickets);
+        // console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       }
     }
-    console.log(data);
+    // console.log(data);
     fetchTickets();
 
     return () => {

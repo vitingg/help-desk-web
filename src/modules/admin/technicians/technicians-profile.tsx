@@ -1,8 +1,7 @@
 import { HeaderAction } from "../../../shared/components/header-action";
 import { Button } from "../../../shared/components/button";
-import { Input } from "../../../shared/components/input";
 import { Outlet } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 const controlTime = {
@@ -21,6 +20,10 @@ export function TechniciansProfile() {
       setSelectedHours([...selectedHours, hour]);
     }
   };
+
+  useEffect(() => {
+    console.log(selectedHours);
+  }, [selectedHours]);
 
   return (
     <div className="flex justify-center">
@@ -60,8 +63,8 @@ export function TechniciansProfile() {
                   </p>
                   <div className={`flex font-bold gap-2 text-sm`}>
                     {hour.map((hour) => (
-                      <p
-                        className={`flex gap-1 items-center justify-center border border-gray-300 py-1.5 px-3 rounded-2xl cursor-pointer ${
+                      <div
+                        className={`flex w-18 h-8 gap-1 items-center justify-center border border-gray-300 rounded-2xl cursor-pointer ${
                           selectedHours.includes(hour)
                             ? "bg-blue-base text-gray-600"
                             : ""
@@ -69,13 +72,15 @@ export function TechniciansProfile() {
                         key={hour}
                         onClick={() => toggleHour(hour)}
                       >
-                        {hour}
-                        {selectedHours.includes(hour) && (
-                          <span className="flex">
-                            <X width={14} />
-                          </span>
-                        )}
-                      </p>
+                        <p className="w-full text-left pl-2">{hour}</p>
+                        <p className="w-full text-right">
+                          {selectedHours.includes(hour) && (
+                            <span className="flex">
+                              <X width={14} />
+                            </span>
+                          )}
+                        </p>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -83,38 +88,6 @@ export function TechniciansProfile() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-export function Form() {
-  return (
-    <div className="pt-6 space-y-4">
-      <Input legend="Nome" placeholder="Nome completo" />
-      <Input legend="E-mail" placeholder="exemplo@mail.com" />
-      <Input
-        legend="Senha"
-        placeholder="Defina a senha de acesso"
-        helperText="Mínimo de 6 dígitos"
-      />
-    </div>
-  );
-}
-
-export function Profile() {
-  return (
-    <div className="pt-6">
-      <div className="font-semibold rounded-full bg-blue-dark w-12 h-12 flex justify-center items-center text-gray-600 text-md">
-        CS
-      </div>
-      <div className="pt-4 space-y-4">
-        <Input legend="E-mail" placeholder="exemplo@mail.com" />
-        <Input
-          legend="Senha"
-          placeholder="Defina a senha de acesso"
-          helperText="Mínimo de 6 dígitos"
-        />
       </div>
     </div>
   );

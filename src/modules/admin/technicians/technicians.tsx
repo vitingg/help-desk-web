@@ -31,14 +31,13 @@ export function Technicians() {
         const response = await api.get("/techs", {
           signal: controller.signal,
         });
-        setData(response.data);
-
-        console.log(response.data);
+        setData(response.data.techs);
+        // console.log(response.data.techs);
       } catch (error) {
         console.log(error);
       }
     }
-    console.log(data);
+    // console.log(data);
     fetchTechs();
 
     return () => {

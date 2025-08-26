@@ -27,13 +27,13 @@ export function Clients() {
         const response = await api.get("/clients", {
           signal: controller.signal,
         });
-        setData(response.data);
-        console.log(response.data);
+        setData(response.data.clients);
+        // console.log(response.data.clients);
       } catch (error) {
         console.log(error);
       }
     }
-    console.log(data);
+    // console.log(data);
     fetchClients();
 
     return () => {
