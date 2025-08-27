@@ -17,7 +17,7 @@ import { StatusService } from "../../../shared/components/table/components/statu
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { ChangeStatus } from "./components/change-status";
-import { formattedPrice } from "../../../shared/lib/format-price";
+import { formattedPrice } from "../../../shared/utils/format-price";
 
 type GetAllCategories = {
   id: number;

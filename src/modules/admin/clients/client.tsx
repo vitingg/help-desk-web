@@ -7,7 +7,7 @@ import { TableHead } from "../../../shared/components/table/table-head";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
-import { getInitials } from "../../../shared/lib/get-initial-name";
+import { getInitials } from "../../../shared/utils/get-initial-name";
 
 type GetClientsType = {
   id: number;

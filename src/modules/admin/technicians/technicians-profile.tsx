@@ -40,13 +40,13 @@ export function TechniciansProfile() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6 pt-6">
-          <div className="border border-gray-500 p-4 rounded-lg">
+        <div className="flex flex-col md:flex-row gap-6 p-6">
+          <div className="border border-gray-500 p-6 rounded-lg">
             <p className="font-bold">Dados pessoais</p>
             <p className="text-gray-300 text-xs pr-4">
               Defina as informações do perfil de técnico
             </p>
-            <Outlet />
+            <Outlet context={[selectedHours]} />
           </div>
           <div className="border border-gray-500 p-4 rounded-lg">
             <p className="font-bold">Horários de atendimento</p>
@@ -64,7 +64,7 @@ export function TechniciansProfile() {
                   <div className={`flex font-bold gap-2 text-sm`}>
                     {hour.map((hour) => (
                       <div
-                        className={`flex w-18 h-8 gap-1 items-center justify-center border border-gray-300 rounded-2xl cursor-pointer ${
+                        className={`flex px-3  py-1.5 gap-1 items-center justify-center border border-gray-300 rounded-2xl cursor-pointer select-none ${
                           selectedHours.includes(hour)
                             ? "bg-blue-base text-gray-600"
                             : ""

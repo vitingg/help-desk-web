@@ -37,7 +37,7 @@ export function CreateTechForm() {
   }
 
   return (
-    <Form className="pt-6 space-y-4" onSubmit={handleSubmit(createTech)}>
+    <Form className="pt-6 space-y-5" onSubmit={handleSubmit(createTech)}>
       <Input
         legend="Nome"
         placeholder="Nome completo"

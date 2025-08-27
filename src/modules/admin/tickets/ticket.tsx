@@ -7,11 +7,11 @@ import { TableHead } from "../../../shared/components/table/table-head";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
-import { formattedDate } from "../../../shared/lib/format-date";
+import { formattedDate } from "../../../shared/utils/format-date";
 import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
-import { getInitials } from "../../../shared/lib/get-initial-name";
-import { formattedId } from "../../../shared/lib/format-id";
-import { formattedPrice } from "../../../shared/lib/format-price";
+import { getInitials } from "../../../shared/utils/get-initial-name";
+import { formattedId } from "../../../shared/utils/format-id";
+import { formattedPrice } from "../../../shared/utils/format-price";
 
 interface Client {
   id: number;

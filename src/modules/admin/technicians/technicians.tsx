@@ -8,7 +8,7 @@ import { Table } from "../../../shared/components/table/table";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { Icon } from "../../../shared/components/edit-icon";
 import { useNavigate } from "react-router";
-import { getInitials } from "../../../shared/lib/get-initial-name";
+import { getInitials } from "../../../shared/utils/get-initial-name";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { workTimeArray } from "../../../shared/components/table/components/work-time-array";
@@ -40,7 +40,7 @@ export function Technicians() {
           signal: controller.signal,
         });
         setData(response.data.techs);
-        console.log(response.data.techs);
+        // console.log(response.data.techs);
       } catch (error) {
         console.log(error);
       }
@@ -89,14 +89,10 @@ export function Technicians() {
                   </TableCell>
                   <TableCell hideOnMobile>{data.email}</TableCell>
                   <TableCell>
-                    <div className="flex">
+                    <div className="flex gap-2">
                       {data.workHours?.workTime.map((h, i) => {
-                        return (
-                          <div className="flex" key={i}>
-                            {workTimeArray(h)}
-                          </div>
-                        );
-                      })}{" "}
+                        return <div key={i}>{workTimeArray(h)}</div>;
+                      })}
                     </div>
                   </TableCell>
                   <TableCell className="flex justify-end">
