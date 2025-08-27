@@ -23,3 +23,5 @@ export const signUpSchema = z.object({
     .min(6, { message: "Password need to be more than 6 characters." })
     .nonempty("Password is obligatory."),
 });
+
+export type signUpSchemaData = z.infer<typeof signUpSchema>;

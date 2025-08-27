@@ -18,6 +18,14 @@ import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { ChangeStatus } from "./components/change-status";
 import { formattedPrice } from "../../../shared/utils/format-price";
+import { Form } from "../../../shared/components/form";
+import { useForm } from "react-hook-form";
+import {
+  createServiceSchema,
+  type createServiceSchemaData,
+} from "../../../shared/schemas/services/create-service";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createService } from "./services/create-service";
 
 type GetAllCategories = {
   id: number;
@@ -51,26 +59,57 @@ export function Service() {
     };
   }, []);
 
+  async function handleUpdateStatus(id: number): Promise<void> {
+    try {
+      await api.put(`/categories/toggle/${id}`);
+
+      const response = await api.get("/categories/all-categories");
+      setData(response.data.category);
+      console.log(`Meu id: ${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const { register, handleSubmit, reset } = useForm<createServiceSchemaData>({
+    resolver: zodResolver(createServiceSchema),
+  });
+  const handleCreateService = async (formData: createServiceSchemaData) => {
+    try {
+      await createService(formData);
+      console.log("OPA");
+      reset();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleOpenModal = () => {
     openModal(
       <ModalLayout>
         <ModalHeader>Cadastro de serviço</ModalHeader>
         <ModalContent>
-          <Input
-            legend="TÍTULO"
-            placeholder="Nome do serviço"
-            className="font-bold"
-          />
-          <div className="relative">
-            <p className="absolute top-4 font-bold">R$</p>
+          <Form onSubmit={handleSubmit(handleCreateService)}>
             <Input
-              legend="VALOR"
-              placeholder="0,00"
-              className="pl-6 font-bold"
+              legend="TÍTULO"
+              placeholder="Nome do serviço"
+              className="font-bold"
+              {...register("title")}
             />
-          </div>
+            <div className="relative">
+              <p className="absolute top-4 font-bold">R$</p>
+              <Input
+                legend="VALOR"
+                placeholder="0,00"
+                className="pl-6 font-bold"
+                {...register("basePrice")}
+              />
+            </div>
+            <Button size={"5xl"} className="font-medium mt-7" type="submit">
+              Salvar
+            </Button>
+          </Form>
         </ModalContent>
-        <ModalFooter>Salvar</ModalFooter>
       </ModalLayout>
     );
   };
@@ -104,11 +143,17 @@ export function Service() {
               return (
                 <TableRow key={data.id}>
                   <TableCell className="font-bold">{data.name}</TableCell>
-                  <TableCell>{formattedPrice(data.basePrice)}</TableCell>
+                  <TableCell hideOnMobile>
+                    {formattedPrice(data.basePrice)}
+                  </TableCell>
                   <TableCell />
                   <TableCell>{StatusService(data.isActive)}</TableCell>
                   <TableCell className="">
-                    {ChangeStatus(data.isActive)}
+                    <ChangeStatus
+                      status={data.isActive}
+                      id={data.id}
+                      onChangeStatus={handleUpdateStatus}
+                    />
                   </TableCell>
                   <TableCell>
                     <Icon variant="edit" />

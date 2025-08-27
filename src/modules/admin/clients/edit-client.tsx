@@ -7,7 +7,7 @@ import { ModalLayout } from "../../../shared/components/modal/modal-layout";
 export function EditClient() {
   return (
     <ModalLayout>
-      <ModalHeader> Cadastro de serviço</ModalHeader>
+      <ModalHeader>Cadastro de serviço</ModalHeader>
       <ModalContent>
         <Input
           legend="TÍTULO"

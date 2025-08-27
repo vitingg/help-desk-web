@@ -6,3 +6,5 @@ export const signInSchema = z.object({
     .string()
     .min(6, { message: "Password need to be more than 6 characters." }),
 });
+
+export type signInSchemaData = z.infer<typeof signInSchema>;

@@ -1,7 +1,7 @@
 import {
   signInSchema,
   type signInSchemaData,
-} from "../../shared/schemas/zod-schema";
+} from "../../shared/schemas/auth/sign-in";
 import { Button } from "../../shared/components/button";
 import { Input } from "../../shared/components/input";
 import { zodResolver } from "@hookform/resolvers/zod";

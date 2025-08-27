@@ -71,7 +71,7 @@ export function Clients() {
                   <TableCell>{data.email}</TableCell>
                   <TableCell className="flex gap-2 items-center justify-end">
                     <Icon variant="delete" />
-                    <Icon variant="edit" />
+                    <Icon variant="edit" to="" />
                   </TableCell>
                 </TableRow>
               );

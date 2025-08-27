@@ -90,22 +90,26 @@ export function Ticket() {
               return (
                 <TableRow key={data.id}>
                   <TableCell>{formattedDate(data.updatedAt)}</TableCell>
-                  <TableCell className="font-bold text-sm">
+                  <TableCell hideOnMobile className="font-bold text-sm">
                     {formattedId(data.id)}
                   </TableCell>
                   <TableCell className="flex flex-col">
                     <div className="font-bold">{data.category.name}</div>
                     <div>{data.title}</div>
                   </TableCell>
-                  <TableCell>
+                  <TableCell hideOnMobile>
                     {formattedPrice(data.category.basePrice)}
                   </TableCell>
                   <TableCell
+                    hideOnMobile
                     hasAbbreviation={getInitials(data.client.username)}
                   >
                     {data.client.username}
                   </TableCell>
-                  <TableCell hasAbbreviation={getInitials(data.tech.username)}>
+                  <TableCell
+                    hideOnMobile
+                    hasAbbreviation={getInitials(data.tech.username)}
+                  >
                     {data.tech.username}
                   </TableCell>
                   <TableCell>{StatusTicket(data.status)}</TableCell>

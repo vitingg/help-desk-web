@@ -4,9 +4,9 @@ import { Input } from "../../shared/components/input";
 import { Button } from "../../shared/components/button";
 import { Form } from "../../shared/components/form";
 import { useForm } from "react-hook-form";
-import { signUpSchema } from "../../shared/schemas/zod-schema";
+import { signUpSchema } from "../../shared/schemas/auth/sign-up";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { signUpSchemaData } from "../../shared/schemas/zod-schema";
+import type { signUpSchemaData } from "../../shared/schemas/auth/sign-up";
 import { signUp } from "./services/api-sign-up";
 import { useNavigate } from "react-router";
 
