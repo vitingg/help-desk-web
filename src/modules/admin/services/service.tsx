@@ -25,7 +25,7 @@ import {
   type createServiceSchemaData,
 } from "../../../shared/schemas/services/create-service";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createService } from "./services/create-service";
+import { createService } from "./api/create-service";
 
 type GetAllCategories = {
   id: number;
@@ -148,7 +148,7 @@ export function Service() {
                   </TableCell>
                   <TableCell />
                   <TableCell>{StatusService(data.isActive)}</TableCell>
-                  <TableCell className="">
+                  <TableCell className="w-full flex justify-end">
                     <ChangeStatus
                       status={data.isActive}
                       id={data.id}

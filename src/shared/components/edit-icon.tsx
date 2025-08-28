@@ -11,10 +11,10 @@ const iconMap = {
 
 type iconProps = {
   variant: keyof typeof iconMap;
-  to?: string;
+  onClick?: () => void;
 };
 
-export function Icon({ variant = "edit", to }: iconProps) {
+export function Icon({ variant = "edit", onClick }: iconProps) {
   const IconComponent: ReactNode = iconMap[variant];
   const navigate = useNavigate();
   return (
@@ -22,7 +22,7 @@ export function Icon({ variant = "edit", to }: iconProps) {
       size="4xs"
       variant={"secondary"}
       className="flex items-center justify-center"
-      onClick={() => navigate(`/dashboard/${to}`)}
+      onClick={onClick}
     >
       {IconComponent}
     </Button>
