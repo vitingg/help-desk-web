@@ -6,3 +6,6 @@ detalhes:
 - Atualizar o status da tabela (pending, in progress, complete), atualmente só funciona recebendo status e passando
   na tabela no formato PC
 - Adicionar o swagger nas rotas restantes que ainda não tem.
+
+a fazeres:
+Admin; Client; Delete e Edit modal fix:style

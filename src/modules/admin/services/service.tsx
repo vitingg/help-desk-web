@@ -1,11 +1,5 @@
 import { Plus } from "lucide-react";
 import { Button } from "../../../shared/components/button";
-import { Input } from "../../../shared/components/input";
-import { ModalLayout } from "../../../shared/components/modal/modal-layout";
-import { ModalHeader } from "../../../shared/components/modal/modal-header";
-import { ModalContent } from "../../../shared/components/modal/modal-content";
-import { ModalFooter } from "../../../shared/components/modal/modal-footer";
-import { useModal } from "../../../shared/components/modal/hooks/useModalContext";
 import { Table } from "../../../shared/components/table/table";
 import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
@@ -18,13 +12,8 @@ import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { ChangeStatus } from "./components/change-status";
 import { formattedPrice } from "../../../shared/utils/format-price";
-import { Form } from "../../../shared/components/form";
-import { useForm } from "react-hook-form";
-import {
-  createServiceSchema,
-  type createServiceSchemaData,
-} from "../../../shared/schemas/services/create-service";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useCreateServiceModal } from "./modals/create-service-modal";
+import { type createServiceSchemaData } from "../../../shared/schemas/services/create-service";
 import { createService } from "./api/create-service";
 
 type GetAllCategories = {
@@ -35,7 +24,6 @@ type GetAllCategories = {
 };
 
 export function Service() {
-  const { openModal } = useModal();
   const [data, setData] = useState<GetAllCategories[]>([]);
 
   useEffect(() => {
@@ -71,48 +59,19 @@ export function Service() {
     }
   }
 
-  const { register, handleSubmit, reset } = useForm<createServiceSchemaData>({
-    resolver: zodResolver(createServiceSchema),
-  });
   const handleCreateService = async (formData: createServiceSchemaData) => {
     try {
       await createService(formData);
-      console.log("OPA");
-      reset();
+      const response = await api.get("/categories/all-categories");
+      setData(response.data.category);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleOpenModal = () => {
-    openModal(
-      <ModalLayout>
-        <ModalHeader>Cadastro de serviço</ModalHeader>
-        <ModalContent>
-          <Form onSubmit={handleSubmit(handleCreateService)}>
-            <Input
-              legend="TÍTULO"
-              placeholder="Nome do serviço"
-              className="font-bold"
-              {...register("title")}
-            />
-            <div className="relative">
-              <p className="absolute top-4 font-bold">R$</p>
-              <Input
-                legend="VALOR"
-                placeholder="0,00"
-                className="pl-6 font-bold"
-                {...register("basePrice")}
-              />
-            </div>
-            <Button size={"5xl"} className="font-medium mt-7" type="submit">
-              Salvar
-            </Button>
-          </Form>
-        </ModalContent>
-      </ModalLayout>
-    );
-  };
+  const { handleOpenModal } = useCreateServiceModal({
+    onSubmit: handleCreateService,
+  });
 
   return (
     <>
@@ -120,7 +79,7 @@ export function Service() {
         <p className="text-blue-dark font-semibold text-xl">Serviços</p>
         <Button
           size={"lg"}
-          className="flex items-center justify-center gap-2"
+          className="flex items-center justify-center gap-2 "
           onClick={handleOpenModal}
         >
           <Plus />
@@ -148,7 +107,7 @@ export function Service() {
                   </TableCell>
                   <TableCell />
                   <TableCell>{StatusService(data.isActive)}</TableCell>
-                  <TableCell className="w-full flex justify-end">
+                  <TableCell className="w-full flex justify-end ">
                     <ChangeStatus
                       status={data.isActive}
                       id={data.id}

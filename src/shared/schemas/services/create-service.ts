@@ -1,8 +1,8 @@
 import z from "zod";
 
 export const createServiceSchema = z.object({
-  title: z.string().min(4),
-  basePrice: z.number().min(20)
-})
+  name: z.string().min(4),
+  basePrice: z.number(),
+});
 
-export type createServiceSchemaData = z.infer<typeof createServiceSchema>
+export type createServiceSchemaData = z.infer<typeof createServiceSchema>;

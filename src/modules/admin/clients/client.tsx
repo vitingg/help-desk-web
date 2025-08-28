@@ -8,8 +8,8 @@ import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
 import { api } from "../../../shared/lib/api";
 import { getInitials } from "../../../shared/utils/get-initial-name";
-import { useDeleteCliente } from "./delete-client";
-import { useEditClient } from "./edit-client";
+import { useDeleteCliente } from "./modals/delete-client";
+import { useEditClient } from "./modals/edit-client";
 
 type GetClientsType = {
   id: number;
@@ -20,8 +20,19 @@ type GetClientsType = {
 
 export function Clients() {
   const [data, setData] = useState([]);
-  const { handleOpenDeleteModal } = useDeleteCliente();
+  const { handleOpenDeleteModal } = useDeleteCliente({
+    onDeleted: fetchClients,
+  });
   const { handleOpenEditModal } = useEditClient();
+
+  async function fetchClients() {
+    try {
+      const response = await api.get("/clients");
+      setData(response.data.clients);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const controller = new AbortController();
@@ -76,7 +87,9 @@ export function Clients() {
                   <TableCell className="flex gap-2 items-center justify-end">
                     <Icon
                       variant="delete"
-                      onClick={() => handleOpenDeleteModal(data.id)}
+                      onClick={() =>
+                        handleOpenDeleteModal(data.id, data.username)
+                      }
                     />
                     <Icon
                       variant="edit"

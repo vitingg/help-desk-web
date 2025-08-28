@@ -14,7 +14,7 @@ export function ChangeStatus({
   if (status == true) {
     return (
       <button
-        className="flex items-center justify-center p-2 gap-1 text-gray-300 font-bold"
+        className="flex items-center justify-center p-2 gap-1 text-gray-300 font-bold cursor-pointer"
         onClick={() => onChangeStatus(id)}
       >
         <Ban className="size-4" />
@@ -24,7 +24,7 @@ export function ChangeStatus({
   } else {
     return (
       <button
-        className="flex items-center justify-center p-2 gap-1 text-gray-300 font-bold"
+        className="flex items-center justify-center p-2 gap-1 text-gray-300 font-bold cursor-pointer"
         onClick={() => onChangeStatus(id)}
       >
         <CircleCheck className="size-4" />
