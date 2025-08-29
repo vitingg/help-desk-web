@@ -1,5 +1,5 @@
 import { Button } from "../../../shared/components/button";
-import { Key, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
 import { TableRow } from "../../../shared/components/table/table-row";
@@ -96,7 +96,12 @@ export function Technicians() {
                     </div>
                   </TableCell>
                   <TableCell className="flex justify-end">
-                    <Icon variant="edit" to="admin/technicians/profile" />
+                    <Icon
+                      variant="edit"
+                      onClick={() =>
+                        navigate("/dashboard/admin/technicians/profile")
+                      }
+                    />
                   </TableCell>
                 </TableRow>
               );

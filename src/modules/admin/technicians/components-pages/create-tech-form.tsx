@@ -1,39 +1,45 @@
 import { useOutletContext } from "react-router";
 import { Input } from "../../../../shared/components/input";
-import { useEffect } from "react";
 import { api } from "../../../../shared/lib/api";
 import { Form } from "../../../../shared/components/form";
 import { signUpSchema } from "../../../../shared/schemas/auth/sign-up";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { signUpSchemaData } from "../../../../shared/types/auth/sign-up";
 import { useForm } from "react-hook-form";
+import { Button } from "../../../../shared/components/button";
 
 type CreateTechFormType = {
   selectedHours: string[];
+  setSelectedHours: React.Dispatch<React.SetStateAction<string[]>>;
 };
 
 export function CreateTechForm() {
-  const { selectedHours } = useOutletContext<CreateTechFormType>();
+  const { selectedHours, setSelectedHours } =
+    useOutletContext<CreateTechFormType>();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setError,
-    formState: { errors },
-  } = useForm<signUpSchemaData>({
+  const { register, handleSubmit, reset } = useForm<signUpSchemaData>({
     resolver: zodResolver(signUpSchema),
   });
 
-  useEffect(() => {
-    // console.log(selectedHours);
-    async function createTech() {
-      const response = await api.post("/techs");
-    }
-  }, [selectedHours]);
+  async function createTech(data: any) {
+    const payload = {
+      ...data,
+      workHours: selectedHours,
+    };
 
-  function createTech(data: any) {
-    console.log(data);
+    try {
+      const response = await api.post("/techs", payload);
+      console.log(response.data);
+
+      reset({
+        username: "",
+        email: "",
+        password: "",
+      });
+      setSelectedHours([]);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -54,6 +60,7 @@ export function CreateTechForm() {
         helperText="Mínimo de 6 dígitos"
         {...register("password")}
       />
+      <Button>Salvar</Button>
     </Form>
   );
 }

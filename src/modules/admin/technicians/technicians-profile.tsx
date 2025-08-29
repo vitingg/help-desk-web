@@ -1,7 +1,7 @@
 import { HeaderAction } from "../../../shared/components/header-action";
 import { Button } from "../../../shared/components/button";
 import { Outlet } from "react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
 
 const controlTime = {
@@ -20,10 +20,6 @@ export function TechniciansProfile() {
       setSelectedHours([...selectedHours, hour]);
     }
   };
-
-  useEffect(() => {
-    console.log(selectedHours);
-  }, [selectedHours]);
 
   return (
     <div className="flex justify-center">
@@ -46,7 +42,7 @@ export function TechniciansProfile() {
             <p className="text-gray-300 text-xs pr-4">
               Defina as informações do perfil de técnico
             </p>
-            <Outlet context={[selectedHours]} />
+            <Outlet context={{ selectedHours, setSelectedHours }} />
           </div>
           <div className="border border-gray-500 p-4 rounded-lg">
             <p className="font-bold">Horários de atendimento</p>
