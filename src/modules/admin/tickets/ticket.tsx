@@ -12,6 +12,7 @@ import { StatusTicket } from "../../../shared/components/table/components/status
 import { getInitials } from "../../../shared/utils/get-initial-name";
 import { formattedId } from "../../../shared/utils/format-id";
 import { formattedPrice } from "../../../shared/utils/format-price";
+import { useNavigate } from "react-router";
 
 interface Client {
   id: number;
@@ -43,6 +44,7 @@ interface Ticket {
 
 export function Ticket() {
   const [data, setData] = useState<Ticket[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -114,7 +116,12 @@ export function Ticket() {
                   </TableCell>
                   <TableCell>{StatusTicket(data.status)}</TableCell>
                   <TableCell>
-                    <Icon variant="edit" />
+                    <Icon
+                      variant="edit"
+                      onClick={() =>
+                        navigate(`/dashboard/admin/ticket-detail/${data.id}`)
+                      }
+                    />
                   </TableCell>
                 </TableRow>
               );

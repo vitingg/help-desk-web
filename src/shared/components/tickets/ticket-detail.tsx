@@ -1,54 +1,77 @@
 import { Paragraph } from "./components/paragraph";
 import { CardBox } from "./components/card-box";
 import { TicketLayout } from "./ticket-layout";
-import { Status } from "../status";
+import { StatusTicket } from "../table/components/status-ticket";
+import { getInitials } from "../../utils/get-initial-name";
+import { formattedDate } from "../../utils/format-date";
 
-type StatusType = "Aberto" | "Em Atendimento" | "Fechado";
+interface Category {
+  id: number;
+  name: string;
+  basePrice: number;
+}
 
-type TicketDetailProps = {
-  ticket: {
-    id: string;
-    title: string;
-    status: StatusType;
-    description: string;
-    category: string;
-    createdAt: string;
-    updatedAt: string;
-    client: {
-      name: string;
-      initials: string;
-    };
-  };
-};
+interface Client {
+  id: number;
+  username: string;
+}
 
-export function TicketDetail({ ticket }: TicketDetailProps) {
+interface Tech {
+  id: number;
+  username: string;
+}
+
+type TicketStatus = "PENDING" | "IN_PROGRESS" | "COMPLETE";
+
+interface Ticket {
+  id: number;
+  title: string;
+  description: string;
+  status: TicketStatus;
+  clientId: number;
+  techId: number;
+  categoryId: number;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  client: Client;
+  tech: Tech;
+  category: Category;
+}
+
+interface TicketDetailProps {
+  data: Ticket;
+}
+
+export function TicketDetail({ data }: TicketDetailProps) {
   return (
     <TicketLayout>
       <div className="flex justify-between items-center pb-5">
         <CardBox className="pb-0 pr-30">
-          <Paragraph size="xs">{ticket.id}</Paragraph>
-          <Paragraph size="md">{ticket.title}</Paragraph>
+          <Paragraph size="xs">{data.id}</Paragraph>
+          <Paragraph size="md">{data.title}</Paragraph>
         </CardBox>
-        <Status status={ticket.status} />
+        {StatusTicket(data.status)}
       </div>
       <CardBox>
         <Paragraph size="xs">Descrição</Paragraph>
-        <Paragraph size="sm">{ticket.description}</Paragraph>
+        <Paragraph size="sm">{data.description}</Paragraph>
       </CardBox>
 
       <CardBox>
         <Paragraph size="xs">Categoria</Paragraph>
-        <Paragraph size="sm">{ticket.category}</Paragraph>
+        <Paragraph size="sm">
+          <p>categoria ai hein</p>
+        </Paragraph>
       </CardBox>
 
       <CardBox className="flex">
         <div className="flex flex-col w-1/2">
           <Paragraph size="xs">Criado em</Paragraph>
-          <Paragraph size="sm">{ticket.createdAt}</Paragraph>
+          <Paragraph size="sm">{formattedDate(data.createdAt)}</Paragraph>
         </div>
         <div className="flex flex-col w-1/2">
           <Paragraph size="xs">Atualizado em</Paragraph>
-          <Paragraph size="sm">{ticket.updatedAt}</Paragraph>
+          <Paragraph size="sm">{formattedDate(data.updatedAt)}</Paragraph>
         </div>
       </CardBox>
 
@@ -58,9 +81,9 @@ export function TicketDetail({ ticket }: TicketDetailProps) {
         </Paragraph>
         <div className="flex gap-2 items-center">
           <div className="w-6 h-6 bg-blue-dark rounded-full text-2xs text-gray-600 flex justify-center items-center">
-            {ticket.client.initials}
+            {getInitials(data.client.username)}
           </div>
-          <Paragraph size="sm">{ticket.client.name}</Paragraph>
+          <Paragraph size="sm">{data.client.username}</Paragraph>
         </div>
       </div>
     </TicketLayout>

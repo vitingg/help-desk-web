@@ -1,25 +1,61 @@
 import { Clock2, CircleCheckBig } from "lucide-react";
 import { HeaderAction } from "../../../shared/components/header-action";
-
+import { useParams } from "react-router";
 import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
 import { PriceHistory } from "../../../shared/components/tickets/ticket-price-history";
+import { useEffect, useState } from "react";
+import { api } from "../../../shared/lib/api";
 
-const ticketData = {
-  id: "00004",
-  title: "Backup não está funcionando",
-  status: "Aberto",
-  description:
-    "O sistema de backup automático parou de funcionar. Última execução bem-sucedida foi há uma semana.",
-  category: "Recuperação de Dados",
-  createdAt: "12/04/25 09:12",
-  updatedAt: "12/04/25 15:20",
-  client: {
-    initials: "AC",
-    name: "André Costa",
-  },
-} as const;
+interface Category {
+  id: number;
+  name: string;
+  basePrice: number;
+}
+
+interface Client {
+  id: number;
+  username: string;
+}
+
+interface Tech {
+  id: number;
+  username: string;
+}
+
+type TicketStatus = "PENDING" | "IN_PROGRESS" | "COMPLETE";
+
+interface Ticket {
+  id: number;
+  title: string;
+  description: string;
+  status: TicketStatus;
+  clientId: number;
+  techId: number;
+  categoryId: number;
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  client: Client;
+  tech: Tech;
+  category: Category;
+}
 
 export function AdminDetail() {
+  const [data, setData] = useState<Ticket>();
+  const { ticketId } = useParams();
+
+  useEffect(() => {
+    async function getTicket() {
+      try {
+        const response = await api.get(`/services/${ticketId}`);
+        setData(response.data.tickets);
+        console.log(response.data.tickets);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTicket();
+  }, []);
+
   return (
     <div className="flex items-center justify-center">
       <div className="pr-6 pl-6">
@@ -38,7 +74,7 @@ export function AdminDetail() {
         </div>
 
         <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6">
-          <TicketDetail ticket={ticketData} />
+          {data ? <TicketDetail data={data} /> : <p>Carregando...</p>}
           <PriceHistory />
         </div>
       </div>
