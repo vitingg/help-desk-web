@@ -99,7 +99,9 @@ export function Technicians() {
                     <Icon
                       variant="edit"
                       onClick={() =>
-                        navigate("/dashboard/admin/technicians/profile")
+                        navigate(
+                          `/dashboard/admin/technicians/profile/${data.id}`
+                        )
                       }
                     />
                   </TableCell>

@@ -34,6 +34,7 @@ export function SignUp() {
     try {
       const creatingAccount = await signUp(data);
       console.log(creatingAccount.data);
+      navigate("/auth/sign-in");
     } catch (error: any) {
       const status = error.response?.status;
       const message = error.response?.data?.error;

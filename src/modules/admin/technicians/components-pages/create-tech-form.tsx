@@ -17,9 +17,18 @@ export function CreateTechForm() {
   const { selectedHours, setSelectedHours } =
     useOutletContext<CreateTechFormType>();
 
-  const { register, handleSubmit, reset } = useForm<signUpSchemaData>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<signUpSchemaData>({
     resolver: zodResolver(signUpSchema),
   });
+
+  const usernameError = errors.username?.message;
+  const emailError = errors.email?.message;
+  const passwordError = errors.password?.message;
 
   async function createTech(data: any) {
     const payload = {
@@ -47,17 +56,22 @@ export function CreateTechForm() {
       <Input
         legend="Nome"
         placeholder="Nome completo"
+        isError={!!usernameError}
+        helperText={usernameError}
         {...register("username")}
       />
       <Input
         legend="E-mail"
         placeholder="exemplo@mail.com"
+        isError={!!emailError}
+        helperText={emailError}
         {...register("email")}
       />
       <Input
         legend="Senha"
         placeholder="Defina a senha de acesso"
-        helperText="Mínimo de 6 dígitos"
+        isError={!!passwordError}
+        helperText={passwordError}
         {...register("password")}
       />
       <Button>Salvar</Button>

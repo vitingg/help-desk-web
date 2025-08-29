@@ -41,7 +41,7 @@ export function AppRoutes() {
               <Route path="ticket-detail/:ticketId" element={<AdminDetail />} />
               <Route path="techs" element={<Technicians />} />
               <Route path="technicians" element={<TechniciansProfile />}>
-                <Route path="profile" element={<PutTechForm />} />
+                <Route path="profile/:id" element={<PutTechForm />} />
                 <Route path="form" element={<CreateTechForm />} />
               </Route>
               <Route path="clients" element={<Clients />} />

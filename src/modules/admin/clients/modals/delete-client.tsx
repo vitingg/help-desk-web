@@ -27,7 +27,7 @@ export function useDeleteCliente({ onDeleted }: { onDeleted?: () => void }) {
           <div className="w-md space-y-3">
             <h1 className="text-md">
               Deseja realmente excluir
-              <strong className="font-bold">{username}?</strong>
+              <strong className="font-bold"> {username}?</strong>
             </h1>
             <h2 className="text-md">
               Ao excluir, todos os chamados deste cliente serão removidos e esta
