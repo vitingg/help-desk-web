@@ -82,13 +82,19 @@ export function PutTechForm() {
     getTech();
   }, [id, reset]);
 
-  async function editUser(data: any) {
+  async function editUser(data: editUserSchemaData) {
     const payload = {
       ...data,
       workHours: workHours,
     };
     workHours.sort();
     console.log(payload);
+    try {
+      const response = await api.put(`/techs/${id}`, payload);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

@@ -15,6 +15,7 @@ import { formattedPrice } from "../../../shared/utils/format-price";
 import { useCreateServiceModal } from "./modals/create-service-modal";
 import { type createServiceSchemaData } from "../../../shared/schemas/services/create-service";
 import { createService } from "./api/create-service";
+import { useEditServiceModal } from "./modals/edit-service-modal";
 
 type GetAllCategories = {
   id: number;
@@ -31,11 +32,10 @@ export function Service() {
 
     async function fetchServices() {
       try {
-        const response = await api.get("/categories/all-categories", {
+        const response = await api.get("/categories", {
           signal: controller.signal,
         });
         setData(response.data.category);
-        // console.log(response.data.category);
       } catch (error) {
         console.log(error);
       }
@@ -47,13 +47,23 @@ export function Service() {
     };
   }, []);
 
+  async function refetchServices() {
+    try {
+      const response = await api.get("/categories");
+      setData(response.data.category);
+    } catch (error) {
+      console.log("Falha ao buscar os serviços", error);
+    }
+  }
+
+  useEffect(() => {
+    refetchServices();
+  }, []);
+
   async function handleUpdateStatus(id: number): Promise<void> {
     try {
       await api.put(`/categories/toggle/${id}`);
-
-      const response = await api.get("/categories/all-categories");
-      setData(response.data.category);
-      console.log(`Meu id: ${id}`);
+      await refetchServices();
     } catch (error) {
       console.log(error);
     }
@@ -62,15 +72,30 @@ export function Service() {
   const handleCreateService = async (formData: createServiceSchemaData) => {
     try {
       await createService(formData);
-      const response = await api.get("/categories/all-categories");
-      setData(response.data.category);
+      await refetchServices();
     } catch (error) {
       console.log(error);
     }
   };
 
-  const { handleOpenModal } = useCreateServiceModal({
+  const handleEditService = async (
+    formData: createServiceSchemaData,
+    id: number
+  ) => {
+    try {
+      await api.put(`/categories/${id}`, formData);
+      await refetchServices();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { handleCreateModal } = useCreateServiceModal({
     onSubmit: handleCreateService,
+  });
+
+  const { handleEditModal } = useEditServiceModal({
+    onSubmit: handleEditService,
   });
 
   return (
@@ -80,7 +105,7 @@ export function Service() {
         <Button
           size={"lg"}
           className="flex items-center justify-center gap-2 "
-          onClick={handleOpenModal}
+          onClick={handleCreateModal}
         >
           <Plus />
           <span className="hidden md:table-cell">Novo</span>
@@ -115,7 +140,10 @@ export function Service() {
                     />
                   </TableCell>
                   <TableCell>
-                    <Icon variant="edit" onClick={handleOpenModal} />
+                    <Icon
+                      variant="edit"
+                      onClick={() => handleEditModal(data.id)}
+                    />
                   </TableCell>
                 </TableRow>
               );

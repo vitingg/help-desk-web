@@ -19,11 +19,19 @@ export function useCreateServiceModal({
 }) {
   const { openModal, closeModal } = useModal();
 
-  const { register, handleSubmit, reset } = useForm<createServiceSchemaData>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<createServiceSchemaData>({
     resolver: zodResolver(createServiceSchema),
   });
 
-  const handleOpenModal = () => {
+  const nameError = errors.name?.message;
+  const basePriceError = errors.basePrice?.message;
+
+  const handleCreateModal = () => {
     openModal(
       <ModalLayout>
         <ModalHeader>Serviço</ModalHeader>
@@ -41,6 +49,8 @@ export function useCreateServiceModal({
               placeholder="Nome do serviço"
               className="font-bold"
               {...register("name")}
+              isError={!!nameError}
+              helperText={nameError}
             />
             <div className="relative">
               <p className="absolute top-4 font-bold">R$</p>
@@ -50,6 +60,8 @@ export function useCreateServiceModal({
                 className="pl-6 font-bold"
                 type="number"
                 {...register("basePrice", { valueAsNumber: true })}
+                isError={!!basePriceError}
+                helperText={basePriceError}
               />
             </div>
             <Button size={"5xl"} className="font-medium mt-7">
@@ -61,5 +73,5 @@ export function useCreateServiceModal({
     );
   };
 
-  return { handleOpenModal };
+  return { handleCreateModal };
 }

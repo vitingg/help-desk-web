@@ -1,7 +1,6 @@
 import { Eye, PenLine, Trash } from "lucide-react";
 import { Button } from "./button";
 import type { ReactNode } from "react";
-import { useNavigate } from "react-router";
 
 const iconMap = {
   edit: <PenLine width={"14"} height={"14"} />,
@@ -16,7 +15,6 @@ type iconProps = {
 
 export function Icon({ variant = "edit", onClick }: iconProps) {
   const IconComponent: ReactNode = iconMap[variant];
-  const navigate = useNavigate();
   return (
     <Button
       size="4xs"

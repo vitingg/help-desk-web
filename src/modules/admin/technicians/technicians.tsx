@@ -30,7 +30,6 @@ type workHours = {
 export function Technicians() {
   const [data, setData] = useState<GetTechsType[]>([]);
 
-  // Precisa editar isso ai, so copiei e colei
   useEffect(() => {
     const controller = new AbortController();
 
@@ -40,12 +39,10 @@ export function Technicians() {
           signal: controller.signal,
         });
         setData(response.data.techs);
-        // console.log(response.data.techs);
       } catch (error) {
         console.log(error);
       }
     }
-    // console.log(data);
     fetchTechs();
 
     return () => {

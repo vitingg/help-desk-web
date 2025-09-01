@@ -23,7 +23,9 @@ export function Clients() {
   const { handleOpenDeleteModal } = useDeleteCliente({
     onDeleted: fetchClients,
   });
-  const { handleOpenEditModal } = useEditClient();
+  const { handleOpenEditModal } = useEditClient({
+    onEdited: fetchClients,
+  });
 
   async function fetchClients() {
     try {

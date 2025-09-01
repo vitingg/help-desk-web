@@ -17,6 +17,7 @@ import {
 type EditCLientModalProps = {
   id: number;
   onClose: () => void;
+  onEdited?: () => void;
 };
 
 type clientResponseType = {
@@ -27,7 +28,11 @@ type clientResponseType = {
   profilePicture: string;
 };
 
-export function EditClientModal({ id, onClose }: EditCLientModalProps) {
+export function EditClientModal({
+  id,
+  onClose,
+  onEdited,
+}: EditCLientModalProps) {
   const [data, setData] = useState<clientResponseType | null>(null);
 
   const {
@@ -61,9 +66,15 @@ export function EditClientModal({ id, onClose }: EditCLientModalProps) {
   const emailError = errors.email?.message;
 
   async function editUser(data: any) {
-    console.log(data);
-    alert("Edited user");
-    onClose();
+    try {
+      const response = await api.put(`/clients/${id}`, data);
+      console.log(response.data);
+      onEdited?.();
+      alert("Edited user");
+      onClose();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
