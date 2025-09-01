@@ -72,8 +72,9 @@ export function PutTechForm() {
           username: data?.username,
           email: data?.email,
         });
-        if (response.data.techs.workHours?.workTime) {
-          setWorkHours(response.data.techs.workHours.workTime);
+        console.log(data.workHours.workTime);
+        if (data.workHours?.workTime) {
+          setWorkHours(data.workHours.workTime);
         }
       } catch (error) {
         console.log(error);

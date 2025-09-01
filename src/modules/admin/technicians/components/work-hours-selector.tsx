@@ -18,6 +18,12 @@ export function WorkHoursSelector({
 }: WorkHoursSelectorProps) {
   const [selectedHours, setSelectedHours] = useState<string[]>([]);
 
+  useEffect(() => {
+    if (initialSelectedHours.length > 0) {
+      setSelectedHours(initialSelectedHours);
+    }
+  }, [initialSelectedHours]);
+
   const toggleHour = (hour: string) => {
     const newSelectedHours = selectedHours.includes(hour)
       ? selectedHours.filter((h) => h !== hour)
