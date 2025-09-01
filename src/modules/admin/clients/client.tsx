@@ -93,7 +93,7 @@ export function Clients() {
                     />
                     <Icon
                       variant="edit"
-                      onClick={() => handleOpenEditModal()}
+                      onClick={() => handleOpenEditModal(data.id)}
                     />
                   </TableCell>
                 </TableRow>

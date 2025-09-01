@@ -18,8 +18,8 @@ import { ClientPage } from "../../modules/client/page";
 import { ClientTickets } from "../../modules/client/tickets/tickets";
 import { ClientDetail } from "../../modules/client/tickets/ticket-detail";
 import { CreateTicket } from "../../modules/client/create-ticket/create-ticket";
-import { CreateTechForm } from "../../modules/admin/technicians/components-pages/create-tech-form";
-import { PutTechForm } from "../../modules/admin/technicians/components-pages/put-tech-form";
+import { CreateTechForm } from "../../modules/admin/technicians/modals/create-tech-form";
+import { PutTechForm } from "../../modules/admin/technicians/modals/put-tech-form";
 
 export function AppRoutes() {
   return (

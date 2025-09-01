@@ -58,7 +58,7 @@ export function AdminDetail() {
 
   return (
     <div className="flex items-center justify-center">
-      <div className="pr-6 pl-6">
+      <div>
         <div className="flex flex-col md:flex-row md:justify-between md:items-center pt-14">
           <HeaderAction title="Chamado detalhado" />
           <div className="font-semibold text-gray-300 flex gap-2 ">
@@ -73,7 +73,7 @@ export function AdminDetail() {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6">
+        <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6 ">
           {data ? <TicketDetail data={data} /> : <p>Carregando...</p>}
           <PriceHistory />
         </div>

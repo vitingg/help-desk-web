@@ -4,6 +4,7 @@ import { TicketLayout } from "./ticket-layout";
 import { StatusTicket } from "../table/components/status-ticket";
 import { getInitials } from "../../utils/get-initial-name";
 import { formattedDate } from "../../utils/format-date";
+import { formattedId } from "../../utils/format-id";
 
 interface Category {
   id: number;
@@ -31,8 +32,8 @@ interface Ticket {
   clientId: number;
   techId: number;
   categoryId: number;
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
+  createdAt: string;
+  updatedAt: string;
   client: Client;
   tech: Tech;
   category: Category;
@@ -44,10 +45,10 @@ interface TicketDetailProps {
 
 export function TicketDetail({ data }: TicketDetailProps) {
   return (
-    <TicketLayout>
+    <TicketLayout className="min-w-lg md:min-w-md">
       <div className="flex justify-between items-center pb-5">
-        <CardBox className="pb-0 pr-30">
-          <Paragraph size="xs">{data.id}</Paragraph>
+        <CardBox className="">
+          <Paragraph size="xs">{formattedId(data.id)}</Paragraph>
           <Paragraph size="md">{data.title}</Paragraph>
         </CardBox>
         {StatusTicket(data.status)}

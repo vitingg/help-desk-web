@@ -3,7 +3,7 @@ import { TicketLayout } from "./ticket-layout";
 
 export function PriceHistory() {
   return (
-    <TicketLayout>
+    <TicketLayout className="min-w-sm">
       <div>
         <Paragraph size="xs" className="pb-2 pr-26">
           Técnico responsável

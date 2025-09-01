@@ -26,7 +26,7 @@ export function useCreateServiceModal({
   const handleOpenModal = () => {
     openModal(
       <ModalLayout>
-        <ModalHeader>Cadastro de serviço</ModalHeader>
+        <ModalHeader>Serviço</ModalHeader>
         <ModalContent>
           <Form
             onSubmit={handleSubmit(async (formData) => {
@@ -52,7 +52,7 @@ export function useCreateServiceModal({
                 {...register("basePrice", { valueAsNumber: true })}
               />
             </div>
-            <Button size={"5xl"} className="font-medium mt-7" type="submit">
+            <Button size={"5xl"} className="font-medium mt-7">
               Salvar
             </Button>
           </Form>

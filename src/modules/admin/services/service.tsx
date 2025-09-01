@@ -115,7 +115,7 @@ export function Service() {
                     />
                   </TableCell>
                   <TableCell>
-                    <Icon variant="edit" />
+                    <Icon variant="edit" onClick={handleOpenModal} />
                   </TableCell>
                 </TableRow>
               );
