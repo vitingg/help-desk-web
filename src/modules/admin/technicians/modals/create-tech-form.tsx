@@ -37,7 +37,7 @@ export function CreateTechForm() {
     try {
       await api.post("/techs", payload);
       reset();
-      navigate("/dashboard/admin/technicians");
+      navigate("/dashboard/admin/techs");
     } catch (error) {
       console.log(error);
     }
