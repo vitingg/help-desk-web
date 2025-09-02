@@ -28,6 +28,11 @@ interface Category {
   name: string;
   basePrice: number;
 }
+interface ServiceCategory {
+  categoryId: number;
+  type: "BASE" | "ADDITIONAL";
+  category: Category;
+}
 interface Ticket {
   id: number;
   title: string;
@@ -35,12 +40,11 @@ interface Ticket {
   status: "PENDING" | "IN_PROGRESS" | "COMPLETE";
   clientId: number;
   techId: number;
-  categoryId: number;
   createdAt: string;
   updatedAt: string;
   client: Client;
   tech: Tech;
-  category: Category;
+  categories: ServiceCategory[]; // ✅ agora é array
 }
 
 export function Ticket() {
@@ -115,11 +119,18 @@ export function Ticket() {
                       {formattedId(data.id)}
                     </TableCell>
                     <TableCell className="flex flex-col">
-                      <div className="font-bold">{data.category.name}</div>
                       <div>{data.title}</div>
+                      <span className="text-sm text-gray-500">
+                        {data.categories.map((c) => c.category.name).join(", ")}
+                      </span>
                     </TableCell>
                     <TableCell hideOnMobile>
-                      {formattedPrice(data.category.basePrice)}
+                      {formattedPrice(
+                        data.categories.reduce(
+                          (acc, cat) => acc + (cat.category?.basePrice ?? 0),
+                          0
+                        )
+                      )}
                     </TableCell>
                     <TableCell
                       hideOnMobile

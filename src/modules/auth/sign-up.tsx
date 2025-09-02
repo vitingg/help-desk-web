@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { signUpSchemaData } from "../../shared/schemas/auth/sign-up";
 import { signUp } from "./services/api-sign-up";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export function SignUp() {
   const {
@@ -33,9 +34,11 @@ export function SignUp() {
   async function createUser(data: any) {
     try {
       const creatingAccount = await signUp(data);
+      toast.success("Usuário criado com sucesso!");
       console.log(creatingAccount.data);
       navigate("/auth/sign-in");
     } catch (error: any) {
+      toast.error("Falha ao criar usuário!");
       const status = error.response?.status;
       const message = error.response?.data?.error;
 

@@ -6,38 +6,10 @@ import { PriceHistory } from "../../../shared/components/tickets/ticket-price-hi
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { TicketDetailSkeleton } from "../../../shared/components/tickets/ticket-detail";
-
-type TicketStatus = "PENDING" | "IN_PROGRESS" | "COMPLETE";
-interface Category {
-  id: number;
-  name: string;
-  basePrice: number;
-}
-interface Client {
-  id: number;
-  username: string;
-}
-interface Tech {
-  id: number;
-  username: string;
-}
-interface Ticket {
-  id: number;
-  title: string;
-  description: string;
-  status: TicketStatus;
-  clientId: number;
-  techId: number;
-  categoryId: number;
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
-  client: Client;
-  tech: Tech;
-  category: Category;
-}
+import type { TicketResponseInterface } from "../../../shared/types/tickets/ticket-response";
 
 export function AdminDetail() {
-  const [data, setData] = useState<Ticket>();
+  const [data, setData] = useState<TicketResponseInterface>();
 
   const { ticketId } = useParams();
 
@@ -73,7 +45,7 @@ export function AdminDetail() {
 
         <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6 ">
           {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
-          <PriceHistory />
+          {data ? <PriceHistory data={data} /> : <p>...loading</p>}
         </div>
       </div>
     </div>
