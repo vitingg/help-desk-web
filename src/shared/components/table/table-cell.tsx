@@ -65,7 +65,7 @@ type ProfileContentProps = {
   hasAbbreviation: string;
 };
 
-function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
+export function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
   const isImage =
     hasAbbreviation.startsWith("http") ||
     hasAbbreviation.startsWith("data:image/");

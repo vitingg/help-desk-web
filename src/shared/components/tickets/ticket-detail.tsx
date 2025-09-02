@@ -6,10 +6,10 @@ import { getInitials } from "../../utils/get-initial-name";
 import { formattedDate } from "../../utils/format-date";
 import { formattedId } from "../../utils/format-id";
 import Skeleton from "react-loading-skeleton";
-import type { TicketResponseInterface } from "../../types/tickets/ticket-response";
+import type { Ticket } from "../../types/tickets/ticket-response";
 
 interface TicketDetailProps {
-  data: TicketResponseInterface;
+  data: Ticket;
 }
 
 export function TicketDetail({ data }: TicketDetailProps) {
@@ -30,7 +30,7 @@ export function TicketDetail({ data }: TicketDetailProps) {
       <CardBox>
         <Paragraph size="xs">Categoria</Paragraph>
         <Paragraph size="sm">
-          <p>{data.category.name}</p>
+          <span>{data.categories[0].category.name}</span>
         </Paragraph>
       </CardBox>
 

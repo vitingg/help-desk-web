@@ -1,12 +1,12 @@
 import Skeleton from "react-loading-skeleton";
 import { Paragraph } from "./components/paragraph";
 import { TicketLayout } from "./ticket-layout";
-import type { TicketResponseInterface } from "../../types/tickets/ticket-response";
+import type { Ticket } from "../../types/tickets/ticket-response";
 import { getInitials } from "../../utils/get-initial-name";
 import { formattedPrice } from "../../utils/format-price";
 
 interface TicketDetailProps {
-  data: TicketResponseInterface;
+  data: Ticket;
 }
 
 export function PriceHistory({ data }: TicketDetailProps) {
@@ -30,7 +30,7 @@ export function PriceHistory({ data }: TicketDetailProps) {
           <Paragraph size="xs">Valores</Paragraph>
           <span className="flex justify-between items-center text-xs">
             <p>Preço base</p>
-            <p>{formattedPrice(data.category.basePrice)}</p>
+            <p>{formattedPrice(data.categories[0].category.basePrice)}</p>
           </span>
           <span className="flex justify-between items-center text-xs">
             <p>Adicionais</p>

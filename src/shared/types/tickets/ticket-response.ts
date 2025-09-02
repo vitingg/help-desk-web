@@ -13,17 +13,21 @@ interface Tech {
   username: string;
   email: string;
 }
-export interface TicketResponseInterface {
+interface ServiceCategory {
+  categoryId: number;
+  type: "BASE" | "ADDITIONAL";
+  category: Category;
+}
+export interface Ticket {
   id: number;
   title: string;
   description: string;
   status: TicketStatus;
   clientId: number;
   techId: number;
-  categoryId: number;
   createdAt: string;
   updatedAt: string;
   client: Client;
   tech: Tech;
-  category: Category;
+  categories: ServiceCategory[];
 }

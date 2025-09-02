@@ -6,10 +6,10 @@ import { PriceHistory } from "../../../shared/components/tickets/ticket-price-hi
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { TicketDetailSkeleton } from "../../../shared/components/tickets/ticket-detail";
-import type { TicketResponseInterface } from "../../../shared/types/tickets/ticket-response";
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 
 export function AdminDetail() {
-  const [data, setData] = useState<TicketResponseInterface>();
+  const [data, setData] = useState<Ticket>();
 
   const { ticketId } = useParams();
 

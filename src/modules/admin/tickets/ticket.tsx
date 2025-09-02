@@ -14,38 +14,7 @@ import { formattedId } from "../../../shared/utils/format-id";
 import { formattedPrice } from "../../../shared/utils/format-price";
 import { useNavigate } from "react-router";
 import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
-
-interface Client {
-  id: number;
-  username: string;
-}
-interface Tech {
-  id: number;
-  username: string;
-}
-interface Category {
-  id: number;
-  name: string;
-  basePrice: number;
-}
-interface ServiceCategory {
-  categoryId: number;
-  type: "BASE" | "ADDITIONAL";
-  category: Category;
-}
-interface Ticket {
-  id: number;
-  title: string;
-  description: string;
-  status: "PENDING" | "IN_PROGRESS" | "COMPLETE";
-  clientId: number;
-  techId: number;
-  createdAt: string;
-  updatedAt: string;
-  client: Client;
-  tech: Tech;
-  categories: ServiceCategory[]; // ✅ agora é array
-}
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 
 export function Ticket() {
   const [data, setData] = useState<Ticket[]>([]);
@@ -61,7 +30,7 @@ export function Ticket() {
           signal: controller.signal,
         });
         setData(response.data.tickets);
-        // console.log(response.data.tickets);
+        console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       } finally {
@@ -119,10 +88,8 @@ export function Ticket() {
                       {formattedId(data.id)}
                     </TableCell>
                     <TableCell className="flex flex-col">
-                      <div>{data.title}</div>
-                      <span className="text-sm text-gray-500">
-                        {data.categories.map((c) => c.category.name).join(", ")}
-                      </span>
+                      <div className="font-bold">{data.title}</div>
+                      <div>{data.description}</div>
                     </TableCell>
                     <TableCell hideOnMobile>
                       {formattedPrice(
