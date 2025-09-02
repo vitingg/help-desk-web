@@ -1,7 +1,7 @@
 import { getInitials } from "../../../../shared/utils/get-initial-name";
 import { Button } from "../../../../shared/components/button";
 import { Input } from "../../../../shared/components/input";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { Form } from "../../../../shared/components/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../../shared/lib/api";
@@ -13,6 +13,7 @@ import {
 } from "../../../../shared/schemas/auth/edit-user";
 import { WorkHoursSelector } from "../components/work-hours-selector";
 import { HeaderAction } from "../../../../shared/components/header-action";
+import { toast } from "react-toastify";
 
 interface WorkHours {
   id: number;
@@ -48,6 +49,7 @@ export function PutTechForm() {
   const { id } = useParams();
   const [data, setData] = useState<Technician | null>(null);
   const [workHours, setWorkHours] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -89,12 +91,13 @@ export function PutTechForm() {
       workHours: workHours,
     };
     workHours.sort();
-    console.log(payload);
     try {
       const response = await api.put(`/techs/${id}`, payload);
       console.log(response.data);
+      toast.success("Técnico alterado com sucesso!");
     } catch (error) {
       console.log(error);
+      toast.error("Falha ao alterar técnico!");
     }
   }
 
@@ -107,7 +110,7 @@ export function PutTechForm() {
             variant="secondary"
             className="font-bold w-1/2"
             type="button"
-            onClick={() => reset()}
+            onClick={() => navigate(-1)}
           >
             Cancelar
           </Button>

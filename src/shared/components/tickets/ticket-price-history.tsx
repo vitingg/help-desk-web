@@ -1,3 +1,4 @@
+import Skeleton from "react-loading-skeleton";
 import { Paragraph } from "./components/paragraph";
 import { TicketLayout } from "./ticket-layout";
 
@@ -33,6 +34,43 @@ export function PriceHistory() {
           <span className="flex justify-between items-center font-bold text-sm">
             <p>Total</p>
             <p>R$ 395,00</p>
+          </span>
+        </div>
+      </div>
+    </TicketLayout>
+  );
+}
+
+export function PriceHistorySkeleton() {
+  return (
+    <TicketLayout className="min-w-sm">
+      <div>
+        <Paragraph size="xs" className="pb-2 pr-26">
+          Técnico responsável
+        </Paragraph>
+        <div className="flex gap-2 items-center pb-8">
+          <Skeleton />
+          <div>
+            <Skeleton />
+            <Skeleton />
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <Paragraph size="xs">Valores</Paragraph>
+          <span className="flex justify-between items-center text-xs">
+            <p>Preço base</p>
+            <Skeleton />
+          </span>
+          <span className="flex justify-between items-center text-xs">
+            <p>Adicionais</p>
+            <Skeleton />
+          </span>
+
+          <div className="pb-2 border-0 border-b-1 border-b-gray-500" />
+          <span className="flex justify-between items-center font-bold text-sm">
+            <p>Total</p>
+            <Skeleton />
           </span>
         </div>
       </div>

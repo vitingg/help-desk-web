@@ -13,6 +13,8 @@ import {
   editUserSchema,
   type editUserSchemaData,
 } from "../../../../../shared/schemas/auth/edit-user";
+import Skeleton from "react-loading-skeleton";
+import { toast } from "react-toastify";
 
 type EditCLientModalProps = {
   id: number;
@@ -34,6 +36,7 @@ export function EditClientModal({
   onEdited,
 }: EditCLientModalProps) {
   const [data, setData] = useState<clientResponseType | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const {
     register,
@@ -57,10 +60,12 @@ export function EditClientModal({
         });
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
     fetchClient();
-  }, [id, reset]);
+  }, [id, reset, onClose]);
 
   const usernameError = errors.username?.message;
   const emailError = errors.email?.message;
@@ -70,10 +75,11 @@ export function EditClientModal({
       const response = await api.put(`/clients/${id}`, data);
       console.log(response.data);
       onEdited?.();
-      alert("Edited user");
+      toast.success("Usuário editado com sucesso!");
       onClose();
     } catch (error) {
       console.log(error);
+      toast.error("Falha ao editar usuário.");
     }
   }
 
@@ -83,23 +89,37 @@ export function EditClientModal({
       <ModalContent>
         <Form className="w-sm space-y-4" onSubmit={handleSubmit(editUser)}>
           <div className="rounded-full p-2 bg-blue-dark size-12 text-gray-600 text-lg flex items-center justify-center">
-            {getInitials(data?.username ?? "")}
+            {loading ? (
+              <Skeleton circle height={48} width={48} />
+            ) : (
+              <span className="text-gray-600 text-lg">
+                {getInitials(data?.username ?? "")}
+              </span>
+            )}
           </div>
-          <Input
-            legend="NOME"
-            className="font-bold"
-            {...register("username")}
-            isError={!!usernameError}
-            helperText={usernameError}
-          />
-
-          <Input
-            legend="E-MAIL"
-            className="font-bold"
-            {...register("email")}
-            isError={!!emailError}
-            helperText={emailError}
-          />
+          {loading ? (
+            <div className="space-y-4">
+              <Skeleton height={40} />
+              <Skeleton height={40} />
+            </div>
+          ) : (
+            <>
+              <Input
+                legend="NOME"
+                className="font-bold"
+                {...register("username")}
+                isError={!!usernameError}
+                helperText={usernameError}
+              />
+              <Input
+                legend="E-MAIL"
+                className="font-bold"
+                {...register("email")}
+                isError={!!emailError}
+                helperText={emailError}
+              />
+            </>
+          )}
           <Button size={"5xl"}>Salvar</Button>
         </Form>
       </ModalContent>

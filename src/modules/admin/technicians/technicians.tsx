@@ -12,6 +12,7 @@ import { getInitials } from "../../../shared/utils/get-initial-name";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { workTimeArray } from "../../../shared/components/table/components/work-time-array";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
 
 type GetTechsType = {
   id: number;
@@ -29,6 +30,7 @@ type workHours = {
 
 export function Technicians() {
   const [data, setData] = useState<GetTechsType[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -41,6 +43,8 @@ export function Technicians() {
         setData(response.data.techs);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchTechs();
@@ -75,36 +79,48 @@ export function Technicians() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((data) => {
-              return (
-                <TableRow key={data.id}>
-                  <TableCell
-                    className="flex items-center"
-                    hasAbbreviation={getInitials(data.username)}
-                  >
-                    {data.username}
-                  </TableCell>
-                  <TableCell hideOnMobile>{data.email}</TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      {data.workHours?.workTime.map((h, i) => {
-                        return <div key={i}>{workTimeArray(h)}</div>;
-                      })}
-                    </div>
-                  </TableCell>
-                  <TableCell className="flex justify-end">
-                    <Icon
-                      variant="edit"
-                      onClick={() =>
-                        navigate(
-                          `/dashboard/admin/technicians/profile/${data.id}`
-                        )
-                      }
-                    />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {isLoading ? (
+              <TableSkeleton
+                rows={5}
+                columns={[
+                  { key: "username" },
+                  { key: "email", hideOnMobile: true },
+                  { key: "workTimeArray" },
+                  { key: "actions", type: "circle", width: 24, height: 24 },
+                ]}
+              />
+            ) : (
+              data?.map((data) => {
+                return (
+                  <TableRow key={data.id}>
+                    <TableCell
+                      className="flex items-center"
+                      hasAbbreviation={getInitials(data.username)}
+                    >
+                      {data.username}
+                    </TableCell>
+                    <TableCell hideOnMobile>{data.email}</TableCell>
+                    <TableCell>
+                      <div className="flex gap-2">
+                        {data.workHours?.workTime.map((h, i) => {
+                          return <div key={i}>{workTimeArray(h)}</div>;
+                        })}
+                      </div>
+                    </TableCell>
+                    <TableCell className="flex justify-end">
+                      <Icon
+                        variant="edit"
+                        onClick={() =>
+                          navigate(
+                            `/dashboard/admin/technicians/profile/${data.id}`
+                          )
+                        }
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </div>

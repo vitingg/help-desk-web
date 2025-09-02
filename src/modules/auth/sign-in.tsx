@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { Card } from "./components/card";
 import { useAuth } from "../../shared/context/auth-context";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export function SignIn() {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ export function SignIn() {
   async function handleSignIn(data: any) {
     try {
       const response = await signIn(data);
+      toast.success("Login efetuado com sucesso!");
       const user = response.data;
 
       setUser(user);
@@ -58,6 +60,7 @@ export function SignIn() {
       });
     } catch (error) {
       console.log(error);
+      toast.error("Login mal efetuado!");
     }
     // console.log(data);
   }

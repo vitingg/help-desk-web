@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { Button } from "../../../../shared/components/button";
 import { useModal } from "../../../../shared/components/modal/hooks/useModalContext";
 import { ModalContent } from "../../../../shared/components/modal/modal-content";
@@ -15,8 +16,10 @@ export function useDeleteCliente({ onDeleted }: { onDeleted?: () => void }) {
         await api.delete(`/clients/${id}`);
         closeModal();
         onDeleted?.();
+        toast.success("Cliente deletado com sucesso!");
       } catch (error) {
         console.log(error);
+        toast.error("Falha ao deletar cliente!");
       }
     };
 

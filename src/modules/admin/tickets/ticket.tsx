@@ -13,6 +13,7 @@ import { getInitials } from "../../../shared/utils/get-initial-name";
 import { formattedId } from "../../../shared/utils/format-id";
 import { formattedPrice } from "../../../shared/utils/format-price";
 import { useNavigate } from "react-router";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
 
 interface Client {
   id: number;
@@ -44,6 +45,7 @@ interface Ticket {
 
 export function Ticket() {
   const [data, setData] = useState<Ticket[]>([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,6 +60,8 @@ export function Ticket() {
         // console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
     // console.log(data);
@@ -88,44 +92,60 @@ export function Ticket() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((data) => {
-              return (
-                <TableRow key={data.id}>
-                  <TableCell>{formattedDate(data.updatedAt)}</TableCell>
-                  <TableCell hideOnMobile className="font-bold text-sm">
-                    {formattedId(data.id)}
-                  </TableCell>
-                  <TableCell className="flex flex-col">
-                    <div className="font-bold">{data.category.name}</div>
-                    <div>{data.title}</div>
-                  </TableCell>
-                  <TableCell hideOnMobile>
-                    {formattedPrice(data.category.basePrice)}
-                  </TableCell>
-                  <TableCell
-                    hideOnMobile
-                    hasAbbreviation={getInitials(data.client.username)}
-                  >
-                    {data.client.username}
-                  </TableCell>
-                  <TableCell
-                    hideOnMobile
-                    hasAbbreviation={getInitials(data.tech.username)}
-                  >
-                    {data.tech.username}
-                  </TableCell>
-                  <TableCell>{StatusTicket(data.status)}</TableCell>
-                  <TableCell>
-                    <Icon
-                      variant="edit"
-                      onClick={() =>
-                        navigate(`/dashboard/admin/ticket-detail/${data.id}`)
-                      }
-                    />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {loading ? (
+              <TableSkeleton
+                rows={8}
+                columns={[
+                  { key: "updatedAt" },
+                  { key: "id", hideOnMobile: true },
+                  { key: "title", count: 2 },
+                  { key: "price", hideOnMobile: true },
+                  { key: "client", hideOnMobile: true },
+                  { key: "tech", hideOnMobile: true },
+                  { key: "status" },
+                  { key: "actions", type: "circle", width: 24, height: 24 },
+                ]}
+              />
+            ) : (
+              data?.map((data) => {
+                return (
+                  <TableRow key={data.id}>
+                    <TableCell>{formattedDate(data.updatedAt)}</TableCell>
+                    <TableCell hideOnMobile className="font-bold text-sm">
+                      {formattedId(data.id)}
+                    </TableCell>
+                    <TableCell className="flex flex-col">
+                      <div className="font-bold">{data.category.name}</div>
+                      <div>{data.title}</div>
+                    </TableCell>
+                    <TableCell hideOnMobile>
+                      {formattedPrice(data.category.basePrice)}
+                    </TableCell>
+                    <TableCell
+                      hideOnMobile
+                      hasAbbreviation={getInitials(data.client.username)}
+                    >
+                      {data.client.username}
+                    </TableCell>
+                    <TableCell
+                      hideOnMobile
+                      hasAbbreviation={getInitials(data.tech.username)}
+                    >
+                      {data.tech.username}
+                    </TableCell>
+                    <TableCell>{StatusTicket(data.status)}</TableCell>
+                    <TableCell>
+                      <Icon
+                        variant="edit"
+                        onClick={() =>
+                          navigate(`/dashboard/admin/ticket-detail/${data.id}`)
+                        }
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </div>

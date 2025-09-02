@@ -11,6 +11,7 @@ import { ModalHeader } from "../../../../shared/components/modal/modal-header";
 import { Input } from "../../../../shared/components/input";
 import { Form } from "../../../../shared/components/form";
 import { Button } from "../../../../shared/components/button";
+import { toast } from "react-toastify";
 
 export function useCreateServiceModal({
   onSubmit,
@@ -28,6 +29,18 @@ export function useCreateServiceModal({
     resolver: zodResolver(createServiceSchema),
   });
 
+  async function createService(formData: createServiceSchemaData) {
+    try {
+      onSubmit(formData);
+      toast.success("Serviço criado com sucesso!");
+      reset();
+      closeModal();
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao criar serviço!");
+    }
+  }
+
   const nameError = errors.name?.message;
   const basePriceError = errors.basePrice?.message;
 
@@ -36,14 +49,7 @@ export function useCreateServiceModal({
       <ModalLayout>
         <ModalHeader>Serviço</ModalHeader>
         <ModalContent>
-          <Form
-            onSubmit={handleSubmit(async (formData) => {
-              await onSubmit(formData);
-              reset();
-              closeModal();
-            })}
-            className="space-y-4"
-          >
+          <Form onSubmit={handleSubmit(createService)} className="space-y-4">
             <Input
               legend="TÍTULO"
               placeholder="Nome do serviço"

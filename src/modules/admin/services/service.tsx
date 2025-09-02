@@ -16,6 +16,7 @@ import { useCreateServiceModal } from "./modals/create-service-modal";
 import { type createServiceSchemaData } from "../../../shared/schemas/services/create-service";
 import { createService } from "./api/create-service";
 import { useEditServiceModal } from "./modals/edit-service-modal";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
 
 type GetAllCategories = {
   id: number;
@@ -26,6 +27,7 @@ type GetAllCategories = {
 
 export function Service() {
   const [data, setData] = useState<GetAllCategories[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -38,6 +40,8 @@ export function Service() {
         setData(response.data.category);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchServices();
@@ -117,37 +121,47 @@ export function Service() {
             <TableRow isBody={false}>
               <TableHead>Título</TableHead>
               <TableHead hideOnMobile>Valor</TableHead>
-              <TableHead></TableHead>
               <TableHead>Status</TableHead>
               <TableHead></TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((data) => {
-              return (
-                <TableRow key={data.id}>
-                  <TableCell className="font-bold">{data.name}</TableCell>
-                  <TableCell hideOnMobile>
-                    {formattedPrice(data.basePrice)}
-                  </TableCell>
-                  <TableCell />
-                  <TableCell>{StatusService(data.isActive)}</TableCell>
-                  <TableCell className="w-full flex justify-end ">
-                    <ChangeStatus
-                      status={data.isActive}
-                      id={data.id}
-                      onChangeStatus={handleUpdateStatus}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Icon
-                      variant="edit"
-                      onClick={() => handleEditModal(data.id)}
-                    />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+            {isLoading ? (
+              <TableSkeleton
+                rows={8}
+                columns={[
+                  { key: "title" },
+                  { key: "value", hideOnMobile: true },
+                  { key: "status" },
+                  { key: "actions", type: "circle", width: 24, height: 24 },
+                ]}
+              />
+            ) : (
+              data?.map((data) => {
+                return (
+                  <TableRow key={data.id}>
+                    <TableCell className="font-bold">{data.name}</TableCell>
+                    <TableCell hideOnMobile>
+                      {formattedPrice(data.basePrice)}
+                    </TableCell>
+                    <TableCell>{StatusService(data.isActive)}</TableCell>
+                    <TableCell className="w-full flex justify-end ">
+                      <ChangeStatus
+                        status={data.isActive}
+                        id={data.id}
+                        onChangeStatus={handleUpdateStatus}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Icon
+                        variant="edit"
+                        onClick={() => handleEditModal(data.id)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </div>

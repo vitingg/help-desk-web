@@ -9,3 +9,14 @@ detalhes:
 
 a fazeres:
 Admin; Client; Delete e Edit modal fix:style
+
+delay
+
+const delay = await new Promise<{ username: string; email: string }>(
+(resolve) =>
+setTimeout(
+() =>
+resolve({ username: "João Silva", email: "joao@email.com" }),
+1500
+)
+);

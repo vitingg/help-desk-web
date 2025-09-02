@@ -5,6 +5,7 @@ import { Button } from "../../button";
 import { useModal } from "../../modal/hooks/useModalContext";
 import { useAuth } from "../../../context/auth-context";
 import { api } from "../../../lib/api";
+import { toast } from "react-toastify";
 
 export function useHandleLeaveAccount() {
   const { openModal, closeModal } = useModal();
@@ -12,6 +13,7 @@ export function useHandleLeaveAccount() {
 
   const handleLogout = async () => {
     await api.post("/sign-out");
+    toast.success("Logout efetuado com sucesso!");
     setUser(null);
     closeModal();
   };

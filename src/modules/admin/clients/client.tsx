@@ -10,6 +10,8 @@ import { api } from "../../../shared/lib/api";
 import { getInitials } from "../../../shared/utils/get-initial-name";
 import { useDeleteCliente } from "./modals/delete-client";
 import { useEditClient } from "./modals/edit-client";
+import Skeleton from "react-loading-skeleton";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
 
 type GetClientsType = {
   id: number;
@@ -20,6 +22,7 @@ type GetClientsType = {
 
 export function Clients() {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { handleOpenDeleteModal } = useDeleteCliente({
     onDeleted: fetchClients,
   });
@@ -48,6 +51,8 @@ export function Clients() {
         // console.log(response.data.clients);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsLoading(false);
       }
     }
     // console.log(data);
@@ -73,34 +78,45 @@ export function Clients() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((data: GetClientsType) => {
-              return (
-                <TableRow key={data.id}>
-                  <TableCell
-                    hasAbbreviation={
-                      data?.profilePicture
-                        ? data.profilePicture
-                        : getInitials(data.username)
-                    }
-                  >
-                    {data.username}
-                  </TableCell>
-                  <TableCell>{data.email}</TableCell>
-                  <TableCell className="flex gap-2 items-center justify-end">
-                    <Icon
-                      variant="delete"
-                      onClick={() =>
-                        handleOpenDeleteModal(data.id, data.username)
+            {isLoading ? (
+              <TableSkeleton
+                rows={5}
+                columns={[
+                  { key: "username" },
+                  { key: "email", hideOnMobile: true },
+                  { key: "actions", type: "circle", width: 24, height: 24 },
+                ]}
+              />
+            ) : (
+              data?.map((data: GetClientsType) => {
+                return (
+                  <TableRow key={data.id}>
+                    <TableCell
+                      hasAbbreviation={
+                        data?.profilePicture
+                          ? data.profilePicture
+                          : getInitials(data.username)
                       }
-                    />
-                    <Icon
-                      variant="edit"
-                      onClick={() => handleOpenEditModal(data.id)}
-                    />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
+                    >
+                      {data.username || <Skeleton />}
+                    </TableCell>
+                    <TableCell>{data.email || <Skeleton />}</TableCell>
+                    <TableCell className="flex gap-2 items-center justify-end">
+                      <Icon
+                        variant="delete"
+                        onClick={() =>
+                          handleOpenDeleteModal(data.id, data.username)
+                        }
+                      />
+                      <Icon
+                        variant="edit"
+                        onClick={() => handleOpenEditModal(data.id)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            )}
           </TableBody>
         </Table>
       </div>

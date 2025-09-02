@@ -20,57 +20,76 @@ import { ClientDetail } from "../../modules/client/tickets/ticket-detail";
 import { CreateTicket } from "../../modules/client/create-ticket/create-ticket";
 import { CreateTechForm } from "../../modules/admin/technicians/modals/create-tech-form";
 import { PutTechForm } from "../../modules/admin/technicians/modals/put-tech-form";
+import { ToastContainer } from "react-toastify";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 export function AppRoutes() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
-          <Route path="/auth/*" element={<AuthLayout />}>
-            <Route path="sign-up" element={<SignUp />} />
-            <Route path="sign-in" element={<SignIn />} />
-          </Route>
+      <SkeletonTheme>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Navigate to="/auth/sign-in" replace />} />
+            <Route path="/auth/*" element={<AuthLayout />}>
+              <Route path="sign-up" element={<SignUp />} />
+              <Route path="sign-in" element={<SignIn />} />
+            </Route>
 
-          <Route
-            path="/dashboard"
-            element={<ProtectedRoute allowedRoles={[`ADMIN`]} />}
-          >
-            <Route path="admin" element={<AdminPage />}>
-              <Route path="tickets" element={<Ticket />} />
-              <Route path="ticket-detail/:ticketId" element={<AdminDetail />} />
-              <Route path="techs" element={<Technicians />} />
-              <Route path="technicians" element={<TechniciansProfile />}>
-                <Route path="profile/:id" element={<PutTechForm />} />
-                <Route path="form" element={<CreateTechForm />} />
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute allowedRoles={[`ADMIN`]} />}
+            >
+              <Route path="admin" element={<AdminPage />}>
+                <Route path="tickets" element={<Ticket />} />
+                <Route
+                  path="ticket-detail/:ticketId"
+                  element={<AdminDetail />}
+                />
+                <Route path="techs" element={<Technicians />} />
+                <Route path="technicians" element={<TechniciansProfile />}>
+                  <Route path="profile/:id" element={<PutTechForm />} />
+                  <Route path="form" element={<CreateTechForm />} />
+                </Route>
+                <Route path="clients" element={<Clients />} />
+                <Route path="services" element={<Service />} />
               </Route>
-              <Route path="clients" element={<Clients />} />
-              <Route path="services" element={<Service />} />
             </Route>
-          </Route>
 
-          <Route
-            path="/dashboard"
-            element={<ProtectedRoute allowedRoles={[`TECH`]} />}
-          >
-            <Route path="tech" element={<TechPage />}>
-              <Route path="tickets" element={<TechTickets />} />
-              <Route path="ticket-detail" element={<TechDetail />} />
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute allowedRoles={[`TECH`]} />}
+            >
+              <Route path="tech" element={<TechPage />}>
+                <Route path="tickets" element={<TechTickets />} />
+                <Route path="ticket-detail" element={<TechDetail />} />
+              </Route>
             </Route>
-          </Route>
 
-          <Route
-            path="/dashboard"
-            element={<ProtectedRoute allowedRoles={[`CLIENT`]} />}
-          >
-            <Route path="client" element={<ClientPage />}>
-              <Route path="tickets" element={<ClientTickets />} />
-              <Route path="ticket-detail" element={<ClientDetail />} />
-              <Route path="create-ticket" element={<CreateTicket />} />
+            <Route
+              path="/dashboard"
+              element={<ProtectedRoute allowedRoles={[`CLIENT`]} />}
+            >
+              <Route path="client" element={<ClientPage />}>
+                <Route path="tickets" element={<ClientTickets />} />
+                <Route path="ticket-detail" element={<ClientDetail />} />
+                <Route path="create-ticket" element={<CreateTicket />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="colored"
+          />
+        </BrowserRouter>
+      </SkeletonTheme>
     </AuthProvider>
   );
 }

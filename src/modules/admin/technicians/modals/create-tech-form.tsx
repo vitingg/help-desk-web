@@ -10,6 +10,7 @@ import { Button } from "../../../../shared/components/button";
 import { WorkHoursSelector } from "../components/work-hours-selector";
 import { HeaderAction } from "../../../../shared/components/header-action";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export function CreateTechForm() {
   const [workHours, setWorkHours] = useState<string[]>([]);
@@ -36,9 +37,11 @@ export function CreateTechForm() {
 
     try {
       await api.post("/techs", payload);
+      toast.success("Técnico criado com sucesso!");
       reset();
       navigate("/dashboard/admin/techs");
     } catch (error) {
+      toast.error("Erro ao criar técnico!");
       console.log(error);
     }
   }
