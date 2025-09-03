@@ -61,7 +61,10 @@ export function AppRoutes() {
             >
               <Route path="tech" element={<TechPage />}>
                 <Route path="tickets" element={<TechTickets />} />
-                <Route path="ticket-detail" element={<TechDetail />} />
+                <Route
+                  path="ticket-detail/:id"
+                  element={<TechDetail />}
+                />
               </Route>
             </Route>
 

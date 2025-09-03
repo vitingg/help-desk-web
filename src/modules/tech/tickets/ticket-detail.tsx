@@ -1,26 +1,37 @@
+import { useEffect, useState } from "react";
 import { Button } from "../../../shared/components/button";
 import { HeaderAction } from "../../../shared/components/header-action";
 import { AdditionalService } from "../../../shared/components/tickets/ticket-additional-services";
-import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
-import { PriceHistory } from "../../../shared/components/tickets/ticket-price-history";
+import {
+  TicketDetail,
+  TicketDetailSkeleton,
+} from "../../../shared/components/tickets/ticket-detail";
+import {
+  PriceHistory,
+  PriceHistorySkeleton,
+} from "../../../shared/components/tickets/ticket-price-history";
 import { CircleCheckBig, Clock2 } from "lucide-react";
-
-const ticketData = {
-  id: "00004",
-  title: "Backup não está funcionando",
-  status: "Aberto",
-  description:
-    "O sistema de backup automático parou de funcionar. Última execução bem-sucedida foi há uma semana.",
-  category: "Recuperação de Dados",
-  createdAt: "12/04/25 09:12",
-  updatedAt: "12/04/25 15:20",
-  client: {
-    initials: "AC",
-    name: "André Costa",
-  },
-} as const;
+import { useParams } from "react-router";
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
+import { api } from "../../../shared/lib/api";
 
 export function TechDetail() {
+  const [data, setData] = useState<Ticket>();
+  const { id } = useParams();
+
+  useEffect(() => {
+    async function getTicket() {
+      try {
+        const response = await api.get(`/services/${id}`);
+        setData(response.data.tickets);
+        console.log(response.data.tickets);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getTicket();
+  }, []);
+
   return (
     <div className="flex justify-center">
       <div className="pt-14">
@@ -47,10 +58,11 @@ export function TechDetail() {
 
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-2">
-            <TicketDetail ticket={ticketData} />
-            <AdditionalService />
+            {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
+
+            {data ? <AdditionalService data={data} /> : <p>...loading</p>}
           </div>
-          <PriceHistory />
+          {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
         </div>
       </div>
     </div>

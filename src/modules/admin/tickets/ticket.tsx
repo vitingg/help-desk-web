@@ -30,14 +30,12 @@ export function Ticket() {
           signal: controller.signal,
         });
         setData(response.data.tickets);
-        console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
     }
-    // console.log(data);
     fetchTickets();
 
     return () => {
@@ -89,7 +87,7 @@ export function Ticket() {
                     </TableCell>
                     <TableCell className="flex flex-col">
                       <div className="font-bold">{data.title}</div>
-                      <div>{data.description}</div>
+                      <div>{data.categories[0].category.name}</div>
                     </TableCell>
                     <TableCell hideOnMobile>
                       {formattedPrice(

@@ -2,9 +2,10 @@ import { Container } from "../components/container";
 import { Status } from "../../../shared/components/status";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 
 export function TechTickets() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Ticket[]>([]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -14,8 +15,8 @@ export function TechTickets() {
         const response = await api.get("/services", {
           signal: controller.signal,
         });
-        setData(response.data);
-        console.log(response.data);
+        setData(response.data.tickets);
+        console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       }
@@ -28,32 +29,30 @@ export function TechTickets() {
     };
   }, []);
 
+  const pending = data.filter((s) => s.status === "PENDING");
+  const inProgress = data.filter((s) => s.status === "IN_PROGRESS");
+  const done = data.filter((s) => s.status === "COMPLETE");
+
+  const grouped = [
+    { label: "Em Atendimento" as const, items: inProgress },
+    { label: "Aberto" as const, items: pending },
+    { label: "Encerrado" as const, items: done },
+  ];
+
   return (
     <div className="pt-14">
       <p className="text-blue-dark font-semibold text-xl">Meus chamados</p>
 
-      <div className="pt-6">
-        <Status status="Em Atendimento" />
-        <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Container navigateTo="tech/ticket-detail" />
+      {grouped.map((group) => (
+        <div key={group.label} className="pt-6">
+          <Status status={group.label} />
+          <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {group.items.map((p) => (
+              <Container key={p.id} data={p} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="pt-6">
-        <Status status="Aberto" />
-        <div className="pt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Container navigateTo="tech/ticket-detail" />
-          <Container navigateTo="tech/ticket-detail" />
-        </div>
-      </div>
-      <div className="pt-6">
-        <Status status="Encerrado" />
-        <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Container navigateTo="tech/ticket-detail" />
-          <Container navigateTo="tech/ticket-detail" />
-          <Container navigateTo="tech/ticket-detail" />
-          <Container navigateTo="tech/ticket-detail" />
-        </div>
-      </div>
+      ))}
     </div>
   );
 }

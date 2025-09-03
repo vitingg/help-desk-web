@@ -34,13 +34,23 @@ export function PriceHistory({ data }: TicketDetailProps) {
           </span>
           <span className="flex justify-between items-center text-xs">
             <p>Adicionais</p>
-            <p>R$ 195,00</p>
+            {formattedPrice(
+              data.categories.reduce(
+                (acc, cat) => acc + (cat.category?.basePrice ?? 0),
+                0
+              ) - data.categories[0].category.basePrice
+            )}
           </span>
 
           <div className="pb-2 border-0 border-b-1 border-b-gray-500" />
           <span className="flex justify-between items-center font-bold text-sm">
             <p>Total</p>
-            <p>R$ 295,00</p>
+            {formattedPrice(
+              data.categories.reduce(
+                (acc, cat) => acc + (cat.category?.basePrice ?? 0),
+                0
+              )
+            )}
           </span>
         </div>
       </div>
@@ -56,10 +66,10 @@ export function PriceHistorySkeleton() {
           Técnico responsável
         </Paragraph>
         <div className="flex gap-2 items-center pb-8">
-          <Skeleton />
+          <Skeleton circle width={40} height={40} />
           <div>
-            <Skeleton />
-            <Skeleton />
+            <Skeleton width={120} />
+            <Skeleton width={120} />
           </div>
         </div>
 
@@ -67,17 +77,17 @@ export function PriceHistorySkeleton() {
           <Paragraph size="xs">Valores</Paragraph>
           <span className="flex justify-between items-center text-xs">
             <p>Preço base</p>
-            <Skeleton />
+            <Skeleton width={120} />
           </span>
           <span className="flex justify-between items-center text-xs">
             <p>Adicionais</p>
-            <Skeleton />
+            <Skeleton width={120} />
           </span>
 
           <div className="pb-2 border-0 border-b-1 border-b-gray-500" />
           <span className="flex justify-between items-center font-bold text-sm">
             <p>Total</p>
-            <Skeleton />
+            <Skeleton width={120} />
           </span>
         </div>
       </div>

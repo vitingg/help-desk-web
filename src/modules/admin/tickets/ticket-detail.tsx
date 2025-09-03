@@ -2,7 +2,10 @@ import { Clock2, CircleCheckBig } from "lucide-react";
 import { HeaderAction } from "../../../shared/components/header-action";
 import { useParams } from "react-router";
 import { TicketDetail } from "../../../shared/components/tickets/ticket-detail";
-import { PriceHistory } from "../../../shared/components/tickets/ticket-price-history";
+import {
+  PriceHistory,
+  PriceHistorySkeleton,
+} from "../../../shared/components/tickets/ticket-price-history";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import { TicketDetailSkeleton } from "../../../shared/components/tickets/ticket-detail";
@@ -45,7 +48,7 @@ export function AdminDetail() {
 
         <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6 ">
           {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
-          {data ? <PriceHistory data={data} /> : <p>...loading</p>}
+          {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
         </div>
       </div>
     </div>

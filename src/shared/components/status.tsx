@@ -33,6 +33,7 @@ type StatusProps = {
   size?: "sm" | "md";
   showText?: boolean;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export function Status({
@@ -40,11 +41,15 @@ export function Status({
   showText = true,
   size = "md",
   className,
+  onClick,
 }: StatusProps) {
   const Icon = statusIcons[status];
 
   return (
-    <div className={cn(statusVariants({ status, size }), className)}>
+    <div
+      className={cn(statusVariants({ status, size }), className)}
+      onClick={onClick}
+    >
       <Icon className="w-5 h-5" />
       {showText && <p className="text-sm font-bold">{status}</p>}
     </div>
