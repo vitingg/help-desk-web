@@ -1,27 +1,51 @@
-import { CircleCheckBig, Clock2, PenLine } from "lucide-react";
-import { Button } from "../../../shared/components/button";
 import type { Ticket } from "../../../shared/types/tickets/ticket-response";
-import { formattedId } from "../../../shared/utils/format-id";
-import { formattedDate } from "../../../shared/utils/format-date";
-import { formattedPrice } from "../../../shared/utils/format-price";
 import { getInitials } from "../../../shared/utils/get-initial-name";
+import { formattedPrice } from "../../../shared/utils/format-price";
+import { formattedDate } from "../../../shared/utils/format-date";
+import { CircleCheckBig, Clock2, PenLine } from "lucide-react";
+import { formattedId } from "../../../shared/utils/format-id";
+import { Button } from "../../../shared/components/button";
+import { api } from "../../../shared/lib/api";
 import { useNavigate } from "react-router";
 
-export function Container({ data }: { data: Ticket }) {
+type ContainerProps = {
+  data: Ticket;
+  onAction?: () => void;
+};
+
+export function Container({ data, onAction }: ContainerProps) {
   const navigate = useNavigate();
 
   function getButton(status: Ticket["status"]) {
+    async function changeStatus(newStatus: string) {
+      try {
+        await api.patch(`/services/${data.id}/change-status`, {
+          status: newStatus,
+        });
+        onAction?.();
+      } catch (error) {
+        console.log(error);
+      }
+    }
     switch (status) {
       case "IN_PROGRESS":
         return (
-          <Button size="sm" className="flex items-center justify-center gap-2">
+          <Button
+            size="sm"
+            className="flex items-center justify-center gap-2"
+            onClick={() => changeStatus("COMPLETE")}
+          >
             <CircleCheckBig height={14} width={14} />
             Encerrar
           </Button>
         );
       case "PENDING":
         return (
-          <Button size="xs" className="flex items-center justify-center gap-2">
+          <Button
+            size="xs"
+            className="flex items-center justify-center gap-2"
+            onClick={() => changeStatus("IN_PROGRESS")}
+          >
             <Clock2 height={14} width={14} />
             Iniciar
           </Button>
@@ -38,8 +62,9 @@ export function Container({ data }: { data: Ticket }) {
       <div className="flex justify-between gap-6">
         <span className="font-bold space-y-0.5 ">
           <p className="text-gray-400 text-xs">{formattedId(data.id)}</p>
-          <p className="text-gray-100 text-sm">{data.title}</p>
-          <p className="text-gray-200 text-xs font-normal">
+          <p className="text-gray-100 text-sm line-clamp-1">{data.title}</p>
+
+          <p className="text-gray-200 text-xs font-normal line-clamp-1">
             {data.categories[0].category.name}
           </p>
         </span>

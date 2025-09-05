@@ -7,6 +7,15 @@ import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 export function TechTickets() {
   const [data, setData] = useState<Ticket[]>([]);
 
+  async function fetchServices() {
+    try {
+      const response = await api.get("/services");
+      setData(response.data.tickets);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     const controller = new AbortController();
 
@@ -16,7 +25,6 @@ export function TechTickets() {
           signal: controller.signal,
         });
         setData(response.data.tickets);
-        console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       }
@@ -46,15 +54,9 @@ export function TechTickets() {
       {grouped.map((group) => (
         <div key={group.label} className="pt-6">
           <Status status={group.label} />
-          <div
-            className="pt-4 grid gap-4 grid-cols-1 "
-            style={{
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gridAutoRows: "auto",
-            }}
-          >
+          <div className="pt-4 grid gap-4 grid-cols-1 md:grid-cols-[repeat(auto-fill,minmax(20rem,1fr))] ">
             {group.items.map((p) => (
-              <Container key={p.id} data={p} />
+              <Container key={p.id} data={p} onAction={fetchServices} />
             ))}
           </div>
         </div>

@@ -41,7 +41,7 @@ export function useCreateServiceModal({
     }
   }
 
-  const nameError = errors.name?.message;
+  const titleError = errors.name?.message;
   const basePriceError = errors.basePrice?.message;
 
   const handleCreateModal = () => {
@@ -55,8 +55,8 @@ export function useCreateServiceModal({
               placeholder="Nome do serviço"
               className="font-bold"
               {...register("name")}
-              isError={!!nameError}
-              helperText={nameError}
+              isError={!!titleError}
+              helperText={titleError}
             />
             <div className="relative">
               <p className="absolute top-4 font-bold">R$</p>

@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Button } from "../../../shared/components/button";
 import { HeaderAction } from "../../../shared/components/header-action";
-import { AdditionalService } from "../../../shared/components/tickets/ticket-additional-services";
+import {
+  AdditionalService,
+  AdditionalServiceSkeleton,
+} from "../components/ticket-additional-services";
 import {
   TicketDetail,
   TicketDetailSkeleton,
@@ -19,16 +22,16 @@ export function TechDetail() {
   const [data, setData] = useState<Ticket>();
   const { id } = useParams();
 
-  useEffect(() => {
-    async function getTicket() {
-      try {
-        const response = await api.get(`/services/${id}`);
-        setData(response.data.tickets);
-        console.log(response.data.tickets);
-      } catch (error) {
-        console.log(error);
-      }
+  async function getTicket() {
+    try {
+      const response = await api.get(`/services/${id}`);
+      setData(response.data.tickets);
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  useEffect(() => {
     getTicket();
   }, []);
 
@@ -60,7 +63,11 @@ export function TechDetail() {
           <div className="flex flex-col gap-2">
             {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
 
-            {data ? <AdditionalService data={data} /> : <p>...loading</p>}
+            {data ? (
+              <AdditionalService data={data} onSubmit={getTicket} />
+            ) : (
+              <AdditionalServiceSkeleton />
+            )}
           </div>
           {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
         </div>

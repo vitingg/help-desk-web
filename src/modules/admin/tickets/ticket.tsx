@@ -86,8 +86,10 @@ export function Ticket() {
                       {formattedId(data.id)}
                     </TableCell>
                     <TableCell className="flex flex-col">
-                      <div className="font-bold">{data.title}</div>
-                      <div>{data.categories[0].category.name}</div>
+                      <div className="font-bold line-clamp-1">{data.title}</div>
+                      <div className="line-clamp-1">
+                        {data.categories[0].category.name}
+                      </div>
                     </TableCell>
                     <TableCell hideOnMobile>
                       {formattedPrice(
