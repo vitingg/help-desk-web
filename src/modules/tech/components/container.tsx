@@ -36,21 +36,19 @@ export function Container({ data }: { data: Ticket }) {
   return (
     <div className="w-full md:w-80 border border-gray-500 rounded-2xl p-5">
       <div className="flex justify-between gap-6">
-        <span className="font-bold space-y-0.5">
+        <span className="font-bold space-y-0.5 ">
           <p className="text-gray-400 text-xs">{formattedId(data.id)}</p>
           <p className="text-gray-100 text-sm">{data.title}</p>
           <p className="text-gray-200 text-xs font-normal">
             {data.categories[0].category.name}
           </p>
         </span>
-        <span className="text-gray-600 text-xs flex items-start  gap-2">
+        <span className="text-gray-600 text-xs flex items-start gap-2">
           <Button
             size={"4xs"}
             className="flex items-center justify-center gap-2"
             variant={"secondary"}
-            onClick={() =>
-              navigate(`/dashboard/tech/ticket-detail/${data.id}`)
-            }
+            onClick={() => navigate(`/dashboard/tech/ticket-detail/${data.id}`)}
           >
             <PenLine width={14} height={14} />
           </Button>

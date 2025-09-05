@@ -46,7 +46,13 @@ export function TechTickets() {
       {grouped.map((group) => (
         <div key={group.label} className="pt-6">
           <Status status={group.label} />
-          <div className="pt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div
+            className="pt-4 grid gap-4 grid-cols-1 "
+            style={{
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gridAutoRows: "auto",
+            }}
+          >
             {group.items.map((p) => (
               <Container key={p.id} data={p} />
             ))}
