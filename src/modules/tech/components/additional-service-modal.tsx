@@ -9,9 +9,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { api } from "../../../shared/lib/api";
 import {
-  createServiceSchema,
-  type createServiceSchemaData,
-} from "../../../shared/schemas/services/create-service";
+  createCategorySchema,
+  type createCategorySchemaData,
+} from "../../../shared/schemas/categories/create-categories";
 import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 
 interface TicketDetailProps {
@@ -28,11 +28,11 @@ export function AdditionalServiceModal({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<createServiceSchemaData>({
-    resolver: zodResolver(createServiceSchema),
+  } = useForm<createCategorySchemaData>({
+    resolver: zodResolver(createCategorySchema),
   });
 
-  async function onSubmit(data: createServiceSchemaData) {
+  async function onSubmit(data: createCategorySchemaData) {
     try {
       const response = await api.post("/categories", {
         name: data.name,

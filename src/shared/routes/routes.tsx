@@ -6,7 +6,7 @@ import { SignUp } from "../../modules/auth/sign-up";
 import { SignIn } from "../../modules/auth/sign-in";
 import { AdminPage } from "../../modules/admin/page";
 import { Ticket } from "../../modules/admin/tickets/ticket";
-import { AdminDetail } from "../../modules/admin/tickets/ticket-detail";
+import { AdminDetail } from "../../modules/admin/tickets/admin-detail";
 import { Technicians } from "../../modules/admin/technicians/technicians";
 import { TechniciansProfile } from "../../modules/admin/technicians/technicians-profile";
 import { Clients } from "../../modules/admin/clients/client";
@@ -16,7 +16,7 @@ import { TechTickets } from "../../modules/tech/tickets/my-tickets";
 import { TechDetail } from "../../modules/tech/tickets/ticket-detail";
 import { ClientPage } from "../../modules/client/page";
 import { ClientTickets } from "../../modules/client/tickets/tickets";
-import { ClientDetail } from "../../modules/client/tickets/ticket-detail";
+import { ClientDetail } from "../../modules/client/tickets/client-detail";
 import { CreateTicket } from "../../modules/client/create-ticket/create-ticket";
 import { CreateTechForm } from "../../modules/admin/technicians/modals/create-tech-form";
 import { PutTechForm } from "../../modules/admin/technicians/modals/put-tech-form";
@@ -61,10 +61,7 @@ export function AppRoutes() {
             >
               <Route path="tech" element={<TechPage />}>
                 <Route path="tickets" element={<TechTickets />} />
-                <Route
-                  path="ticket-detail/:id"
-                  element={<TechDetail />}
-                />
+                <Route path="ticket-detail/:id" element={<TechDetail />} />
               </Route>
             </Route>
 
@@ -74,7 +71,7 @@ export function AppRoutes() {
             >
               <Route path="client" element={<ClientPage />}>
                 <Route path="tickets" element={<ClientTickets />} />
-                <Route path="ticket-detail" element={<ClientDetail />} />
+                <Route path="ticket-detail/:id" element={<ClientDetail />} />
                 <Route path="create-ticket" element={<CreateTicket />} />
               </Route>
             </Route>

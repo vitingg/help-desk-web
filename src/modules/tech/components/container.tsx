@@ -82,7 +82,15 @@ export function Container({ data, onAction }: ContainerProps) {
       </div>
       <span className="text-sm text-gray-200 flex justify-between pt-4">
         <p>{formattedDate(data.createdAt)}</p>
-        <p>{formattedPrice(data.categories[0].category.basePrice)}</p>
+        <p>
+          {" "}
+          {formattedPrice(
+            data.categories.reduce(
+              (acc, cat) => acc + (cat.category?.basePrice ?? 0),
+              0
+            )
+          )}
+        </p>
       </span>
       <div className="border-t border-gray-500 my-4" />
       <div className="flex justify-between items-center">

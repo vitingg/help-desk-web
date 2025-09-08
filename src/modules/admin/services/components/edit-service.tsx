@@ -6,16 +6,16 @@ import { ModalContent } from "../../../../shared/components/modal/modal-content"
 import { ModalHeader } from "../../../../shared/components/modal/modal-header";
 import { ModalLayout } from "../../../../shared/components/modal/modal-layout";
 import {
-  createServiceSchema,
-  type createServiceSchemaData,
-} from "../../../../shared/schemas/services/create-service";
+  createCategorySchema,
+  type createCategorySchemaData,
+} from "../../../../shared/schemas/categories/create-categories";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../../shared/lib/api";
 
 type EditServiceFormProps = {
   id: number;
-  onSubmit: (data: createServiceSchemaData, id: number) => void;
+  onSubmit: (data: createCategorySchemaData, id: number) => void;
   closeModal: () => void;
 };
 
@@ -36,8 +36,8 @@ export function EditServiceForm({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<createServiceSchemaData>({
-    resolver: zodResolver(createServiceSchema),
+  } = useForm<createCategorySchemaData>({
+    resolver: zodResolver(createCategorySchema),
   });
 
   const nameError = errors.name?.message;
@@ -59,7 +59,7 @@ export function EditServiceForm({
     getService();
   }, [id, reset]);
 
-  function onEditService(formData: createServiceSchemaData) {
+  function onEditService(formData: createCategorySchemaData) {
     onSubmit(formData, id);
     closeModal();
   }

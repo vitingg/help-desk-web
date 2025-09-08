@@ -46,7 +46,7 @@ export function AdminDetail() {
           </div>
         </div>
 
-        <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6 ">
+        <div className="pt-6 flex flex-col md:flex-row md:items-start md:justify-between gap-6 ">
           {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
           {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
         </div>

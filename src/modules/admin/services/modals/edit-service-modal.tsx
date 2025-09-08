@@ -1,9 +1,9 @@
-import { type createServiceSchemaData } from "../../../../shared/schemas/services/create-service";
+import { type createCategorySchemaData } from "../../../../shared/schemas/categories/create-categories";
 import { useModal } from "../../../../shared/components/modal/hooks/useModalContext";
 import { EditServiceForm } from "../components/edit-service";
 
 type editServiceModal = {
-  onSubmit: (data: createServiceSchemaData, id: number) => void;
+  onSubmit: (data: createCategorySchemaData, id: number) => void;
 };
 
 export function useEditServiceModal({ onSubmit }: editServiceModal) {

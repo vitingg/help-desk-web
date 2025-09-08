@@ -13,7 +13,7 @@ import { api } from "../../../shared/lib/api";
 import { ChangeStatus } from "./components/change-status";
 import { formattedPrice } from "../../../shared/utils/format-price";
 import { useCreateServiceModal } from "./modals/create-service-modal";
-import { type createServiceSchemaData } from "../../../shared/schemas/services/create-service";
+import { type createCategorySchemaData } from "../../../shared/schemas/categories/create-categories";
 import { createService } from "./api/create-service";
 import { useEditServiceModal } from "./modals/edit-service-modal";
 import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
@@ -73,7 +73,7 @@ export function Service() {
     }
   }
 
-  const handleCreateService = async (formData: createServiceSchemaData) => {
+  const handleCreateService = async (formData: createCategorySchemaData) => {
     try {
       await createService(formData);
       await refetchServices();
@@ -83,7 +83,7 @@ export function Service() {
   };
 
   const handleEditService = async (
-    formData: createServiceSchemaData,
+    formData: createCategorySchemaData,
     id: number
   ) => {
     try {

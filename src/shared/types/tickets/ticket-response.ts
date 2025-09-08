@@ -1,3 +1,5 @@
+
+
 type TicketStatus = "PENDING" | "IN_PROGRESS" | "COMPLETE";
 interface Category {
   id: number;
@@ -23,11 +25,17 @@ export interface Ticket {
   title: string;
   description: string;
   status: TicketStatus;
-  clientId: number;
-  techId: number;
   createdAt: string;
   updatedAt: string;
   client: Client;
   tech: Tech;
   categories: ServiceCategory[];
 }
+
+export interface createTicket {
+  title: string;
+  description: string;
+  categories: number;
+}
+
+

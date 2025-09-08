@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import {
-  createServiceSchema,
-  type createServiceSchemaData,
-} from "../../../../shared/schemas/services/create-service";
+  createCategorySchema,
+  type createCategorySchemaData,
+} from "../../../../shared/schemas/categories/create-categories";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useModal } from "../../../../shared/components/modal/hooks/useModalContext";
 import { ModalLayout } from "../../../../shared/components/modal/modal-layout";
@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 export function useCreateServiceModal({
   onSubmit,
 }: {
-  onSubmit: (data: createServiceSchemaData) => void;
+  onSubmit: (data: createCategorySchemaData) => void;
 }) {
   const { openModal, closeModal } = useModal();
 
@@ -25,11 +25,11 @@ export function useCreateServiceModal({
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<createServiceSchemaData>({
-    resolver: zodResolver(createServiceSchema),
+  } = useForm<createCategorySchemaData>({
+    resolver: zodResolver(createCategorySchema),
   });
 
-  async function createService(formData: createServiceSchemaData) {
+  async function createService(formData: createCategorySchemaData) {
     try {
       onSubmit(formData);
       toast.success("Serviço criado com sucesso!");
