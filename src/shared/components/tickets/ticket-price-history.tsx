@@ -18,12 +18,17 @@ export function PriceHistory({ data }: TicketDetailProps) {
         </Paragraph>
         <div className="flex gap-2 items-center pb-8">
           <div className="w-8 h-8 bg-blue-dark rounded-full text-sm text-gray-600 flex justify-center items-center">
-            {getInitials(data.tech.username)}
+            {getInitials(data.tech ? data.tech.username : "Não definido")}
           </div>
-          <div>
-            <Paragraph size="sm">{data.tech.username}</Paragraph>
-            <Paragraph size="xs">{data.tech.email}</Paragraph>
-          </div>
+
+          {data.tech ? (
+            <div>
+              <Paragraph size="sm">{data.tech.username}</Paragraph>
+              <Paragraph size="sm">{data.tech.email}</Paragraph>
+            </div>
+          ) : (
+            "Ainda não definido"
+          )}
         </div>
 
         <div className="space-y-1.5">

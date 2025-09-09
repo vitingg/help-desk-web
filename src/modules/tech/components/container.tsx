@@ -5,8 +5,8 @@ import { formattedDate } from "../../../shared/utils/format-date";
 import { CircleCheckBig, Clock2, PenLine } from "lucide-react";
 import { formattedId } from "../../../shared/utils/format-id";
 import { Button } from "../../../shared/components/button";
-import { api } from "../../../shared/lib/api";
 import { useNavigate } from "react-router";
+import { useTicketActions } from "../context/start-ticket-context";
 
 type ContainerProps = {
   data: Ticket;
@@ -15,25 +15,26 @@ type ContainerProps = {
 
 export function Container({ data, onAction }: ContainerProps) {
   const navigate = useNavigate();
+  const { assignAndStart, complete } = useTicketActions(data.id);
 
   function getButton(status: Ticket["status"]) {
-    async function changeStatus(newStatus: string) {
-      try {
-        await api.patch(`/services/${data.id}/change-status`, {
-          status: newStatus,
-        });
-        onAction?.();
-      } catch (error) {
-        console.log(error);
-      }
+    async function handleAssign() {
+      await assignAndStart;
+      onAction?.();
     }
+
+    async function handleComplete() {
+      await complete();
+      onAction?.();
+    }
+
     switch (status) {
       case "IN_PROGRESS":
         return (
           <Button
             size="sm"
             className="flex items-center justify-center gap-2"
-            onClick={() => changeStatus("COMPLETE")}
+            onClick={handleComplete}
           >
             <CircleCheckBig height={14} width={14} />
             Encerrar
@@ -44,7 +45,7 @@ export function Container({ data, onAction }: ContainerProps) {
           <Button
             size="xs"
             className="flex items-center justify-center gap-2"
-            onClick={() => changeStatus("IN_PROGRESS")}
+            onClick={handleAssign}
           >
             <Clock2 height={14} width={14} />
             Iniciar

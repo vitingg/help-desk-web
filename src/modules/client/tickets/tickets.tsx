@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
-import { Button } from "../../../shared/components/button";
-import { Icon } from "../../../shared/components/edit-icon";
-import { Status } from "../../../shared/components/status";
-import { Table } from "../../../shared/components/table/table";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
+import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
+import { TableHeader } from "../../../shared/components/table/table-header";
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
-import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
-import type { Ticket } from "../../../shared/types/tickets/ticket-response";
-import { api } from "../../../shared/lib/api";
 import { getInitials } from "../../../shared/utils/get-initial-name";
-import { StatusTicket } from "../../../shared/components/table/components/status-ticket";
-import { formattedDate } from "../../../shared/utils/format-date";
-import { formattedId } from "../../../shared/utils/format-id";
-import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
-import { useNavigate } from "react-router";
 import { formattedPrice } from "../../../shared/utils/format-price";
+import { formattedDate } from "../../../shared/utils/format-date";
+import { Table } from "../../../shared/components/table/table";
+import { formattedId } from "../../../shared/utils/format-id";
+import { Icon } from "../../../shared/components/edit-icon";
+import { api } from "../../../shared/lib/api";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export function ClientTickets() {
   const [data, setData] = useState<Ticket[]>([]);
@@ -101,9 +99,11 @@ export function ClientTickets() {
                     </TableCell>
                     <TableCell
                       hideOnMobile
-                      hasAbbreviation={getInitials(data.tech.username)}
+                      hasAbbreviation={getInitials(
+                        data.tech ? data.tech.username : "Não definido"
+                      )}
                     >
-                      {data.tech.username}
+                      {data.tech ? data.tech.username : "Não definido"}
                     </TableCell>
                     <TableCell>{StatusTicket(data.status)}</TableCell>
                     <TableCell>

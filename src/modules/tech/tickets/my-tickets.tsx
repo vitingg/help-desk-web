@@ -3,9 +3,11 @@ import { Status } from "../../../shared/components/status";
 import { useEffect, useState } from "react";
 import { api } from "../../../shared/lib/api";
 import type { Ticket } from "../../../shared/types/tickets/ticket-response";
+import { useAuth } from "../../../shared/context/auth-context";
 
 export function TechTickets() {
   const [data, setData] = useState<Ticket[]>([]);
+  const { user } = useAuth();
 
   async function fetchServices() {
     try {
@@ -38,8 +40,12 @@ export function TechTickets() {
   }, []);
 
   const pending = data.filter((s) => s.status === "PENDING");
-  const inProgress = data.filter((s) => s.status === "IN_PROGRESS");
-  const done = data.filter((s) => s.status === "COMPLETE");
+  const inProgress = data.filter(
+    (s) => s.status === "IN_PROGRESS" && s.tech.id == user?.id
+  );
+  const done = data.filter(
+    (s) => s.status === "COMPLETE" && s.tech.id == user?.id
+  );
 
   const grouped = [
     { label: "Em Atendimento" as const, items: inProgress },

@@ -107,9 +107,11 @@ export function Ticket() {
                     </TableCell>
                     <TableCell
                       hideOnMobile
-                      hasAbbreviation={getInitials(data.tech.username)}
+                      hasAbbreviation={getInitials(
+                        data.tech ? data.tech.username : "Não definido"
+                      )}
                     >
-                      {data.tech.username}
+                      {data.tech ? data.tech.username : "Não definido"}
                     </TableCell>
                     <TableCell>{StatusTicket(data.status)}</TableCell>
                     <TableCell>

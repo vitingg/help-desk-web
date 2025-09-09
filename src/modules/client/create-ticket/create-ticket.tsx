@@ -13,6 +13,7 @@ import {
   createTicketSchema,
   type createTicketSchemaData,
 } from "../../../shared/schemas/service/create-service";
+import { useNavigate } from "react-router";
 
 type Category = {
   id: number;
@@ -26,6 +27,7 @@ type userTypes = {
 
 export function CreateTicket() {
   const [categories, setCategories] = useState<Category[]>([]);
+  const navigate = useNavigate()
 
   const {
     register,
@@ -72,9 +74,11 @@ export function CreateTicket() {
       const createService = await api.post("/services", {
         title: data.title,
         description: data.description,
-        categoryId: watchedCategoryId,
+        baseCategoryId: Number(watchedCategoryId),
         clientId,
       });
+
+      navigate("/dashboard/client/tickets")
 
       console.log(createService.data);
     } catch (error) {

@@ -15,7 +15,7 @@ interface TicketDetailProps {
 export function TicketDetail({ data }: TicketDetailProps) {
   return (
     <TicketLayout className="min-w-lg md:min-w-md">
-      <div className="flex justify-between items-center pb-5">
+      <div className="flex justify-between items-center pb-5 gap-4">
         <CardBox className="">
           <Paragraph size="xs">{formattedId(data.id)}</Paragraph>
           <Paragraph size="md">{data.title}</Paragraph>
