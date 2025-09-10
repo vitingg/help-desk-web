@@ -11,9 +11,10 @@ import { api } from "../lib/api";
 
 interface User {
   id: number;
-  name: string;
+  username: string;
   email: string;
   role: string;
+  profilePicture?: string;
 }
 
 interface AuthContextType {

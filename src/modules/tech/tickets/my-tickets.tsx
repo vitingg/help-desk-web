@@ -31,7 +31,6 @@ export function TechTickets() {
         console.log(error);
       }
     }
-    console.log(data);
     fetchClients();
 
     return () => {

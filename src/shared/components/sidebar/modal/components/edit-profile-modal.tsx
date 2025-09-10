@@ -7,7 +7,7 @@ import { getInitials } from "../../../../utils/get-initial-name";
 import { Input } from "../../../input";
 import { Button } from "../../../button";
 import { ModalFooter } from "../../../modal/modal-footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   editUserSchema,
@@ -17,6 +17,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../../lib/api";
 import { Form } from "../../../form";
 import Skeleton from "react-loading-skeleton";
+import { useAuth } from "../../../../context/auth-context";
+import { toast } from "react-toastify";
 
 type getCurrentUserResponse = {
   id: number;
@@ -25,44 +27,51 @@ type getCurrentUserResponse = {
   profilePicture?: string;
 };
 
-export function EditProfileModal() {
-  const [data, setData] = useState<getCurrentUserResponse>();
-  const [isLoading, setIsLoading] = useState(true);
+type EditProfileModalProps = {
+  onClose?: () => void;
+};
+
+export function EditProfileModal({ onClose }: EditProfileModalProps) {
+  const { user } = useAuth();
+  if (!user) {
+    return null;
+  }
+  const [data, setData] = useState<getCurrentUserResponse>({
+    id: user.id,
+    username: user?.username,
+    email: user?.email,
+    profilePicture: user?.profilePicture,
+  });
+  const [isLoading, _] = useState(false);
 
   const {
     register,
     handleSubmit,
-    reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<editUserSchemaData>({
     resolver: zodResolver(editUserSchema),
+    defaultValues: {
+      username: data.username,
+      email: data.email,
+    },
   });
-
   const usernameError = errors.username?.message;
   const emailError = errors.email?.message;
 
-  useEffect(() => {
-    async function getCurrentUser() {
-      try {
-        const response = await api.get("me");
-        const data = response.data;
-        reset({
-          username: data.username,
-          email: data.email,
-        });
-        setData(data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
+  async function editUser(data: editUserSchemaData) {
+    try {
+      const response = await api.put(`/users/update-credentials/${user?.id}`, {
+        username: data.username,
+        email: data.email,
+      });
+      console.log(response.data);
+      setData(response.data);
+      toast.success("Usuário editado com sucesso!");
+      onClose?.();
+    } catch (error) {
+      console.log(error);
+      toast.error("Erro ao tentar editar usuário!");
     }
-    getCurrentUser();
-  }, [reset]);
-
-  async function editUser(data: any) {
-    console.log(data);
   }
 
   return (
@@ -85,7 +94,7 @@ export function EditProfileModal() {
           <ModalContent>
             <span className="flex gap-2">
               <div className=" flex items-center justify-center border-black">
-                <ProfileContent hasAbbreviation={getInitials(data?.username)} />
+                <ProfileContent hasAbbreviation={getInitials(data.username)} />
               </div>
               <div className="flex items-center gap-4">
                 <input type="file" id="file" className="hidden" />
@@ -134,11 +143,17 @@ export function EditProfileModal() {
                 type="password"
                 disabled
               />
-              <Button>Alterar</Button>
+              <Button type="button">Alterar</Button>
             </div>
           </ModalContent>
           <ModalFooter>
-            <Button size={"5xl"}>Salvar</Button>
+            {isSubmitting ? (
+              <Button disabled size={"5xl"}>
+                Salvando...
+              </Button>
+            ) : (
+              <Button size={"5xl"}>Salvar</Button>
+            )}
           </ModalFooter>
         </Form>
       )}
