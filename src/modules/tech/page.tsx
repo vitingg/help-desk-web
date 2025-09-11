@@ -6,14 +6,27 @@ import { TechSidebar } from "./components/sidebar-tech";
 import { Dashboard } from "../../shared/components/layouts-pages/dashboard";
 import { Layout } from "../../shared/components/layouts-pages/layout";
 import { Outlet } from "react-router";
+import { useAuth } from "../../shared/context/auth-context";
 
 export function TechPage() {
+  const { user, isLoading } = useAuth();
+  if (isLoading) {
+    return <p>carregando...</p>;
+  }
+  if (!user) {
+    return null;
+  }
+
   return (
     <Layout>
       <SidebarLayout>
         <SidebarHeader userClass="TÉCNICO" />
         <TechSidebar />
-        <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
+        {isLoading ? (
+          "carregando"
+        ) : (
+          <SidebarFooter userName={user.username} userEmail={user.email} />
+        )}
       </SidebarLayout>
       <Dashboard>
         <Outlet />

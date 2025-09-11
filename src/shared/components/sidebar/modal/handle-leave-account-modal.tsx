@@ -12,10 +12,15 @@ export function useHandleLeaveAccount() {
   const { setUser } = useAuth();
 
   const handleLogout = async () => {
-    await api.post("/sign-out");
-    toast.success("Logout efetuado com sucesso!");
-    setUser(null);
-    closeModal();
+    try {
+      await api.post("/sign-out");
+      toast.success("Logout efetuado com sucesso!");
+      setUser(null);
+      closeModal();
+    } catch (error) {
+      console.log(error);
+      toast.error("Não foi possível sair, tente novamente depois!");
+    }
   };
 
   const openHandleLeaveAccount = () => {

@@ -1,11 +1,15 @@
+import { useAuth } from "../../../context/auth-context";
 import { useModal } from "../../modal/hooks/useModalContext";
 import { EditProfileModal } from "./components/edit-profile-modal";
 
 export function useHandleOpenProfileModal() {
   const { openModal, closeModal } = useModal();
+  const { user } = useAuth();
 
   const openHandleOpenProfileModal = () => {
-    openModal(<EditProfileModal onClose={closeModal} />);
+    if (user) {
+      openModal(<EditProfileModal user={user} onClose={closeModal} />);
+    }
   };
   return { openHandleOpenProfileModal };
 }

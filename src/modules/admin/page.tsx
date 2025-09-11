@@ -5,8 +5,17 @@ import { Layout } from "../../shared/components/layouts-pages/layout";
 import { SidebarLayout } from "../../shared/components/sidebar/sidebar-layout";
 import { SidebarHeader } from "../../shared/components/sidebar/sidebar-header";
 import { SidebarFooter } from "../../shared/components/sidebar/sidebar-footer";
+import { useAuth } from "../../shared/context/auth-context";
 
 export function AdminPage() {
+  const { user, isLoading } = useAuth();
+  if (isLoading) {
+    return <p>carregando...</p>;
+  }
+  if (!user) {
+    return null;
+  }
+
   return (
     <Layout>
       <SidebarLayout>
@@ -14,7 +23,7 @@ export function AdminPage() {
         <div className="hidden md:flex  md:flex-col md:justify-start md:flex-1 ">
           <AdminSidebar />
         </div>
-        <SidebarFooter userName="Usuário adm" userEmail="user.adm@test.com" />
+        <SidebarFooter userName={user.username} userEmail={user.email} />
       </SidebarLayout>
       <Dashboard>
         <Outlet />

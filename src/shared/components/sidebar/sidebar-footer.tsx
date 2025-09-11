@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SidebarModal } from "./modal/sidebar-modal";
+import { getInitials } from "../../utils/get-initial-name";
 
 type SidebarFooterProps = {
   userName: string;
@@ -16,7 +17,7 @@ export function SidebarFooter({ userName, userEmail }: SidebarFooterProps) {
     >
       <div className="flex gap-2 p-6 md:p-0 items-center justify-center ">
         <div className="relative bg-blue-dark text-lg rounded-full w-12 h-12 text-white flex items-center justify-center">
-          UA
+          {getInitials(userName)}
           {profileOpen && (
             <div className="absolute z-50 top-20 right-1 md:top-auto md:right-auto md:bottom-1 md:left-50">
               <SidebarModal modalTitle="OPÇÕES" width="profile" />
