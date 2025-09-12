@@ -85,7 +85,6 @@ export function TechDetail() {
             onClick={handleComplete}
             disabled={isLoading}
             size={"xl"}
-            variant={"secondary"}
             className="font-bold w-full md:w-auto flex gap-2 items-center justify-center"
           >
             <CircleCheckBig />

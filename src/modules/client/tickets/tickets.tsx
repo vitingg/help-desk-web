@@ -30,6 +30,7 @@ export function ClientTickets() {
           signal: controller.signal,
         });
         setData(response.data.tickets);
+        console.log(response.data.tickets);
       } catch (error) {
         console.log(error);
       } finally {

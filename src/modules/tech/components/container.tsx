@@ -19,7 +19,7 @@ export function Container({ data, onAction }: ContainerProps) {
 
   function getButton(status: Ticket["status"]) {
     async function handleAssign() {
-      await assignAndStart;
+      await assignAndStart();
       onAction?.();
     }
 

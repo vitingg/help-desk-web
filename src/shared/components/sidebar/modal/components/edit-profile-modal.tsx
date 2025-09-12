@@ -7,7 +7,7 @@ import { getInitials } from "../../../../utils/get-initial-name";
 import { Input } from "../../../input";
 import { Button } from "../../../button";
 import { ModalFooter } from "../../../modal/modal-footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   editUserSchema,
@@ -31,19 +31,33 @@ type UserProps = {
   email: string;
   profilePicture?: string;
   role: string;
+  createdAt: string;
+  workHours?: {
+    workTime: string[];
+  };
 };
 
 export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const { isLoading, setUser } = useAuth();
+  const [tech, setTech] = useState<UserProps>();
   if (isLoading) {
     return (
       <ModalLayout>
         <ModalHeader>Perfil</ModalHeader>
-        <SkeletonLoader />
+        <div className="w-96 h-96 p-6">
+          <div className="flex">
+            <Skeleton circle width={40} height={40} />
+            <Skeleton width={120} height={40} />
+          </div>
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+          <Skeleton height={50} />
+          <div></div>
+        </div>
       </ModalLayout>
     );
   }
-
   if (!user) {
     return null;
   }
@@ -89,24 +103,36 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
     }
   }
 
-  function SkeletonLoader() {
+  useEffect(() => {
+    async function WorkHoursArray() {
+      try {
+        const response = await api.get(`/techs/${user.id}`);
+        console.log(response.data.techs);
+        setTech(response.data.techs);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    WorkHoursArray();
+  }, []);
+
+  function TechnicianWorkHours() {
     return (
-      <div className="w-96 h-96 p-6">
-        <div className="flex">
-          <Skeleton circle width={40} height={40} />
-          <Skeleton width={120} height={40} />
+      <div>
+        <p className="font-bold text-md">Disponibilidade</p>
+        <p className="text-sm">Horários de atendimento definidos pelo admin</p>
+        <div className="flex gap-1 pt-3">
+          {tech?.workHours?.workTime.map((t, i) => (
+            <p
+              className="w-full text-left cursor-pointer select-none rounded-2xl border border-gray-500 text-gray-400 font-bold flex items-center justify-center py-1 text-sm"
+              key={i}
+            >
+              {t}
+            </p>
+          ))}
         </div>
-        <Skeleton height={50} />
-        <Skeleton height={50} />
-        <Skeleton height={50} />
-        <Skeleton height={50} />
-        <div></div>
       </div>
     );
-  }
-
-  function Tech() {
-    return <div>é técnico</div>;
   }
 
   return (
@@ -165,9 +191,16 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
               type="password"
               disabled
             />
-            <Button type="button">Alterar</Button>
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className="font-bold"
+            >
+              Alterar
+            </Button>
           </div>
-          {isTech && <Tech />}
+          {isTech && <TechnicianWorkHours />}
         </ModalContent>
         <ModalFooter>
           {isSubmitting ? (
