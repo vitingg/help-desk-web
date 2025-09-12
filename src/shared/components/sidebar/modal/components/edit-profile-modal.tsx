@@ -19,6 +19,8 @@ import { Form } from "../../../form";
 import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
 import { useAuth } from "../../../../context/auth-context";
+import { useModal } from "../../../modal/hooks/useModalContext";
+import { EditPasswordModal } from "./edit-password-modal";
 
 type EditProfileModalProps = {
   onClose?: () => void;
@@ -40,6 +42,7 @@ type UserProps = {
 export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const { isLoading, setUser } = useAuth();
   const [tech, setTech] = useState<UserProps>();
+  const { openModal } = useModal();
   if (isLoading) {
     return (
       <ModalLayout>
@@ -107,7 +110,6 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
     async function WorkHoursArray() {
       try {
         const response = await api.get(`/techs/${user.id}`);
-        console.log(response.data.techs);
         setTech(response.data.techs);
       } catch (error) {
         console.log(error);
@@ -196,6 +198,7 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
               variant="secondary"
               size="sm"
               className="font-bold"
+              onClick={() => openModal(<EditPasswordModal closeModal={onClose} />)}
             >
               Alterar
             </Button>
