@@ -7,7 +7,7 @@ import { getInitials } from "../../../../utils/get-initial-name";
 import { Input } from "../../../input";
 import { Button } from "../../../button";
 import { ModalFooter } from "../../../modal/modal-footer";
-import { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   editUserSchema,
@@ -43,6 +43,35 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const { isLoading, setUser } = useAuth();
   const [tech, setTech] = useState<UserProps>();
   const { openModal } = useModal();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<File | null>(null);
+
+  useEffect(() => {
+    if (!selectedFile) {
+      setImagePreview(null);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setImagePreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(null);
+      return;
+    }
+
+    setSelectedFile(e.target.files[0]);
+  }
+
+  function removeImagePreview() {
+    setImagePreview(null);
+    setSelectedFile(null);
+  }
+
   if (isLoading) {
     return (
       <ModalLayout>
@@ -61,6 +90,7 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
       </ModalLayout>
     );
   }
+
   if (!user) {
     return null;
   }
@@ -92,12 +122,22 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const emailError = errors.email?.message;
 
   async function editUser(data: editUserSchemaData) {
+    const formData = new FormData();
+
+    if (selectedFile) {
+      formData.append("image", selectedFile);
+    }
+
+    formData.append("username", data.username);
+    formData.append("email", data.email);
     try {
-      const response = await api.put(`/clients/${user.id}`, {
-        username: data.username,
-        email: data.email,
+      const response = await api.put(`/clients/${user.id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       });
       setUser(response.data);
+      console.log(response.data);
       toast.success("Usuário editado com sucesso!");
       onClose?.();
     } catch (error) {
@@ -142,12 +182,34 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
       <ModalHeader>Perfil</ModalHeader>
       <Form onSubmit={handleSubmit(editUser)}>
         <ModalContent>
-          <span className="flex gap-2">
+          <span className="flex gap-4">
             <div className=" flex items-center justify-center border-black">
-              <ProfileContent hasAbbreviation={getInitials(user.username)} />
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="Preview da imagem"
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+              ) : user.profilePicture ? (
+                <img
+                  src={user.profilePicture}
+                  alt={user.username}
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+              ) : (
+                <ProfileContent className="w-16 h-16" hasAbbreviation={getInitials(user.username)} />
+              )}
             </div>
             <div className="flex items-center gap-4">
-              <input type="file" id="file" className="hidden" />
+              <input
+                type="file"
+                id="file"
+                className="hidden"
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleImageChange}
+              />
+
               <label
                 htmlFor="file"
                 className="cursor-pointer bg-gray-500 text-black px-3 py-2 rounded-lg hover:bg-gray-400 "
@@ -159,9 +221,15 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
                 />
                 Nova imagem
               </label>
-              <button className="px-3 py-3 items-center justify-center p-4 rounded-lg text-red-600 bg-gray-500 hover:bg-gray-400 hover:text-red-700">
-                <Trash height={16} width={16} />
-              </button>
+
+              {imagePreview && (
+                <button
+                  onClick={removeImagePreview}
+                  className="px-3 py-3 items-center justify-center p-4 rounded-lg text-red-600 bg-gray-500 hover:bg-gray-400 hover:text-red-700"
+                >
+                  <Trash height={16} width={16} />
+                </button>
+              )}
             </div>
           </span>
         </ModalContent>
@@ -198,7 +266,9 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
               variant="secondary"
               size="sm"
               className="font-bold"
-              onClick={() => openModal(<EditPasswordModal closeModal={onClose} />)}
+              onClick={() =>
+                openModal(<EditPasswordModal closeModal={onClose} />)
+              }
             >
               Alterar
             </Button>

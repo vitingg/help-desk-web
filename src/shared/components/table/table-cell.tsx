@@ -63,9 +63,14 @@ export function TableCell({
 type ProfileContentProps = {
   children?: ReactNode;
   hasAbbreviation: string;
+  className?: string;
 };
 
-export function ProfileContent({ children, hasAbbreviation }: ProfileContentProps) {
+export function ProfileContent({
+  children,
+  hasAbbreviation,
+  className,
+}: ProfileContentProps) {
   const isImage =
     hasAbbreviation.startsWith("http") ||
     hasAbbreviation.startsWith("data:image/");
@@ -73,7 +78,9 @@ export function ProfileContent({ children, hasAbbreviation }: ProfileContentProp
   return (
     <div>
       <div className="flex items-center gap-2">
-        <div className="bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center ">
+        <div
+          className={`bg-blue-dark rounded-full w-8 h-8 text-white flex items-center justify-center ${className}`}
+        >
           {isImage ? <img src={hasAbbreviation} /> : hasAbbreviation}
         </div>
         <p>{children}</p>
