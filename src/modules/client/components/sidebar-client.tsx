@@ -25,7 +25,7 @@ export function ClientSidebar() {
   return (
     <SidebarContent>
       {navItem.map((item) => (
-        <li className="flex" key={item.name}>
+        <li className="hidden md:flex" key={item.name}>
           <NavLink
             to={item.path}
             className={({ isActive }) =>

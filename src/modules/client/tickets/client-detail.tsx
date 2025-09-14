@@ -1,5 +1,8 @@
-import { useEffect, useState } from "react";
+import type { Ticket } from "../../../shared/types/tickets/ticket-response";
 import { HeaderAction } from "../../../shared/components/header-action";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { api } from "../../../shared/lib/api";
 import {
   TicketDetail,
   TicketDetailSkeleton,
@@ -8,9 +11,6 @@ import {
   PriceHistory,
   PriceHistorySkeleton,
 } from "../../../shared/components/tickets/ticket-price-history";
-import type { Ticket } from "../../../shared/types/tickets/ticket-response";
-import { useParams } from "react-router";
-import { api } from "../../../shared/lib/api";
 
 export function ClientDetail() {
   const [data, setData] = useState<Ticket>();
@@ -31,12 +31,14 @@ export function ClientDetail() {
   }, []);
 
   return (
-    <div className="p-14">
-      <HeaderAction title="Chamado detalhado" />
+    <div className="flex justify-center">
+      <div className="p-14 flex flex-col justify-center">
+        <HeaderAction title="Chamado detalhado" />
 
-      <div className="pt-6 flex gap-2">
-        {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
-        {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
+        <div className="pt-6 flex flex-col md:flex-row md:items-start gap-6 ">
+          {data ? <TicketDetail data={data} /> : <TicketDetailSkeleton />}
+          {data ? <PriceHistory data={data} /> : <PriceHistorySkeleton />}
+        </div>
       </div>
     </div>
   );

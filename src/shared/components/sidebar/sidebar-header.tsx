@@ -3,6 +3,9 @@ import lightVector from "../../../shared/assets/vectors/Logo_IconLight.svg";
 import { Menu } from "lucide-react";
 import { SidebarModal } from "./modal/sidebar-modal";
 import { AdminSidebar } from "../../../modules/admin/components/sidebar-admin";
+import { TechSidebar } from "../../../modules/tech/components/sidebar-tech";
+import { ClientSidebar } from "../../../modules/client/components/sidebar-client";
+import { useAuth } from "../../context/auth-context";
 
 type SidebarHeaderProps = {
   userClass: "ADMIN" | "CLIENTE" | "TÉCNICO";
@@ -10,6 +13,14 @@ type SidebarHeaderProps = {
 
 export function SidebarHeader({ userClass }: SidebarHeaderProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { user } = useAuth();
+
+  const roleLabels: Record<string, string> = {
+    ADMIN: "Administrador",
+    TECH: "Técnico",
+    CLIENT: "Cliente",
+  };
+
   return (
     <nav className="pt-6 pb-6 flex gap-4 justify-center md:border-b-1 md:border-b-gray-300 md:w-full">
       <div
@@ -20,7 +31,7 @@ export function SidebarHeader({ userClass }: SidebarHeaderProps) {
         {sidebarOpen && (
           <div className="absolute z-50 top-32 left-20  md:top-auto md:right-auto md:bottom-1 md:left-50">
             <SidebarModal modalTitle="MENU" width="sidebar">
-              <AdminSidebar />
+              <ClientSidebar />
             </SidebarModal>
           </div>
         )}

@@ -11,7 +11,7 @@ interface TicketDetailProps {
 
 export function PriceHistory({ data }: TicketDetailProps) {
   return (
-    <TicketLayout className="min-w-sm">
+    <TicketLayout className="w-lg md:w-sm ">
       <div>
         <Paragraph size="xs" className="pb-2 pr-26">
           Técnico responsável
@@ -37,14 +37,22 @@ export function PriceHistory({ data }: TicketDetailProps) {
             <p>Preço base</p>
             <p>{formattedPrice(data.categories[0].category.basePrice)}</p>
           </span>
+          <Paragraph size="xs">Adicionais</Paragraph>
           <span className="flex justify-between items-center text-xs">
-            <p>Adicionais</p>
-            {formattedPrice(
-              data.categories.reduce(
-                (acc, cat) => acc + (cat.category?.basePrice ?? 0),
-                0
-              ) - data.categories[0].category.basePrice
-            )}
+            <div className="flex flex-col">
+              {data.categories.map((item, index) => (
+                <div key={index}>
+                  {index === 0 ? null : <p>{item.category.name}</p>}
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-col">
+              {data.categories.map((item, index) => (
+                <div key={index}>
+                  {index === 0 ? null : formattedPrice(item.category.basePrice)}
+                </div>
+              ))}
+            </div>
           </span>
 
           <div className="pb-2 border-0 border-b-1 border-b-gray-500" />
