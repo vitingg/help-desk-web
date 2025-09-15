@@ -33,7 +33,6 @@ type UserProps = {
   email: string;
   profilePicture?: string;
   role: string;
-  createdAt: string;
   workHours?: {
     workTime: string[];
   };
@@ -45,7 +44,7 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const { openModal } = useModal();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const fileInputRef = useRef<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (!selectedFile) {
@@ -197,7 +196,10 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
                   className="w-16 h-16 rounded-full object-cover"
                 />
               ) : (
-                <ProfileContent className="w-16 h-16" hasAbbreviation={getInitials(user.username)} />
+                <ProfileContent
+                  className="w-16 h-16"
+                  hasAbbreviation={getInitials(user.username)}
+                />
               )}
             </div>
             <div className="flex items-center gap-4">
@@ -205,7 +207,7 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
                 type="file"
                 id="file"
                 className="hidden"
-                accept="image/*"
+                accept=".jpeg, .jpg, .png, .webp"
                 ref={fileInputRef}
                 onChange={handleImageChange}
               />
