@@ -20,7 +20,7 @@ export function AdminPage() {
     <Layout>
       <SidebarLayout>
         <SidebarHeader userClass="ADMIN" />
-        <div className="hidden md:flex  md:flex-col md:justify-start md:flex-1 ">
+        <div className="hidden md:flex md:flex-col md:justify-start md:flex-1 ">
           <AdminSidebar />
         </div>
         <SidebarFooter userName={user.username} userEmail={user.email} />

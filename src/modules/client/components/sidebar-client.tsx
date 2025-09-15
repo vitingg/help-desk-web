@@ -8,7 +8,7 @@ import {
 } from "../../../shared/components/sidebar/export-sidebar-variance";
 import { SidebarContent } from "../../../shared/components/sidebar/sidebar-content";
 
-export function ClientSidebar() {
+export function ClientSidebar({ isOpen }: { isOpen: boolean }) {
   const navItem = [
     {
       name: "Meus chamados",
@@ -25,7 +25,10 @@ export function ClientSidebar() {
   return (
     <SidebarContent>
       {navItem.map((item) => (
-        <li className="hidden md:flex" key={item.name}>
+        <li
+          className={`md:flex w-full ${isOpen ? "flex" : "hidden"}`}
+          key={item.name}
+        >
           <NavLink
             to={item.path}
             className={({ isActive }) =>

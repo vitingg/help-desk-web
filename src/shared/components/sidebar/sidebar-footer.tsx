@@ -19,7 +19,7 @@ export function SidebarFooter({ userName, userEmail }: SidebarFooterProps) {
         <div className="relative bg-blue-dark text-lg rounded-full w-12 h-12 text-white flex items-center justify-center">
           {getInitials(userName)}
           {profileOpen && (
-            <div className="absolute z-50 top-20 right-1 md:top-auto md:right-auto md:bottom-1 md:left-50">
+            <div className="fixed left-6 right-6 top-32 z-50 flex justify-end select-none md:top-auto md:right-auto md:bottom-1 md:left-55">
               <SidebarModal modalTitle="OPÇÕES" width="profile" />
             </div>
           )}

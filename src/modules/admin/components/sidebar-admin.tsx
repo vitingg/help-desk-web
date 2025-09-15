@@ -8,7 +8,7 @@ import {
 } from "../../../shared/components/sidebar/export-sidebar-variance";
 import { SidebarContent } from "../../../shared/components/sidebar/sidebar-content";
 
-export function AdminSidebar() {
+export function AdminSidebar({ isOpen }: { isOpen?: boolean }) {
   const navItem = [
     {
       name: "Chamados",
@@ -26,7 +26,10 @@ export function AdminSidebar() {
   return (
     <SidebarContent>
       {navItem.map((item) => (
-        <li className="flex w-full" key={item.name}>
+        <li
+          className={`md:flex w-full ${isOpen ? "flex" : "hidden"}`}
+          key={item.name}
+        >
           <NavLink
             to={item.path}
             className={({ isActive }) =>

@@ -15,23 +15,30 @@ export function SidebarHeader({ userClass }: SidebarHeaderProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { user } = useAuth();
 
-  const roleLabels: Record<string, string> = {
-    ADMIN: "Administrador",
-    TECH: "Técnico",
-    CLIENT: "Cliente",
-  };
+  function mobileSidebar(sidebarOpen: boolean) {
+    switch (user?.role) {
+      case "ADMIN":
+        return <AdminSidebar isOpen={sidebarOpen} />;
+      case "TECH":
+        return <TechSidebar isOpen={sidebarOpen} />;
+      case "CLIENT":
+        return <ClientSidebar isOpen={sidebarOpen} />;
+      default:
+        return null;
+    }
+  }
 
   return (
-    <nav className="pt-6 pb-6 flex gap-4 justify-center md:border-b-1 md:border-b-gray-300 md:w-full">
+    <nav className="pt-6 pb-6 flex gap-4 justify-center md:border-b-1 md:border-b-gray-300 md:w-full select-none">
       <div
         className="bg-gray-200 ml-6 mr-4 text-gray-600 p-3 rounded-lg md:hidden cursor-pointer"
         onClick={() => setSidebarOpen((e) => !e)}
       >
         <Menu />{" "}
         {sidebarOpen && (
-          <div className="absolute z-50 top-32 left-20  md:top-auto md:right-auto md:bottom-1 md:left-50">
+          <div className="absolute z-50 top-32 left-6 right-6">
             <SidebarModal modalTitle="MENU" width="sidebar">
-              <ClientSidebar />
+              {mobileSidebar(sidebarOpen)}
             </SidebarModal>
           </div>
         )}

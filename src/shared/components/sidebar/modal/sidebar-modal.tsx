@@ -11,8 +11,8 @@ type SidebarModal = {
 };
 
 const widthClasses = {
-  profile: "w-[12.375rem] h-[8.875rem]",
-  sidebar: "w-[21.75rem]",
+  profile: "w-full md:w-[12rem]",
+  sidebar: "w-full inset-0",
 };
 
 export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
@@ -23,11 +23,11 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
     <div
       className={`bg-gray-100 text-gray-600 rounded-xl ${widthClasses[width]}`}
     >
-      <p className="text-2xs text-gray-400 font-bold pt-4 pl-5 pb-4">
+      <p className="text-2xs text-gray-400 font-bold pt-4 pl-5 md:pb-4">
         {modalTitle}
       </p>
       {modalTitle === "OPÇÕES" && (
-        <div className="p-5 pt-0 flex flex-col gap-3 ">
+        <div className="p-5 pt-2 flex flex-col gap-3 ">
           <div
             className="flex gap-2 items-center hover:opacity-80"
             onClick={openHandleOpenProfileModal}
@@ -43,7 +43,7 @@ export function SidebarModal({ modalTitle, children, width }: SidebarModal) {
         </div>
       )}
 
-      <div className="p-5 pt-0">{children}</div>
+      <div className="px-5 pb-5">{children}</div>
     </div>
   );
 }

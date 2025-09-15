@@ -8,7 +8,7 @@ import {
 } from "../../../shared/components/sidebar/export-sidebar-variance";
 import { SidebarContent } from "../../../shared/components/sidebar/sidebar-content";
 
-export function TechSidebar() {
+export function TechSidebar({ isOpen }: { isOpen: boolean }) {
   const navItem = [
     {
       name: "Meus chamados",
@@ -20,7 +20,10 @@ export function TechSidebar() {
   return (
     <SidebarContent>
       {navItem.map((item) => (
-        <li className="flex" key={item.name}>
+        <li
+          className={`md:flex w-full ${isOpen ? "flex" : "hidden"}`}
+          key={item.name}
+        >
           <NavLink
             to={item.path}
             className={({ isActive }) =>

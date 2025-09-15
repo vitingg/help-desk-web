@@ -61,7 +61,7 @@ export function Technicians() {
         <p className="text-blue-dark font-semibold text-xl">Técnicos</p>
         <Button
           onClick={() => navigate("/dashboard/admin/technicians/form")}
-          size={"md"}
+          size={"lg"}
           className="flex items-center justify-center gap-2"
         >
           <Plus width={18} height={18} />
