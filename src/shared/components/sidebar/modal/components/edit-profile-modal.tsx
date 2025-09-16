@@ -1,33 +1,33 @@
-import { Trash, Upload } from "lucide-react";
+import { getInitials } from "../../../../utils/get-initial-name";
+import { useModal } from "../../../modal/hooks/useModalContext";
 import { ModalContent } from "../../../modal/modal-content";
+import { ProfileContent } from "../../../table/table-cell";
+import React, { useEffect, useRef, useState } from "react";
+import { useAuth } from "../../../../context/auth-context";
+import { EditPasswordModal } from "./edit-password-modal";
 import { ModalHeader } from "../../../modal/modal-header";
 import { ModalLayout } from "../../../modal/modal-layout";
-import { ProfileContent } from "../../../table/table-cell";
-import { getInitials } from "../../../../utils/get-initial-name";
-import { Input } from "../../../input";
-import { Button } from "../../../button";
 import { ModalFooter } from "../../../modal/modal-footer";
-import React, { useEffect, useRef, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Skeleton from "react-loading-skeleton";
+import { Trash, Upload } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { Button } from "../../../button";
+import { Input } from "../../../input";
+import { api } from "../../../../lib/api";
+import { Form } from "../../../form";
+import { toast } from "react-toastify";
 import {
   editUserSchema,
   type editUserSchemaData,
 } from "../../../../schemas/auth/edit-user";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { api } from "../../../../lib/api";
-import { Form } from "../../../form";
-import Skeleton from "react-loading-skeleton";
-import { toast } from "react-toastify";
-import { useAuth } from "../../../../context/auth-context";
-import { useModal } from "../../../modal/hooks/useModalContext";
-import { EditPasswordModal } from "./edit-password-modal";
 
 type EditProfileModalProps = {
   onClose?: () => void;
-  user: UserProps;
+  user: TechProps;
 };
 
-type UserProps = {
+type TechProps = {
   id: number;
   username: string;
   email: string;
@@ -40,7 +40,7 @@ type UserProps = {
 
 export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
   const { isLoading, setUser } = useAuth();
-  const [tech, setTech] = useState<UserProps>();
+  const [tech, setTech] = useState<TechProps>();
   const { openModal } = useModal();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -124,7 +124,7 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
     const formData = new FormData();
 
     if (selectedFile) {
-      formData.append("image", selectedFile);
+      formData.append("profilePicture", selectedFile);
     }
 
     formData.append("username", data.username);
@@ -136,7 +136,6 @@ export function EditProfileModal({ onClose, user }: EditProfileModalProps) {
         },
       });
       setUser(response.data);
-      console.log(response.data);
       toast.success("Usuário editado com sucesso!");
       onClose?.();
     } catch (error) {

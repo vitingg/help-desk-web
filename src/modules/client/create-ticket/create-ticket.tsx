@@ -14,6 +14,7 @@ import {
   type createTicketSchemaData,
 } from "../../../shared/schemas/service/create-service";
 import { useNavigate } from "react-router";
+import { useAuth } from "../../../shared/context/auth-context";
 
 type Category = {
   id: number;
@@ -21,18 +22,14 @@ type Category = {
   basePrice: number;
 };
 
-type userTypes = {
-  id: number;
-};
-
 export function CreateTicket() {
   const [categories, setCategories] = useState<Category[]>([]);
-  const navigate = useNavigate()
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    reset,
     control,
     watch,
     formState: { errors },
@@ -68,17 +65,14 @@ export function CreateTicket() {
 
   async function createService(data: createTicketSchemaData) {
     try {
-      const user = await api.get<userTypes>("/me");
-      const clientId = user.data.id;
-
       const createService = await api.post("/services", {
         title: data.title,
         description: data.description,
         baseCategoryId: Number(watchedCategoryId),
-        clientId,
+        clientId: user?.id,
       });
 
-      navigate("/dashboard/client/tickets")
+      navigate("/dashboard/client/tickets");
 
       console.log(createService.data);
     } catch (error) {

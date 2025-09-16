@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
-import { Icon } from "../../../shared/components/edit-icon";
-import { Table } from "../../../shared/components/table/table";
+import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
+import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableBody } from "../../../shared/components/table/table-body";
 import { TableCell } from "../../../shared/components/table/table-cell";
 import { TableHead } from "../../../shared/components/table/table-head";
-import { TableHeader } from "../../../shared/components/table/table-header";
 import { TableRow } from "../../../shared/components/table/table-row";
-import { api } from "../../../shared/lib/api";
 import { getInitials } from "../../../shared/utils/get-initial-name";
+import { Table } from "../../../shared/components/table/table";
+import { Icon } from "../../../shared/components/edit-icon";
 import { useDeleteCliente } from "./modals/delete-client";
 import { useEditClient } from "./modals/edit-client";
+import { api } from "../../../shared/lib/api";
 import Skeleton from "react-loading-skeleton";
-import { TableSkeleton } from "../../../shared/components/table/components/table-skeleton";
+import { useEffect, useState } from "react";
 
 type GetClientsType = {
   id: number;

@@ -8,7 +8,7 @@ import {
 } from "../../../shared/components/sidebar/export-sidebar-variance";
 import { SidebarContent } from "../../../shared/components/sidebar/sidebar-content";
 
-export function ClientSidebar({ isOpen }: { isOpen: boolean }) {
+export function ClientSidebar({ isOpen }: { isOpen?: boolean }) {
   const navItem = [
     {
       name: "Meus chamados",

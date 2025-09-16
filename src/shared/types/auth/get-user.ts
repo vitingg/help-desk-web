@@ -3,4 +3,5 @@ export type userType = {
   username: string;
   email: string;
   role: string;
+  profilePicture?: string;
 };

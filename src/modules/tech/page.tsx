@@ -25,7 +25,7 @@ export function TechPage() {
         {isLoading ? (
           "carregando"
         ) : (
-          <SidebarFooter userName={user.username} userEmail={user.email} />
+          <SidebarFooter userName={user.username} userEmail={user.email} profilePicture={user.profilePicture}/>
         )}
       </SidebarLayout>
       <Dashboard>

@@ -21,6 +21,6 @@ export function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
   if (isAuthorized) {
     return <Outlet />;
   } else {
-    return <Navigate to="/sign-in" replace />;
+    return <Navigate to="/auth/sign-in" replace />;
   }
 }

@@ -8,18 +8,11 @@ import {
   type SetStateAction,
 } from "react";
 import { api } from "../lib/api";
-
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  role: string;
-  profilePicture?: string;
-}
+import type { userType } from "../types/auth/get-user";
 
 interface AuthContextType {
-  user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>;
+  user: userType | null;
+  setUser: Dispatch<SetStateAction<userType | null>>;
   isLoading: boolean;
 }
 
@@ -31,7 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<userType | null>(null);
 
   useEffect(() => {
     const verifyUser = async () => {
